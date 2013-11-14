@@ -1,11 +1,11 @@
-﻿@model ICollection<TokiDoki.Web.Store.Models.ExternalLogin>
+﻿@model ICollection<Mainichi.Web.Store.Models.ExternalLogin>
 
 @if (Model.Count > 0)
 {
     <h3>Registered external logins</h3>
     <table>
         <tbody>
-        @foreach (TokiDoki.Web.Store.Models.ExternalLogin externalLogin in Model)
+        @foreach (Mainichi.Web.Store.Models.ExternalLogin externalLogin in Model)
         {
             <tr>
                 <td>@externalLogin.ProviderDisplayName</td>

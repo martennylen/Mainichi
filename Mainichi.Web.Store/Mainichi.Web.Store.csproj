@@ -222,15 +222,15 @@
     <Content Include="Content\Snapshots\Products\totoro.png" />
     <Content Include="Content\Snapshots\rainbow.png" />
     <Content Include="Content\Styles\tokidoki.css">
-      <DependentUpon>tokidoki.less</DependentUpon>
+      <DependentUpon>Mainichi.less</DependentUpon>
     </Content>
     <Content Include="Content\Styles\tokidoki.min.css">
-      <DependentUpon>tokidoki.less</DependentUpon>
+      <DependentUpon>Mainichi.less</DependentUpon>
     </Content>
     <Content Include="Content\tokidoki.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Styles\tokidoki.less" />
+    <Content Include="Content\Styles\Mainichi.less" />
     <Content Include="Content\Styles\Grid.less" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />

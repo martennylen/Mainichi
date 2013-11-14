@@ -25,7 +25,7 @@ namespace Mainichi.Web.Store
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new LessBundle("~/Content/css").Include("~/Content/Styles/tokidoki.less", "~/Content/Styles/Grid.less"));
+            bundles.Add(new LessBundle("~/Content/css").Include("~/Content/Styles/Mainichi.less", "~/Content/Styles/Grid.less"));
 
             //bundles.Add(new LessBundle("~/Content/themes/base/css").Include(
             //            "~/Content/themes/base/jquery.ui.core.css",
