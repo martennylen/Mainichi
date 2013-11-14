@@ -108,6 +108,4 @@ Backup*/
 UpgradeLog*.XML
 
 # Misc folders
-Mainichi.Web.Store/Content/Snapshots/Ignore
-Mainichi.Web.Store/Content/Snapshots/M/Ignore
-Mainichi.Web.Store/Content/Snapshots/Products/Ignore
+Ignored/
