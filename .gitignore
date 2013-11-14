@@ -106,3 +106,8 @@ Generated_Code #added for RIA/Silverlight projects
 _UpgradeReport_Files/
 Backup*/
 UpgradeLog*.XML
+
+# Misc folders
+Mainichi.Web.Store/Content/Snapshots/Ignore
+Mainichi.Web.Store/Content/Snapshots/M/Ignore
+Mainichi.Web.Store/Content/Snapshots/Products/Ignore
