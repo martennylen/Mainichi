@@ -196,31 +196,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Snapshots\a.jpg" />
-    <Content Include="Content\Snapshots\b.jpg" />
-    <Content Include="Content\Snapshots\c.jpg" />
-    <Content Include="Content\Snapshots\d.JPG" />
-    <Content Include="Content\Snapshots\M\5809.png" />
-    <Content Include="Content\Snapshots\M\5886.png" />
-    <Content Include="Content\Snapshots\M\IMG_5809.JPG" />
-    <Content Include="Content\Snapshots\M\IMG_5829.JPG" />
-    <Content Include="Content\Snapshots\M\IMG_5846.JPG" />
-    <Content Include="Content\Snapshots\M\IMG_5853.JPG" />
-    <Content Include="Content\Snapshots\M\IMG_5858.JPG" />
-    <Content Include="Content\Snapshots\M\IMG_5870.JPG" />
-    <Content Include="Content\Snapshots\M\IMG_5873.JPG" />
-    <Content Include="Content\Snapshots\M\IMG_5886.JPG" />
-    <Content Include="Content\Snapshots\M\IMG_5919.JPG" />
-    <Content Include="Content\Snapshots\M\IMG_5927.JPG" />
-    <Content Include="Content\Snapshots\M\IMG_5975.JPG" />
-    <Content Include="Content\Snapshots\M\IMG_5978.JPG" />
-    <Content Include="Content\Snapshots\M\IMG_5993.JPG" />
-    <Content Include="Content\Snapshots\Products\bento.png" />
-    <Content Include="Content\Snapshots\Products\ebi.png" />
-    <Content Include="Content\Snapshots\Products\ebi_large.png" />
-    <Content Include="Content\Snapshots\Products\gundam.png" />
-    <Content Include="Content\Snapshots\Products\totoro.png" />
-    <Content Include="Content\Snapshots\rainbow.png" />
+    <Content Include="Content\Snapshots\M\5927.png" />
+    <Content Include="Content\Snapshots\Products\bento_240.png" />
+    <Content Include="Content\Snapshots\Products\bowl_240.png" />
+    <Content Include="Content\Snapshots\Products\ebi_240.png" />
+    <Content Include="Content\Snapshots\Products\gundam_240.png" />
+    <Content Include="Content\Snapshots\Products\kitkat_240.png" />
+    <Content Include="Content\Snapshots\Products\lickitung_240.png" />
+    <Content Include="Content\Snapshots\Products\tofu_240.png" />
+    <Content Include="Content\Snapshots\Products\totoro_240.png" />
     <Content Include="Content\Styles\tokidoki.css">
       <DependentUpon>Mainichi.less</DependentUpon>
     </Content>
