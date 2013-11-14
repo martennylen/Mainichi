@@ -1,0 +1,110 @@
+﻿html {
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /*background-color: #FC8F00;*/
+    background-color: #FFF;
+    border-top: solid 10px #FC8D00;
+    color: #333;
+    font-size: .85em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+}
+
+.site-title {
+    color: #FC1000;
+    font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
+    /*font-family: Arial;*/
+    font-size: 3.4em;
+    margin: 0;
+}
+
+.site-title a, .site-title a:hover, .site-title a:active {
+    background: none;
+    color: #fff;
+    outline: none;
+    text-decoration: none;
+}
+
+ul#menu {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 0 0 5px;
+    padding: 0;
+}
+
+ul#menu li {
+    display: inline;
+    list-style: none;
+}
+
+ul#menu li a {
+    font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
+    background: none;
+    color: #FCCB00;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 2em
+}
+
+ul#menu li a:hover {
+    background-color: none;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.content-wrapper {
+    padding-top: 60px;
+    max-width: 1000px;
+}
+
+header .menu-bar {
+    padding-bottom: 21px;
+    background-color: #FC8D00;
+}
+
+div#body {
+    background-color: #fff;
+}
+
+#logo-holder {
+    background-color: #135217;
+    margin-bottom: 10px;
+    padding:10px
+}
+
+footer {
+    clear: both;
+    background-color: #ccc;
+    font-size: .8em;
+    height: 50px;
+}
+
+section.breadcrumbs a:link, section.breadcrumbs a:visited, section.breadcrumbs a:active {
+    color: #88B9F7;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+section.breadcrumbs a:hover {
+    background-color: #FC8D00;
+}
+
+/*a {
+    color: #006FFC;
+}
+
+a:link, a:visited,
+    a:active, a:hover {
+        color: #006FFC;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    a:hover {
+        background-color: #FC8D00;
+    }*/

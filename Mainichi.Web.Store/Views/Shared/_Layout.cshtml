@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Mainichi - din matlåda i etern</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <div class="content-wrapper">
+            <header>
+                <div id="logo-holder" class="clearfix">
+                    <div class="float-left">
+                        <a href="/">
+                            <ul id="rainbow">
+                                <li>M</li>
+                                <li>A</li>
+                                <li>I</li>
+                                <li>N</li>
+                                <li><canvas id="flag-container"></canvas></li>
+                                <li>I</li>
+                                <li>C</li>
+                                <li>H</li>
+                                <li>I</li>
+                            </ul>
+                        </a>
+                        @*<h1 class="site-title">@Html.ActionLink("毎日 - MAINICHI", "Index", "Home")</h1>*@
+                        @*<p class="site-title">@Html.ActionLink("Placeholder for logo", "Index", "Home")</p>*@
+                    </div>
+                    <div id="marquee" style="position:relative;overflow:hidden;background-color:#ccc;margin:0;padding:0;height:180px;background-image: url('/Content/Snapshots/M/5927.png');background-repeat: no-repeat">
+                        @*<div style="padding: 1em 0 .8em 0">
+                            <div class="float-right" style="padding: 0 1em;margin: 110px 0 0 0">
+                                <input type="text" placeholder="Sök i butiken" style="width:200px;padding:10px"/>
+                            </div>
+                        </div>*@
+                        @*<nav style="text-align: right">
+                            <ul>
+                                <li><a class="hoverable" href="#">TEST</a></li>
+                                <li><a class="hoverable" href="#">TEST</a></li>
+                                <li><a class="hoverable" href="#">TEST</a></li>
+                                <li><a class="hoverable" href="#">TEST</a></li>
+                                <li><a class="cartholder" href="#">5</a></li>
+                            </ul>
+                        </nav>*@
+                        @Html.Partial("_MenuBar")
+                    </div>
+                </div>
+            </header>
+            <div id="body">
+                @RenderSection("breadcrumbs", required: false)
+                @RenderBody()
+            </div>
+            <footer class="clearfix">
+                <div class="float-left">
+                    <p>Lorem ipsum dolor sit amet, ne eum reque semper aperiam, ei tempor graecis est. Nam no docendi philosophia. Mei cu vivendo molestie, ex qui veri dolor instructior. At nam eruditi epicuri.
+                        Nobis delicatissimi ei ius. Qui malis diceret constituto ei, ne pro agam mandamus, clita everti has in. Vocibus dissentiunt mea et, in per quando expetenda eloquentiam, sed bonorum definiebas id. Denique commune verterem ex qui.
+                        At pri nibh vivendo splendide, natum nemore periculis mel et, nec latine minimum at. Rebum praesent in duo. Quod duis corpora cum in. Ea bonorum gloriatur pri.
+                    </p>
+                </div>
+                <div class="float-left">
+                    <p>His mollis probatus constituto at, causae perfecto sensibus eu qui. Nibh aliquam ex vix. Eam cu nonumes intellegat, simul intellegat mel ut. Duo albucius invidunt id, propriae scaevola vis id, nec delenit partiendo cu. Ius ei probo justo, no modo homero persequeris vis. At insolens sapientem inciderint quo, ius ut modo erat sanctus, no feugait invenire qui.
+                        Eu soleat tincidunt ullamcorper per, inani accusata electram cu sed, vidit vocent at has. Molestie delectus invidunt ad mei. Te magna appareat usu, qualisque mediocritatem pri ea. Cum ad case eruditi necessitatibus. Usu cu virtute probatus referrentur.
+                    </p>
+                </div>
+                <div class="float-left">
+                    <p>Lorem ipsum dolor sit amet, ne eum reque semper aperiam, ei tempor graecis est. Nam no docendi philosophia. Mei cu vivendo molestie, ex qui veri dolor instructior. At nam eruditi epicuri.
+                        Nobis delicatissimi ei ius. Qui malis diceret constituto ei, ne pro agam mandamus, clita everti has in. Vocibus dissentiunt mea et, in per quando expetenda eloquentiam, sed bonorum definiebas id. Denique commune verterem ex qui.
+                    </p>
+                </div>
+            </footer>
+
+            @Scripts.Render("~/bundles/lib")
+            @RenderSection("scripts", required: false)
+            <script>
+                var canvas = document.getElementById('flag-container');
+                canvas.height = '47';
+                canvas.width = '47';
+                var context = canvas.getContext('2d');
+                var centerX = canvas.width / 2;
+                var centerY = canvas.height / 2;
+                var radius = 22;
+
+                context.beginPath();
+                context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+                context.fillStyle = '#cc3333';
+                context.fill();
+                context.font = '1.25em Moon font';
+                context.fillStyle = '#fafafa';
+                //context.fillText('毎日', 2, 30);
+                context.fillText('毎', 12, 22);
+                context.fillText('日', 12, 41);
+            </script>
+            <script>
+                var elements = document.getElementById('rainbow').getElementsByTagName('li');
+                var oldIndex = 0, newIndex = 0;
+                
+                (function rainbowize() {
+                    newIndex = getRand(oldIndex);
+                    elements[oldIndex].className = '';
+                    elements[newIndex].className = 'active';
+                    oldIndex = newIndex;
+
+                    setTimeout(rainbowize, 10000);
+                })();
+                
+                function getRand(oldIndex) {
+                    var newIndex = Math.floor((Math.random() * 8));
+                    return newIndex === oldIndex ? getRand(oldIndex) : newIndex === 4 ? getRand(oldIndex) : newIndex;
+                }
+            </script>
+        </div>
+    </body>
+</html>
