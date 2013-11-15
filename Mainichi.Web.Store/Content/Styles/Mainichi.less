@@ -444,14 +444,39 @@ html {
 
         ul#product-list {
             li {
-                //.column(12,0);
-                //padding: 10px;
+               .column(6,0);
+               padding: 10px;
 
                 .product-container {
                     text-align: center;
 
                     img {
                         width: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    @media all and (max-width : 320px) {
+
+        nav {
+            display: none;
+        }
+
+        ul#product-list {
+            padding: 10px 30px;
+
+            li {
+                .column(12,0);
+                padding: 0;
+
+                .product-container {
+                    text-align: center;
+                    min-width: 240px;
+
+                    img {
+                        width: auto;
                     }
                 }
             }

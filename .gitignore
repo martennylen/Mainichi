@@ -109,3 +109,5 @@ UpgradeLog*.XML
 
 # Misc folders
 Ignored/
+*.css
+*.min.css
