@@ -206,12 +206,6 @@
     <Content Include="Content\Snapshots\Products\lickitung_240.png" />
     <Content Include="Content\Snapshots\Products\tofu_240.png" />
     <Content Include="Content\Snapshots\Products\totoro_240.png" />
-    <Content Include="Content\Styles\Mainichi.css">
-      <DependentUpon>Mainichi.less</DependentUpon>
-    </Content>
-    <Content Include="Content\Styles\Mainichi.min.css">
-      <DependentUpon>Mainichi.less</DependentUpon>
-    </Content>
     <Content Include="Content\tokidoki.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
