@@ -197,6 +197,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Snapshots\M\5927.png" />
+    <Content Include="Content\Snapshots\M\orb.png" />
     <Content Include="Content\Snapshots\Products\bento_240.png" />
     <Content Include="Content\Snapshots\Products\bowl_240.png" />
     <Content Include="Content\Snapshots\Products\ebi_240.png" />
@@ -205,12 +206,6 @@
     <Content Include="Content\Snapshots\Products\lickitung_240.png" />
     <Content Include="Content\Snapshots\Products\tofu_240.png" />
     <Content Include="Content\Snapshots\Products\totoro_240.png" />
-    <Content Include="Content\Styles\tokidoki.css">
-      <DependentUpon>Mainichi.less</DependentUpon>
-    </Content>
-    <Content Include="Content\Styles\tokidoki.min.css">
-      <DependentUpon>Mainichi.less</DependentUpon>
-    </Content>
     <Content Include="Content\tokidoki.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

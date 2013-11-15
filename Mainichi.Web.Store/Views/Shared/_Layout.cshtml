@@ -13,19 +13,18 @@
             <header>
                 <div id="logo-holder" class="clearfix">
                     <div class="float-left">
-                        <a href="/">
                             <ul id="rainbow">
                                 <li>M</li>
                                 <li>A</li>
                                 <li>I</li>
                                 <li>N</li>
-                                <li><canvas id="flag-container"></canvas></li>
+                                @*<li><canvas id="flag-container"></canvas></li>*@
+                                <li><img src="~/Content/Snapshots/M/orb.png" /></li>
                                 <li>I</li>
                                 <li>C</li>
                                 <li>H</li>
                                 <li>I</li>
                             </ul>
-                        </a>
                         @*<h1 class="site-title">@Html.ActionLink("毎日 - MAINICHI", "Index", "Home")</h1>*@
                         @*<p class="site-title">@Html.ActionLink("Placeholder for logo", "Index", "Home")</p>*@
                     </div>
@@ -74,23 +73,23 @@
             @Scripts.Render("~/bundles/lib")
             @RenderSection("scripts", required: false)
             <script>
-                var canvas = document.getElementById('flag-container');
-                canvas.height = '47';
-                canvas.width = '47';
-                var context = canvas.getContext('2d');
-                var centerX = canvas.width / 2;
-                var centerY = canvas.height / 2;
-                var radius = 22;
+                //var canvas = document.getElementById('flag-container');
+                //canvas.height = '47';
+                //canvas.width = '47';
+                //var context = canvas.getContext('2d');
+                //var centerX = canvas.width / 2;
+                //var centerY = canvas.height / 2;
+                //var radius = 22;
 
-                context.beginPath();
-                context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-                context.fillStyle = '#cc3333';
-                context.fill();
-                context.font = '1.25em Moon font';
-                context.fillStyle = '#fafafa';
-                //context.fillText('毎日', 2, 30);
-                context.fillText('毎', 12, 22);
-                context.fillText('日', 12, 41);
+                //context.beginPath();
+                //context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+                //context.fillStyle = '#cc3333';
+                //context.fill();
+                //context.font = '1.25em Moon font';
+                //context.fillStyle = '#fafafa';
+                ////context.fillText('毎日', 2, 30);
+                //context.fillText('毎', 12, 22);
+                //context.fillText('日', 12, 41);
             </script>
             <script>
                 var elements = document.getElementById('rainbow').getElementsByTagName('li');
