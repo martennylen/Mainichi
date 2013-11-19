@@ -198,6 +198,7 @@
   <ItemGroup>
     <Content Include="Content\Snapshots\M\5927.png" />
     <Content Include="Content\Snapshots\M\orb.png" />
+    <Content Include="Content\Snapshots\M\smaller_orb.png" />
     <Content Include="Content\Snapshots\Products\bento_240.png" />
     <Content Include="Content\Snapshots\Products\bowl_240.png" />
     <Content Include="Content\Snapshots\Products\ebi_240.png" />
