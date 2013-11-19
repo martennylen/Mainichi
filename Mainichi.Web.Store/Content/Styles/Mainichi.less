@@ -30,7 +30,6 @@ html {
 
         #body {
             background-color: #fafafa;
-            padding-top: 20px;
 
             section.breadcrumbs {
                 a:link, section.breadcrumbs a:visited, section.breadcrumbs a:active {
@@ -141,11 +140,11 @@ html {
                     }
             }
 
-            li:nth-child(1) {
-                a {
-                    .column(5,0);
+                li:nth-child(1) {
+                    a {
+                        .column(5,0);
+                    }
                 }
-            }
         }
     }
 
@@ -166,16 +165,16 @@ html {
 
                     li {
                         float: left;
-                        display: block;
+                        //display: block;
                         //padding: 0.5em;
                         //padding: 0.5em 0.5em 0.5em 0.49em;
                         //color: #fafafa;
                         //font-family: MS PGothic;
                         //font-family: Rockwell, Georgia, serif;
                         font-size: 1.4em;
-                        min-width: 47px;
+                        /*min-width: 47px;
                         min-height: 47px;
-                        padding: 0.5em;
+                        padding: 0.5em;*/
                         text-align: center;
                         background-color: #fafafa;
                         color: #cc3333;
@@ -203,7 +202,7 @@ html {
                             font-size: 1.25em;
                             height: 46px;
                             padding: 0;
-                            background: none;
+                            //background: none;
                         }
 
                         li.active {
@@ -439,7 +438,11 @@ html {
 
     @media all and (min-width : 641px) {
         #body {
-            padding: 0 20px;
+            padding: 20px;
+
+            #cart-holder {
+                display: none;
+            }
         }
 
         #marquee {
@@ -456,9 +459,57 @@ html {
         ul#product-list {
             padding: 0;
         }
+
+        header {
+            ul#rainbow {
+                li {
+                    display: block;
+                    min-width: 47px;
+                    min-height: 47px;
+                    padding: 0.5em;
+                }
+                li:nth-child(5) {
+                    background: url('/Content/Snapshots/M/orb.png') no-repeat;
+                }
+            }
+        }
     }
 
     @media all and (max-width : 640px) {
+
+        header {
+            ul#rainbow {
+                li {
+                    display: none;
+                }
+                li:nth-child(5) {
+                    display: block;
+                    min-width: 69px;
+                    min-height: 69px;
+                    padding: 0;
+                    background: url('/Content/Snapshots/M/smaller_orb.png') no-repeat;
+                }
+            }
+        }
+
+        #body {
+            padding-top: 0;
+            #cart-holder {
+                height: 50px;
+                background-color: #cc3333;
+                color: #fafafa;
+                font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 3em;
+                text-align: right;
+
+                span {
+                    display: block;
+                    padding: 2px 20px;
+                }
+            }
+        }
 
         #marquee {
             display: none;
@@ -467,16 +518,6 @@ html {
         .content-wrapper {
             padding-top: 0;
         }
-
-        /*ul#rainbow {
-            padding: 0;
-            font-size: 1.3em;
-
-            li {
-                padding: 0.5em 0.6em;
-                line-height: 1em;
-            }
-        }*/
 
         ul#product-list {
             //padding: 10px 30px;
@@ -502,10 +543,10 @@ html {
                 }
             }
 
-                li:nth-child(2n+2) {
-                    margin-right: 0;
-                    padding-bottom: 0;
-                }
+            li:nth-child(2n+2) {
+                margin-right: 0;
+                padding-bottom: 0;
+            }
         }
     }
 }
