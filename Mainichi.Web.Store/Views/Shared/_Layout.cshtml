@@ -72,31 +72,26 @@
 
             @Scripts.Render("~/bundles/lib")
             @RenderSection("scripts", required: false)
-            <script>
-                //var canvas = document.getElementById('flag-container');
-                //canvas.height = '47';
-                //canvas.width = '47';
-                //var context = canvas.getContext('2d');
-                //var centerX = canvas.width / 2;
-                //var centerY = canvas.height / 2;
-                //var radius = 22;
+            @*<script>
+                var canvas = document.getElementById('apa');
+                canvas.height = '24';
+                canvas.width = '24';
+                var context = canvas.getContext('2d');
+                var centerX = canvas.width / 2;
+                var centerY = canvas.height / 2;
+                var radius = 12;
 
-                //context.beginPath();
-                //context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-                //context.fillStyle = '#cc3333';
-                //context.fill();
-                //context.font = '1.25em Moon font';
-                //context.fillStyle = '#fafafa';
+                context.beginPath();
+                context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+                context.fillStyle = '#cc3333';
+                context.fill();
+                context.font = '0.8em Moon font';
+                context.fillStyle = '#fafafa';
                 ////context.fillText('毎日', 2, 30);
-                //context.fillText('毎', 12, 22);
-                //context.fillText('日', 12, 41);
-                </script>
+                context.fillText('毎', 6, 11);
+                context.fillText('日', 6, 21);
+            </script>*@
             <script>
-
-                if (Modernizr.mq('only all and (max-width: 480px)')) {
-                    window.onscroll = isScrolling;
-                }
-                
                 var scrollElement = document.getElementById('cart-holder');
                 var stop = scrollElement.offsetTop;
                 var fixedWidth = scrollElement.offsetWidth;
@@ -124,18 +119,24 @@
                 var elements = document.getElementById('rainbow').getElementsByTagName('li');
                 var oldIndex = 0, newIndex = 0;
                 
-                (function rainbowize() {
+                function rainbowize() {
                     newIndex = getRand(oldIndex);
                     elements[oldIndex].className = '';
                     elements[newIndex].className = 'active';
                     oldIndex = newIndex;
 
                     setTimeout(rainbowize, 10000);
-                })();
+                }
                 
                 function getRand(oldIndex) {
                     var newIndex = Math.floor((Math.random() * 8));
                     return newIndex === oldIndex ? getRand(oldIndex) : newIndex === 4 ? getRand(oldIndex) : newIndex;
+                }
+                
+                if (Modernizr.mq('only all and (max-width: 480px)')) {
+                    window.onscroll = isScrolling;
+                } else {
+                    rainbowize();
                 }
             </script>
         </div>
