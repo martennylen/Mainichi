@@ -13,36 +13,22 @@
             <header>
                 <div id="logo-holder" class="clearfix">
                     <div class="float-left">
-                            <ul id="rainbow">
-                                <li>M</li>
-                                <li>A</li>
-                                <li>I</li>
-                                <li>N</li>
-                                @*<li><canvas id="flag-container"></canvas></li>*@
-                                <li></li>
-                                <li>I</li>
-                                <li>C</li>
-                                <li>H</li>
-                                <li>I</li>
-                            </ul>
+                        <ul id="rainbow">
+                            <li>M</li>
+                            <li>A</li>
+                            <li>I</li>
+                            <li>N</li>
+                            @*<li><canvas id="flag-container"></canvas></li>*@
+                            <li></li>
+                            <li>I</li>
+                            <li>C</li>
+                            <li>H</li>
+                            <li>I</li>
+                        </ul>
                         @*<h1 class="site-title">@Html.ActionLink("毎日 - MAINICHI", "Index", "Home")</h1>*@
                         @*<p class="site-title">@Html.ActionLink("Placeholder for logo", "Index", "Home")</p>*@
                     </div>
                     <div id="marquee">
-                        @*<div style="padding: 1em 0 .8em 0">
-                            <div class="float-right" style="padding: 0 1em;margin: 110px 0 0 0">
-                                <input type="text" placeholder="Sök i butiken" style="width:200px;padding:10px"/>
-                            </div>
-                        </div>*@
-                        @*<nav style="text-align: right">
-                            <ul>
-                                <li><a class="hoverable" href="#">TEST</a></li>
-                                <li><a class="hoverable" href="#">TEST</a></li>
-                                <li><a class="hoverable" href="#">TEST</a></li>
-                                <li><a class="hoverable" href="#">TEST</a></li>
-                                <li><a class="cartholder" href="#">5</a></li>
-                            </ul>
-                        </nav>*@
                         @Html.Partial("_MenuBar")
                     </div>
                 </div>
@@ -50,20 +36,23 @@
             <div id="body">
                 @RenderSection("breadcrumbs", required: false)
                 @RenderBody()
+                <section id="up-we-go">
+                    <a href="#">Gå till toppen av sidan</a>
+                </section>
             </div>
             <footer class="clearfix">
-                <div class="float-left">
+                <div>
                     <p>Lorem ipsum dolor sit amet, ne eum reque semper aperiam, ei tempor graecis est. Nam no docendi philosophia. Mei cu vivendo molestie, ex qui veri dolor instructior. At nam eruditi epicuri.
                         Nobis delicatissimi ei ius. Qui malis diceret constituto ei, ne pro agam mandamus, clita everti has in. Vocibus dissentiunt mea et, in per quando expetenda eloquentiam, sed bonorum definiebas id. Denique commune verterem ex qui.
                         At pri nibh vivendo splendide, natum nemore periculis mel et, nec latine minimum at. Rebum praesent in duo. Quod duis corpora cum in. Ea bonorum gloriatur pri.
                     </p>
                 </div>
-                <div class="float-left">
+                <div>
                     <p>His mollis probatus constituto at, causae perfecto sensibus eu qui. Nibh aliquam ex vix. Eam cu nonumes intellegat, simul intellegat mel ut. Duo albucius invidunt id, propriae scaevola vis id, nec delenit partiendo cu. Ius ei probo justo, no modo homero persequeris vis. At insolens sapientem inciderint quo, ius ut modo erat sanctus, no feugait invenire qui.
                         Eu soleat tincidunt ullamcorper per, inani accusata electram cu sed, vidit vocent at has. Molestie delectus invidunt ad mei. Te magna appareat usu, qualisque mediocritatem pri ea. Cum ad case eruditi necessitatibus. Usu cu virtute probatus referrentur.
                     </p>
                 </div>
-                <div class="float-left">
+                <div>
                     <p>Lorem ipsum dolor sit amet, ne eum reque semper aperiam, ei tempor graecis est. Nam no docendi philosophia. Mei cu vivendo molestie, ex qui veri dolor instructior. At nam eruditi epicuri.
                         Nobis delicatissimi ei ius. Qui malis diceret constituto ei, ne pro agam mandamus, clita everti has in. Vocibus dissentiunt mea et, in per quando expetenda eloquentiam, sed bonorum definiebas id. Denique commune verterem ex qui.
                     </p>

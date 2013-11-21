@@ -15,20 +15,6 @@
     width: (@col * @num) + (@gut * (@num - 1));
 }
 
-.paddedcolumn(@num, @gut) {
-    @col: (100% - (@gut * (@cols - 1))) / @cols;
-    float: left;
-    padding: 0 @gut 0 0;
-    width: (@col * @num) + (@gut * (@num - 1.25));
-}
-
-.paddedcolumn(@num, @gut,  @gut2, @gut3, @gut4) {
-    @col: (100% - (@gut * (@cols - 1))) / @cols;
-    float: left;
-    padding: @gut @gut2 @gut3 @gut4;
-    width: (@col * @num) + (@gut * (@num - 1.25));
-}
-
 .sub-column(@num, @parent-num) {
 	@parent-size: (@one-col * @parent-num) + (@gutter * (@parent-num - 1));
 	@child-size: (@one-col * @num) + (@gutter * (@num - 1));
