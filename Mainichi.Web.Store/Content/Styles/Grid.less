@@ -8,6 +8,14 @@
 	width: (@one-col * @num) + (@gutter * (@num - 1));
 }
 
+.column-no-float(@num){
+    margin-right: 2%;
+	width: (@one-col * @num) + (@gutter * (@num - 1));
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+}
+
 .column(@num, @gut) {
     @col: (100% - (@gut * (@cols - 1))) / @cols;
     float: left;

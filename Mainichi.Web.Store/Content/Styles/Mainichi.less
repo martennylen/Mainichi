@@ -60,7 +60,6 @@ html {
                     //border-radius: 0 0 0 20px;
                     //text-align: center;
                     //text-align: left;
-
                     div.product-description {
                         text-align: left;
 
@@ -349,13 +348,13 @@ html {
         }
 
         ul#product-list {
+            font-size: 0;
 
             > li {
-                //.column(6);
-                .column(3);
-
+                //.column(2);
+                .column-no-float(2);
+                
                 div.product-container {
-                    margin-right: 5px;
                     text-align: center;
 
                     img {
@@ -365,10 +364,10 @@ html {
                 }
             }
 
-            //li:nth-child(2n+2) {
-            > li:nth-child(4n+4) {
-                margin-right: 0;
-            }
+                > li:nth-child(6n+6) {
+                    //> li:nth-child(4n+4) {
+                    margin-right: 0;
+                }
         }
     }
 
@@ -380,13 +379,13 @@ html {
         }
 
         ul#product-list {
+            font-size: 0;
 
             > li {
-                .column(3);
+                //.column(2);
+                .column-no-float(2);
 
                 .product-container {
-                    margin-right: 15px;
-
                     img {
                         max-width: 100%;
                         width: 100%;
@@ -394,7 +393,7 @@ html {
                 }
             }
 
-                > li:nth-child(4n+4) {
+                > li:nth-child(6n+6) {
                     margin-right: 0;
                 }
         }
@@ -404,7 +403,7 @@ html {
 
         ul#product-list {
             > li {
-                .column(6,0);
+                .column(3,0);
                 padding: 10px;
 
                 .product-container {
@@ -416,9 +415,9 @@ html {
                 }
             }
 
-            > li:nth-child(2n+2) {
-                margin-right: 0;
-            }
+                > li:nth-child(4n+4) {
+                    margin-right: 0;
+                }
         }
 
         header nav ul li a {
@@ -455,11 +454,11 @@ html {
 
             >li {
                 margin-bottom: 20px;
+
                 .product-container {
                     .product-description {
                         padding: 1em;
                         //position: relative;
-
                         span.price-fighter {
                             /*position: absolute;
                             bottom: 0.5em;
@@ -480,10 +479,10 @@ html {
                     font-size: 1.4em;
                 }
 
-                li:nth-child(5) {
-                    height: 46px;
-                    background: url('/Content/Snapshots/M/orb.png') no-repeat;
-                }
+                    li:nth-child(5) {
+                        height: 46px;
+                        background: url('/Content/Snapshots/M/orb.png') no-repeat;
+                    }
             }
         }
 
@@ -546,6 +545,7 @@ html {
                 font-size: 3em;
                 text-align: right;
                 z-index: 12;
+                border-bottom: 4px solid #E6B287;
 
                 span {
                     display: block;
@@ -571,7 +571,7 @@ html {
             //padding: 10px 30px;
             padding: 0;
 
-           > li {
+            > li {
                 .column(12, 0);
                 padding: 0;
                 margin-bottom: 20px;
@@ -579,7 +579,7 @@ html {
                 .product-container {
                     text-align: left;
                     //min-width: 240px;
-                    margin-bottom: 2em;
+                    //margin-bottom: 2em;
                     margin-right: 0;
                     position: relative;
 
@@ -596,18 +596,20 @@ html {
                         span.price-fighter {
                             position: absolute;
                             bottom: 0.5em;
-                            right: 0;
+                            right: 0.5em;
                         }
+
                         span.product-body-text {
                             display: inline;
                         }
                     }
                 }
             }
-            > li:nth-child(2n+2) {
-                margin-right: 0;
-                padding-bottom: 0;
-            }
+
+                > li:nth-child(2n+2) {
+                    margin-right: 0;
+                    padding-bottom: 0;
+                }
         }
     }
 }
