@@ -10,6 +10,10 @@ html {
     margin: 0;
     padding: 0;
 
+    a {
+        text-decoration: none;
+    }
+
     .clearfix:after {
         visibility: hidden;
         display: block;
@@ -57,8 +61,8 @@ html {
                 div.product-container {
                     background-color: #F1F1F1;
                     color: #999;
-                    border-bottom: 2px solid #ffcc00;
-                    //border-bottom: 2px solid #cc3333;
+                    //border-bottom: 2px solid #ffcc00;
+                    border-bottom: 2px solid #cc3333;
                     //border-radius: 0 0 0 20px;
                     //text-align: center;
                     //text-align: left;
@@ -88,15 +92,19 @@ html {
                 }
 
                     div.product-container:hover {
-                        //background-color: #cc3333;
-                        border-bottom: 2px solid #cc3333;
+                        background-color: #cc3333;
+                        border-bottom: 2px solid #ffcc00;
+                        //border-bottom: 2px solid #cc3333;
 
-                        /*div.product-description {
+                        div.product-description {
+                            span.product-body-text {
+                                color: #fafafa;
+                            }
                             span.price-fighter {
-                                background-color: #f1f1f1;
+                                background-color: #fafafa;
                                 color: #cc3333;
                             }
-                        }*/
+                        }
                     }
             }
         }
@@ -388,9 +396,9 @@ html {
 
     @media all and (max-width : 1280px) {
         .content-wrapper {
-            margin: 0;
+            margin: 0 auto;
             padding-top: 60px;
-            max-width: 100%;
+            max-width: 80%;
         }
 
         ul#product-list {
@@ -398,7 +406,7 @@ html {
 
             > li {
                 //.column(2);
-                .column-no-float(2);
+                .column-no-float(3);
 
                 .product-container {
                     img {
@@ -408,17 +416,22 @@ html {
                 }
             }
 
-                > li:nth-child(6n+6) {
+                > li:nth-child(4n+4) {
                     margin-right: 0;
                 }
         }
     }
 
-    @media all and (max-width : 800px) {
+    @media all and (max-width : 1000px) {
+        .content-wrapper {
+            margin: 0;
+            padding-top: 60px;
+            max-width: 100%;
+        }
 
         ul#product-list {
             > li {
-                .column(3,0);
+                .column(6,0);
                 padding: 10px;
 
                 .product-container {
@@ -430,7 +443,7 @@ html {
                 }
             }
 
-                > li:nth-child(4n+4) {
+                > li:nth-child(2n+2) {
                     margin-right: 0;
                 }
         }

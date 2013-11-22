@@ -183,6 +183,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ThingController.cs" />
     <Compile Include="Filters\HandleRavenSessionFilter.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -193,12 +194,14 @@
     <Compile Include="Infrastructure\Bundling\LessBundleTransform.cs" />
     <Compile Include="Infrastructure\Bundling\LessEngineFactory.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ThingModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Snapshots\M\5927.png" />
     <Content Include="Content\Snapshots\M\orb.png" />
     <Content Include="Content\Snapshots\M\orblet.png" />
+    <Content Include="Content\Snapshots\Products\1281.png" />
     <Content Include="Content\Snapshots\Products\bento_240.png" />
     <Content Include="Content\Snapshots\Products\bowl_240.png" />
     <Content Include="Content\Snapshots\Products\ebi_240.png" />
@@ -273,6 +276,8 @@
     <Content Include="Views\Shared\_SideMenu.cshtml" />
     <Content Include="Views\Shared\_MenuBar.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Thing.cshtml" />
+    <Content Include="Views\Thing\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

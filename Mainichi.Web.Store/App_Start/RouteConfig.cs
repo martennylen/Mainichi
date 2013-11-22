@@ -18,6 +18,12 @@ namespace Mainichi.Web.Store
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Show",
+                url: "Thing/{action}/{slug}/{id}",
+                defaults: new { controller = "Thing", action = "Details", id = UrlParameter.Optional }
+            );
         }
     }
 }
