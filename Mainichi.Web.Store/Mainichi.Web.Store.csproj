@@ -222,7 +222,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Styles\Mainichi.less" />
     <Content Include="Content\Styles\Grid.less" />
-    <Content Include="Scripts\products.json">
+    <Content Include="Scripts\Data\products.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="App_Code\RenderHelper.cshtml" />
@@ -298,9 +298,7 @@
       <DependentUpon>sammy-0.7.4.js</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
