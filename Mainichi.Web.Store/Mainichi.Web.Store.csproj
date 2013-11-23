@@ -201,6 +201,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="ViewModels\Category.cs" />
     <Compile Include="ViewModels\CategoryList.cs" />
+    <Compile Include="ViewModels\CategoryMenuModel.cs" />
     <Compile Include="ViewModels\Thing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -222,10 +223,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Styles\Mainichi.less" />
     <Content Include="Content\Styles\Grid.less" />
-    <Content Include="Scripts\Data\products.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="App_Code\RenderHelper.cshtml" />
+    <Content Include="Scripts\Data\products.json" />
+    <Content Include="Views\Shared\_MenuRenderer.cshtml" />
     <None Include="Scripts\Lib\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\Lib\jquery-1.9.1.js" />
     <Content Include="Scripts\Lib\jquery-1.9.1.min.js" />
@@ -286,9 +285,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_Layout_old.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Shared\_SideMenu.cshtml" />
     <Content Include="Views\Shared\_MenuBar.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Thing.cshtml" />

@@ -1,4 +1,8 @@
 ﻿@using Mainichi.Web.Store.ViewModels
+@model CategoryMenuModel
+    
+@ShowTree(Model.Categories, Model.Identifier)
+
 @helper ShowTree(IEnumerable<Category> categories, string identifier)
 {
     <ul id="@identifier">

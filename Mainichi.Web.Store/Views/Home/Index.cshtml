@@ -19,7 +19,7 @@
     </span>
 </div>
 <div id="needs-moar-cats">
-    @RenderHelper.ShowTree(Model.Categories, "top-most")
+    @Html.Partial("_MenuRenderer", new CategoryMenuModel{ Categories = Model.Categories.AsEnumerable(), Identifier = "top-most" })
 </div>
 <div id="the-magic-happens-here" data-bind="with: productlist">
     <ul id="product-list" class="clearfix" style="margin-top: 0" data-bind="foreach: Products">
