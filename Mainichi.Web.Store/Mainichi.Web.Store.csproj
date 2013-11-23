@@ -222,9 +222,9 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Styles\Mainichi.less" />
     <Content Include="Content\Styles\Grid.less" />
-    <Content Include="App_Code\RenderHelper.cshtml" />
     <Content Include="Scripts\Data\products.json" />
     <Content Include="Scripts\Data\items.json" />
+    <Content Include="App_Code\RenderHelper.cshtml" />
     <None Include="Scripts\Lib\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\Lib\jquery-1.9.1.js" />
     <Content Include="Scripts\Lib\jquery-1.9.1.min.js" />
