@@ -222,7 +222,9 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Styles\Mainichi.less" />
     <Content Include="Content\Styles\Grid.less" />
-    <Content Include="Scripts\Data\products.json" />
+    <Content Include="Scripts\Data\products.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\Data\items.json" />
     <Content Include="App_Code\RenderHelper.cshtml" />
     <None Include="Scripts\Lib\jquery.validate-vsdoc.js" />
@@ -296,7 +298,6 @@
     <Content Include="Scripts\Lib\sammy-0.7.4.min.js.map">
       <DependentUpon>sammy-0.7.4.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\products.json" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
