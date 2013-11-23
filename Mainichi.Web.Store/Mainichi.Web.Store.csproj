@@ -223,7 +223,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Styles\Mainichi.less" />
     <Content Include="Content\Styles\Grid.less" />
-    <Content Include="Scripts\Data\products.json" />
+    <None Include="Scripts\Data\products.json" />
     <Content Include="Views\Shared\_MenuRenderer.cshtml" />
     <None Include="Scripts\Lib\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\Lib\jquery-1.9.1.js" />
