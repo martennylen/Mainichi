@@ -296,6 +296,7 @@
     <Content Include="Scripts\Lib\sammy-0.7.4.min.js.map">
       <DependentUpon>sammy-0.7.4.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\products.json" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
