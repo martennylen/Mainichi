@@ -154,6 +154,12 @@ html {
                         padding-right: 0;
                     }
 
+                    a.cartholder:hover {
+                        background-color: #fafafa;
+                        color: #cc3333;
+                        border-bottom: 2px solid #cc3333;
+                    }
+
                     a.hoverable:hover {
                         //background-color: #cc3333;
                         background: none;
@@ -163,7 +169,13 @@ html {
 
                 li:nth-child(1) {
                     a {
-                        .column(5,0);
+                        .column(4,0);
+                    }
+                }
+
+                li:nth-child(2) {
+                    a {
+                        .column(3,0);
                     }
                 }
         }
@@ -464,6 +476,66 @@ html {
             #up-we-go {
                 display: none;
             }
+
+            #needs-moar-cats {
+                margin-bottom: 20px;
+                padding: 20px;
+                background-color: #f1f1f1;
+
+                ul#top-most {
+                    list-style-type: none;
+                    padding: 0;
+                    font-size: 0;
+
+                    > li {
+                        .column-no-float(3);
+                        > a {
+                            background-color: #fafafa;
+                            color: #cc3333;
+                            padding: 10px;
+                            font-weight: bold;
+                            font-size: 1.3em;
+                            border-radius: 4px
+                        }
+
+                        ul {
+                            list-style-type: none;
+                            margin-top: 10px;
+                            display: none;
+
+                            > li {
+                                margin-top: 20px;
+                                > a {
+                                    background-color: #ffcc00;
+                                    color: #cc3333;
+                                    padding: 5px;
+                                    font-weight: bold;
+                                    font-size: 1.1em;
+                                    border-radius: 4px
+                                }
+
+                                ul {
+                                    list-style-type: none;
+                                    margin-top: 10px;
+
+                                    > li {
+                                        margin-top: 20px;
+                                        > a {
+                                            background-color: #FC8D00;
+                                            padding: 2px;
+                                            font-size: 1em;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    > li:nth-child(3n+3) {
+                        margin-right: 0;
+                    }
+                }
+            }
         }
 
         #marquee {
@@ -558,6 +630,7 @@ html {
             padding-top: 0;
 
             #cart-holder {
+                display: block;
                 height: 50px;
                 background-color: #cc3333;
                 color: #fafafa;
@@ -578,6 +651,10 @@ html {
             #up-we-go {
                 text-align: center;
                 display: block;
+            }
+
+            #needs-moar-cats {
+                display: none;
             }
         }
 

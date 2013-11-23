@@ -35,6 +35,7 @@
             </header>
             <div id="body">
                 @RenderSection("breadcrumbs", required: false)
+                @Html.Partial("_CartHolder")
                 @RenderBody()
                 <section id="up-we-go">
                     <a href="#">Gå till toppen av sidan</a>
@@ -61,49 +62,7 @@
 
             @Scripts.Render("~/bundles/lib")
             @RenderSection("scripts", required: false)
-            @*<script>
-                var canvas = document.getElementById('apa');
-                canvas.height = '24';
-                canvas.width = '24';
-                var context = canvas.getContext('2d');
-                var centerX = canvas.width / 2;
-                var centerY = canvas.height / 2;
-                var radius = 12;
-
-                context.beginPath();
-                context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-                context.fillStyle = '#cc3333';
-                context.fill();
-                context.font = '0.8em Moon font';
-                context.fillStyle = '#fafafa';
-                ////context.fillText('毎日', 2, 30);
-                context.fillText('毎', 6, 11);
-                context.fillText('日', 6, 21);
-            </script>*@
             <script>
-                var scrollElement = document.getElementById('cart-holder');
-                var stop = scrollElement.offsetTop;
-                var fixedWidth = scrollElement.offsetWidth;
-                var currentTop = 0;
-                
-                function posTop() {
-                    return (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
-                }
-
-                function isScrolling() {
-                    currentTop = posTop();
-                    var top = (scrollElement.offsetTop - currentTop);
-                    if (top <= 0) {
-                        scrollElement.style.width = fixedWidth + 'px';
-                        scrollElement.style.position = 'fixed';
-                        scrollElement.style.top = 0;
-                    }
-
-                    if (currentTop < stop) {
-                        scrollElement.style.position = 'static';
-                        scrollElement.style.top = stop + 'px';
-                    }
-                }
                 
                 var elements = document.getElementById('rainbow').getElementsByTagName('li');
                 var oldIndex = 0, newIndex = 0;
@@ -122,7 +81,7 @@
                     return newIndex === oldIndex ? getRand(oldIndex) : newIndex === 4 ? getRand(oldIndex) : newIndex;
                 }
                 
-                if (Modernizr.mq('only all and (max-width: 480px)')) {
+                if (Modernizr.mq('only all and (max-width: 640px)')) {
                     window.onscroll = isScrolling;
                 } else {
                     rainbowize();

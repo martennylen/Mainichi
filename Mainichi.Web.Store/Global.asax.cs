@@ -18,7 +18,6 @@ namespace Mainichi.Web.Store
 
     public class MvcApplication : System.Web.HttpApplication
     {
-        public static DocumentStore Store;
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -29,10 +28,10 @@ namespace Mainichi.Web.Store
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
 
-            Store = new DocumentStore { ConnectionStringName = "RavenDB" };
-            Store.Initialize();
+            //Store = new DocumentStore { ConnectionStringName = "RavenDB" };
+            //Store.Initialize();
 
-            IndexCreation.CreateIndexes(Assembly.GetCallingAssembly(), Store);
+            //IndexCreation.CreateIndexes(Assembly.GetCallingAssembly(), Store);
         }
     }
 }

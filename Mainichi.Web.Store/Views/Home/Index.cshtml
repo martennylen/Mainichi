@@ -1,297 +1,167 @@
-﻿@section breadcrumbs {
+﻿@using Mainichi.Web.Store.ViewModels
+@model CategoryList
+
+@section breadcrumbs {
     <section class="breadcrumbs" style="display:none">
         <a href="#">START</a> > <a href="#">BENTO</a> > <a href="#">SUPER SAYIAN DELUXE IV</a>
     </section>
 }
-<div id="cart-holder">
-    <span>5</span>
-</div>
-<div id="hello-stranger">
+
+@section scripts {
+    @Scripts.Render("~/bundles/mainichi")
+}
+
+<div id="hello-stranger" style="display: none">
     <span>
         HEJ VI TROR DU ÄR NY HÄR OCH BEHÖVER LITE HJÄLP FÖR DU SER RÄTT VILSEN UT, STÄMMER DET? WEEEEI!
         Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit in malesuada semper mi,
         id sollicitudin urna fermentum ut fusce varius nisl ac ipsum gravida vel pretium tellus.
     </span>
 </div>
-<ul id="product-list" class="clearfix" style="margin-top: 0">
-    @*<li>
-            <div class="product-container clearfix">
-                <img src="~/Content/Snapshots/Products/ebi_240.png" style="float:left" />
-                <div style="float:left;width:60%;margin:0.8em;margin-top:0">
-                    <h3 style="display:inline">TEMPURARÄKA</h3>
-                    <div style="margin-top: 1em">
-                        <span>
-                            Här ska det stå lite text om just den här grejen man kan tjacka. Här ska det stå lite text om just den här grejen man kan tjacka.
-                            Här ska det stå lite text om just den här grejen man kan tjacka. Här ska det stå lite text om just den här grejen man kan tjacka.
-                        </span>
-                    </div>
-                    <span class="price-fighter">128:-</span>
-                </div>
-            </div>
-        </li>
+<div id="needs-moar-cats">
+    @RenderHelper.ShowTree(Model.Categories, "top-most")
+</div>
+<div id="the-magic-happens-here" data-bind="with: productlist">
+    <ul id="product-list" class="clearfix" style="margin-top: 0" data-bind="foreach: Products">
         <li>
-            <div class="product-container clearfix">
-                <img src="~/Content/Snapshots/Products/bento_240.png" style="float:left" />
-                <div style="float:left;width:60%;margin:0.8em;margin-top:0">
-                    <h3 style="display:inline">EN SKÅL MAT</h3>
-                    <div style="margin-top: 1em">
-                        <span>
-                            Här ska det stå lite text om just den här grejen man kan tjacka. Här ska det stå lite text om just den här grejen man kan tjacka.
-                            Här ska det stå lite text om just den här grejen man kan tjacka. Här ska det stå lite text om just den här grejen man kan tjacka.
-                        </span>
+            <a href="@Url.Content("~/Thing/Details/Bento/1281")">
+                <div class="product-container clearfix">
+                    <img data-bind="attr: {src: '/Content/Snapshots/Products/' + $data.Image }" />
+                    <div class="product-description">
+                        <span class="product-body-text" style="font-weight: bold; font-size: 1.17em" data-bind="html: $data.Name.toUpperCase()"></span>
+                        <div style="text-align: right;margin-top:0.8em">
+                            <span class="price-fighter" data-bind="text: $data.Price + ':-'"></span>
+                        </div>
                     </div>
-                    <span class="price-fighter">239:-</span>
                 </div>
-            </div>
+            </a>
         </li>
-        <li>
-            <div class="product-container clearfix">
-                <img src="~/Content/Snapshots/Products/gundam_240.png" style="float:left" />
-                <div style="float:left;width:60%;margin:0.8em;margin-top:0">
-                    <h3 style="display:inline">GUNDAM RX-82</h3>
-                    <div style="margin-top: 1em">
-                        <span>
-                            Här ska det stå lite text om just den här grejen man kan tjacka. Här ska det stå lite text om just den här grejen man kan tjacka.
-                            Här ska det stå lite text om just den här grejen man kan tjacka. Här ska det stå lite text om just den här grejen man kan tjacka.
-                        </span>
+        @*<li>
+                <a href="@Url.Content("~/Thing/Details/Bento/1281")">
+                    <div class="product-container clearfix">
+                        <img src="~/Content/Snapshots/Products/bento_240.png" />
+                        <div class="product-description">
+                            <span class="product-body-text" style="font-weight: bold; font-size: 1.17em">EN SKÅL MAT</span>
+                            <div style="text-align: right;margin-top:0.8em">
+                                <span class="price-fighter">239:-</span>
+                            </div>
+                        </div>
                     </div>
-                    <span class="price-fighter">2 459:-</span>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="product-container clearfix">
-                <img src="~/Content/Snapshots/Products/totoro_240.png" style="float:left" />
-                <div style="float:left;width:60%;margin:0.8em;margin-top:0">
-                    <h3 style="display:inline">TOTORO PLYSCH 62CM</h3>
-                    <div style="margin-top: 1em">
-                        <span>
-                            Här ska det stå lite text om just den här grejen man kan tjacka. Här ska det stå lite text om just den här grejen man kan tjacka.
-                            Här ska det stå lite text om just den här grejen man kan tjacka. Här ska det stå lite text om just den här grejen man kan tjacka.
-                        </span>
+                </a>
+            </li>
+            <li>
+                <div class="product-container clearfix">
+                    <img src="~/Content/Snapshots/Products/gundam_240.png" />
+                    <div class="product-description">
+                        <span class="product-body-text" style="font-weight: bold;font-size: 1.17em">GUNDAM</span>
+                        <div style="text-align: right;margin-top:0.8em">
+                            <span class="price-fighter">2 459:-</span>
+                        </div>
                     </div>
-                    <span class="price-fighter">99:-</span>
                 </div>
-            </div>
-        </li>
-        <li>
-            <div class="product-container clearfix">
-                <img src="~/Content/Snapshots/Products/kitkat_240.png" style="float:left" />
-                <div style="float:left;width:60%;margin:0.8em;margin-top:0">
-                    <h3 style="display:inline">KIT KAT GRÖNT TE</h3>
-                    <div style="margin-top: 1em">
-                        <span>
-                            Här ska det stå lite text om just den här grejen man kan tjacka. Här ska det stå lite text om just den här grejen man kan tjacka.
-                            Här ska det stå lite text om just den här grejen man kan tjacka. Här ska det stå lite text om just den här grejen man kan tjacka.
-                        </span>
+            </li>
+            <li>
+                <div class="product-container clearfix">
+                    <img src="~/Content/Snapshots/Products/totoro_240.png" />
+                    <div class="product-description">
+                        <span class="product-body-text" style="font-weight: bold;font-size: 1.17em">TOTORO PLYSCH 62CM</span>
+                        <div style="text-align: right;margin-top:0.8em">
+                            <span class="price-fighter">99:-</span>
+                        </div>
                     </div>
-                    <span class="price-fighter">28:-</span>
                 </div>
-            </div>
-        </li>
-        <li>
-            <div class="product-container clearfix">
-                <img src="~/Content/Snapshots/Products/lickitung_240.png" style="float:left" />
-                <div style="float:left;width:60%;margin:0.8em;margin-top:0">
-                    <h3 style="display:inline">LICKITUNG NYCKELRING</h3>
-                    <div style="margin-top: 1em">
-                        <span>
-                            Här ska det stå lite text om just den här grejen man kan tjacka. Här ska det stå lite text om just den här grejen man kan tjacka.
-                            Här ska det stå lite text om just den här grejen man kan tjacka. Här ska det stå lite text om just den här grejen man kan tjacka.
-                        </span>
+            </li>
+            <li>
+                <div class="product-container clearfix">
+                    <img src="~/Content/Snapshots/Products/kitkat_240.png" />
+                    <div class="product-description">
+                        <span class="product-body-text" style="font-weight: bold;font-size: 1.17em">KITKAT</span>
+                        <div style="text-align: right;margin-top:0.8em">
+                            <span class="price-fighter">28:-</span>
+                        </div>
                     </div>
-                    <span class="price-fighter">59:-</span>
                 </div>
-            </div>
-        </li>
-        <li>
-            <div class="product-container clearfix">
-                <img src="~/Content/Snapshots/Products/bowl_240.png" style="float:left" />
-                <div style="float:left;width:60%;margin:0.8em;margin-top:0">
-                    <h3 style="display:inline">RISSKÅL</h3>
-                    <div style="margin-top: 1em">
-                        <span>
-                            Här ska det stå lite text om just den här grejen man kan tjacka. Här ska det stå lite text om just den här grejen man kan tjacka.
-                            Här ska det stå lite text om just den här grejen man kan tjacka. Här ska det stå lite text om just den här grejen man kan tjacka.
-                        </span>
+            </li>
+            <li>
+                <div class="product-container clearfix">
+                    <img src="~/Content/Snapshots/Products/lickitung_240.png" />
+                    <div class="product-description">
+                        <span class="product-body-text" style="font-weight: bold;font-size: 1.17em">NYCKELRING</span>
+                        <div style="text-align: right;margin-top:0.8em">
+                            <span class="price-fighter">59:-</span>
+                        </div>
                     </div>
-                    <span class="price-fighter">89:-</span>
                 </div>
-            </div>
-        </li>
-        <li>
-            <div class="product-container clearfix">
-                <img src="~/Content/Snapshots/Products/tofu_240.png" style="float:left" />
-                <div style="float:left;width:60%;margin:0.8em;margin-top:0">
-                    <h3 style="display:inline">TOFU MJUKIS</h3>
-                    <div style="margin-top: 1em">
-                        <span>
-                            Här ska det stå lite text om just den här grejen man kan tjacka. Här ska det stå lite text om just den här grejen man kan tjacka.
-                            Här ska det stå lite text om just den här grejen man kan tjacka. Här ska det stå lite text om just den här grejen man kan tjacka.
-                        </span>
+            </li>
+            <li>
+                <div class="product-container clearfix">
+                    <img src="~/Content/Snapshots/Products/bowl_240.png" />
+                    <div class="product-description">
+                        <span class="product-body-text" style="font-weight: bold;font-size: 1.17em">RISSKÅL</span>
+                        <div style="text-align: right;margin-top:0.8em">
+                            <span class="price-fighter">89:-</span>
+                        </div>
                     </div>
-                    <span class="price-fighter">119:-</span>
                 </div>
-            </div>
-        </li>*@
-    <li>
-        @*<div class="product-container">
-                <img src="~/Content/Snapshots/Products/ebi_240.png" />
-                <div class="product-description clearfix">
-                    <h3 style="display: inline">TEMPURARÄKA</h3>
-                    <span class="price-fighter">128:-</span>
+            </li>
+            <li>
+                <div class="product-container clearfix">
+                    <img src="~/Content/Snapshots/Products/tofu_240.png" />
+                    <div class="product-description">
+                        <span class="product-body-text" style="font-weight: bold;font-size: 1.17em">TOFU MJUKIS</span>
+                        <div style="text-align: right;margin-top:0.8em">
+                            <span class="price-fighter">119:-</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="product-container clearfix">
+                    <img src="~/Content/Snapshots/Products/kitkat_240.png" />
+                    <div class="product-description">
+                        <span class="product-body-text" style="font-weight: bold;font-size: 1.17em">EN GRÖN KITKAT</span>
+                        <div style="text-align: right;margin-top:0.8em">
+                            <span class="price-fighter">28:-</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="product-container clearfix">
+                    <img src="~/Content/Snapshots/Products/lickitung_240.png" />
+                    <div class="product-description">
+                        <span class="product-body-text" style="font-weight: bold;font-size: 1.17em">NYCKELRING</span>
+                        <div style="text-align: right;margin-top:0.8em">
+                            <span class="price-fighter">59:-</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="product-container clearfix">
+                    <img src="~/Content/Snapshots/Products/bowl_240.png" />
+                    <div class="product-description">
+                        <span class="product-body-text" style="font-weight: bold;font-size: 1.17em">RISSKÅL</span>
+                        <div style="text-align: right;margin-top:0.8em">
+                            <span class="price-fighter">89:-</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="product-container clearfix">
+                    <img src="~/Content/Snapshots/Products/tofu_240.png" />
+                    <div class="product-description">
+                        <span class="product-body-text" style="font-weight: bold;font-size: 1.17em">TOFU MJUKIS</span>
+                        <div style="text-align: right;margin-top:0.8em">
+                            <span class="price-fighter">119:-</span>
+                        </div>
+                    </div>
+                </div>
+            </li>*@
+    </ul>
+</div>
 
-                        @*<span class="product-body-text">
-                        Här ska det stå lite text om just den här grejen man kan tjacka. Här ska det stå lite text om just den här grejen man kan tjacka.
-                        Här ska det stå lite text om just den här grejen man kan tjacka. Här ska det stå lite text om just den här grejen man kan tjacka.
-                    </span>
-                </div>
-            </div>*@
-        <div class="product-container clearfix">
-            <img src="~/Content/Snapshots/Products/ebi_240.png" />
-            <div class="product-description">
-                <span class="product-body-text" style="font-weight: bold; font-size: 1.17em">TEMPURARÄKA</span>
-                <div style="text-align: right;margin-top:0.8em">
-                    <span class="price-fighter">128:-</span>
-                    @*<ul style="display: inline-block;list-style-type: disc">
-                                <li>
-                                    <span>Snygg!</span>
-                                </li>
-                                <li>
-                                    <span>Snygg!</span>
-                                </li>
-                                <li>
-                                    <span>Snygg!</span>
-                                </li>
-                            </ul>*@
-                </div>
-            </div>
-    </div>
-    </li>
-    <li>
-        <a href="@Url.Content("~/Thing/Details/Bento/1281")">
-            <div class="product-container clearfix">
-                <img src="~/Content/Snapshots/Products/bento_240.png" />
-                <div class="product-description">
-                    <span class="product-body-text" style="font-weight: bold; font-size: 1.17em">EN SKÅL MAT</span>
-                    <div style="text-align: right;margin-top:0.8em">
-                        <span class="price-fighter">239:-</span>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <li>
-        <div class="product-container clearfix">
-            <img src="~/Content/Snapshots/Products/gundam_240.png" />
-            <div class="product-description">
-                <span class="product-body-text" style="font-weight: bold;font-size: 1.17em">GUNDAM</span>
-                <div style="text-align: right;margin-top:0.8em">
-                    <span class="price-fighter">2 459:-</span>
-                </div>
-            </div>
-        </div>
-    </li>
-    <li>
-        <div class="product-container clearfix">
-            <img src="~/Content/Snapshots/Products/totoro_240.png" />
-            <div class="product-description">
-                <span class="product-body-text" style="font-weight: bold;font-size: 1.17em">TOTORO PLYSCH 62CM</span>
-                <div style="text-align: right;margin-top:0.8em">
-                    <span class="price-fighter">99:-</span>
-                </div>
-            </div>
-        </div>
-    </li>
-    <li>
-        <div class="product-container clearfix">
-            <img src="~/Content/Snapshots/Products/kitkat_240.png" />
-            <div class="product-description">
-                <span class="product-body-text" style="font-weight: bold;font-size: 1.17em">KITKAT</span>
-                <div style="text-align: right;margin-top:0.8em">
-                    <span class="price-fighter">28:-</span>
-                </div>
-            </div>
-        </div>
-    </li>
-    <li>
-        <div class="product-container clearfix">
-            <img src="~/Content/Snapshots/Products/lickitung_240.png" />
-            <div class="product-description">
-                <span class="product-body-text" style="font-weight: bold;font-size: 1.17em">NYCKELRING</span>
-                <div style="text-align: right;margin-top:0.8em">
-                    <span class="price-fighter">59:-</span>
-                </div>
-            </div>
-        </div>
-    </li>
-    <li>
-        <div class="product-container clearfix">
-            <img src="~/Content/Snapshots/Products/bowl_240.png" />
-            <div class="product-description">
-                <span class="product-body-text" style="font-weight: bold;font-size: 1.17em">RISSKÅL</span>
-                <div style="text-align: right;margin-top:0.8em">
-                    <span class="price-fighter">89:-</span>
-                </div>
-            </div>
-        </div>
-    </li>
-    <li>
-        <div class="product-container clearfix">
-            <img src="~/Content/Snapshots/Products/tofu_240.png" />
-            <div class="product-description">
-                <span class="product-body-text" style="font-weight: bold;font-size: 1.17em">TOFU MJUKIS</span>
-                <div style="text-align: right;margin-top:0.8em">
-                    <span class="price-fighter">119:-</span>
-                </div>
-            </div>
-        </div>
-    </li>
-    <li>
-        <div class="product-container clearfix">
-            <img src="~/Content/Snapshots/Products/kitkat_240.png" />
-            <div class="product-description">
-                <span class="product-body-text" style="font-weight: bold;font-size: 1.17em">EN GRÖN KITKAT</span>
-                <div style="text-align: right;margin-top:0.8em">
-                    <span class="price-fighter">28:-</span>
-                </div>
-            </div>
-        </div>
-    </li>
-    <li>
-        <div class="product-container clearfix">
-            <img src="~/Content/Snapshots/Products/lickitung_240.png" />
-            <div class="product-description">
-                <span class="product-body-text" style="font-weight: bold;font-size: 1.17em">NYCKELRING</span>
-                <div style="text-align: right;margin-top:0.8em">
-                    <span class="price-fighter">59:-</span>
-                </div>
-            </div>
-        </div>
-    </li>
-    <li>
-        <div class="product-container clearfix">
-            <img src="~/Content/Snapshots/Products/bowl_240.png" />
-            <div class="product-description">
-                <span class="product-body-text" style="font-weight: bold;font-size: 1.17em">RISSKÅL</span>
-                <div style="text-align: right;margin-top:0.8em">
-                    <span class="price-fighter">89:-</span>
-                </div>
-            </div>
-        </div>
-    </li>
-    <li>
-        <div class="product-container clearfix">
-            <img src="~/Content/Snapshots/Products/tofu_240.png" />
-            <div class="product-description">
-                <span class="product-body-text" style="font-weight: bold;font-size: 1.17em">TOFU MJUKIS</span>
-                <div style="text-align: right;margin-top:0.8em">
-                    <span class="price-fighter">119:-</span>
-                </div>
-            </div>
-        </div>
-    </li>
-</ul>
 @*ul.yo>li*4>(span+img[src="apa$"])*@
 @*ul[data-bind="foreach:customers"]>li*4>(span{Caption $$}+input[type=text data-bind="value:$$"])*@
 @*section[data-bind="foreach:customers"]>div*4>(input[type="text" data-bind="text:$$"]+img[src='apa'])*@

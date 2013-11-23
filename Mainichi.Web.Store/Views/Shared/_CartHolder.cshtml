@@ -1,0 +1,42 @@
+﻿<div id="cart-holder">
+    <span>5</span>
+</div>
+
+<script>
+    var scrollElement = document.getElementById('cart-holder');
+    var stop = scrollElement.offsetTop;
+    //var fixedWidth = scrollElement.offsetWidth;
+    var currentTop = 0;
+    var lastTop = 0;
+
+    function posTop() {
+        return (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+    }
+
+    function isScrolling() {
+        currentTop = posTop();
+
+        if (currentTop > lastTop && lastTop > 0) { //scrolling down
+            scrollElement.style.display = 'none';
+        } else { //scrolling up
+            var top = (scrollElement.offsetTop - currentTop);
+
+            if (top <= 0) {
+                scrollElement.style.width = '100%';
+                scrollElement.style.position = 'fixed';
+                scrollElement.style.top = 0;
+            }
+
+            if (currentTop < stop) {
+                scrollElement.style.position = 'static';
+                scrollElement.style.top = stop + 'px';
+            }
+
+            if (scrollElement.style.display === 'none') {
+                scrollElement.style.display = 'block';
+            }
+        }
+
+        lastTop = currentTop;
+    }
+</script>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using Mainichi.Web.Store.App_Start;
 using Raven.Client;
 
 namespace Mainichi.Web.Store.Filters
@@ -14,7 +14,7 @@ namespace Mainichi.Web.Store.Filters
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            RavenSession = MvcApplication.Store.OpenSession();
+            RavenSession = DataDocumentStore.Initialize().OpenSession();
         }
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)

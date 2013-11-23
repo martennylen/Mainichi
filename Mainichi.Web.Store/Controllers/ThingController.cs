@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Mainichi.Web.Store.Models;
+using Mainichi.Web.Store.ViewModels;
 
 namespace Mainichi.Web.Store.Controllers
 {
@@ -14,7 +14,7 @@ namespace Mainichi.Web.Store.Controllers
 
         public ActionResult Details(int id)
         {
-            var m = new ThingModels.Thing(id);
+            var m = new Thing(id);
             return View(m);
         }
     }

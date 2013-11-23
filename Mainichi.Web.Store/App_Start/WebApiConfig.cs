@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using Mainichi.Web.Store.Api.Filter;
+using Mainichi.Web.Store.App_Start;
+using Mainichi.Web.Store.Filters;
 
 namespace Mainichi.Web.Store
 {
@@ -14,6 +17,8 @@ namespace Mainichi.Web.Store
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Filters.Add(new RavenSessionManagementAttribute());
         }
     }
 }

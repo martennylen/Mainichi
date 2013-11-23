@@ -175,14 +175,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\AbstractApiController.cs" />
+    <Compile Include="Api\Filter\RavenSessionManagementAttribute.cs" />
+    <Compile Include="Api\ThingsController.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\DataDocumentStore.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RavenController.cs" />
     <Compile Include="Controllers\ThingController.cs" />
     <Compile Include="Filters\HandleRavenSessionFilter.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -194,7 +199,9 @@
     <Compile Include="Infrastructure\Bundling\LessBundleTransform.cs" />
     <Compile Include="Infrastructure\Bundling\LessEngineFactory.cs" />
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\ThingModels.cs" />
+    <Compile Include="ViewModels\Category.cs" />
+    <Compile Include="ViewModels\CategoryList.cs" />
+    <Compile Include="ViewModels\Thing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -215,23 +222,30 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Styles\Mainichi.less" />
     <Content Include="Content\Styles\Grid.less" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.9.1.js" />
-    <Content Include="Scripts\jquery-1.9.1.min.js" />
-    <Content Include="Scripts\jquery-ui-1.8.20.js" />
-    <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
-    <Content Include="Scripts\jquery.color-2.1.2.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\knockout-2.3.0.js" />
-    <Content Include="Scripts\knockout-2.3.0.min.js" />
-    <Content Include="Scripts\modernizr-2.5.3.js" />
-    <Content Include="Scripts\underscore-1.4.1.js" />
-    <Content Include="Scripts\underscore-1.4.1.min.js" />
+    <Content Include="App_Code\RenderHelper.cshtml" />
+    <Content Include="Scripts\Data\products.json" />
+    <Content Include="Scripts\Data\items.json" />
+    <None Include="Scripts\Lib\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\Lib\jquery-1.9.1.js" />
+    <Content Include="Scripts\Lib\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\Lib\jquery-ui-1.8.20.js" />
+    <Content Include="Scripts\Lib\jquery-ui-1.8.20.min.js" />
+    <Content Include="Scripts\Lib\jquery.color-2.1.2.js" />
+    <Content Include="Scripts\Lib\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\Lib\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\Lib\jquery.validate.js" />
+    <Content Include="Scripts\Lib\jquery.validate.min.js" />
+    <Content Include="Scripts\Lib\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\Lib\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Lib\knockout-2.3.0.js" />
+    <Content Include="Scripts\Lib\knockout-2.3.0.min.js" />
+    <Content Include="Scripts\Lib\modernizr-2.5.3.js" />
+    <Content Include="Scripts\Index\app.js" />
+    <Content Include="Scripts\Lib\sammy-0.7.4.js" />
+    <Content Include="Scripts\Lib\sammy-0.7.4.min.js" />
+    <Content Include="Scripts\Lib\underscore-1.4.1.js" />
+    <Content Include="Scripts\Lib\underscore-1.4.1.min.js" />
+    <Content Include="Scripts\Things\page.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -242,7 +256,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\_references.js" />
+    <Content Include="Scripts\Lib\_references.js" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
     <Content Include="Images\heroAccent.png" />
@@ -278,10 +292,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Thing.cshtml" />
     <Content Include="Views\Thing\Details.cshtml" />
+    <Content Include="Views\Shared\_CartHolder.cshtml" />
+    <Content Include="Scripts\Lib\sammy-0.7.4.min.js.map">
+      <DependentUpon>sammy-0.7.4.js</DependentUpon>
+    </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

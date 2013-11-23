@@ -1,0 +1,15 @@
+﻿@using Mainichi.Web.Store.ViewModels
+@helper ShowTree(IEnumerable<Category> categories, string identifier)
+{
+    <ul id="@identifier">
+        @foreach (var category in categories)
+        {
+            <li><a href="#">@category.Name</a>
+                @if (category.SubCategories.Any())
+                {
+                    @ShowTree(category.SubCategories, string.Empty)
+                }
+            </li>
+        }
+    </ul>
+}
