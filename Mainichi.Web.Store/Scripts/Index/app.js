@@ -10,7 +10,7 @@ Mainichi.ViewModels.Index = function () {
     
     (Sammy('#the-magic-happens-here', function () {
         this.get('#/', function (context) {
-            this.load('/Scripts/Data/products.json')
+            this.load('/Scripts/Data/products.js', {json:true})
             .then(function (items) {
                 self.productlist(items);
             });
