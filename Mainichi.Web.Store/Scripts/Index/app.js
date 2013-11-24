@@ -1,6 +1,4 @@
-﻿/*global Sammy, jQuery */
-
-var Mainichi = Mainichi || {};
+﻿var Mainichi = Mainichi || {};
 Mainichi.ViewModels = Mainichi.ViewModels || {};
 
 Mainichi.ViewModels.Index = function () {
@@ -10,12 +8,16 @@ Mainichi.ViewModels.Index = function () {
     //var model = new Booking.Models.PageState(options, finder, partySize);
     self.productlist = ko.observable();
     
-    ($.sammy('#the-magic-happens-here', function () {
+    (Sammy('#the-magic-happens-here', function () {
         this.get('#/', function (context) {
-            this.load('/Scripts/Data/products.js', {json:true})
+            this.load('/Scripts/Data/products.json')
             .then(function (items) {
                 self.productlist(items);
             });
+        });
+        
+        this.get('#/thing/:slug/:id', function (context) {
+            context.log(context.params['id']);
         });
     })).run('#/');
 };
