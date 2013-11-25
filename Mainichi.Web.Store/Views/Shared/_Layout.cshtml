@@ -11,6 +11,7 @@
     <body>
         <div class="content-wrapper">
             <header>
+                @Html.Partial("_CartHolder")
                 <div id="logo-holder" class="clearfix">
                     <div class="float-left">
                         <ul id="rainbow">
@@ -32,7 +33,6 @@
             </header>
             <div id="body">
                 @RenderSection("breadcrumbs", required: false)
-                @Html.Partial("_CartHolder")
                 @RenderBody()
                 <section id="up-we-go">
                     <a href="#">Gå till toppen av sidan</a>
