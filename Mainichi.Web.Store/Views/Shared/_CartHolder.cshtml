@@ -1,10 +1,13 @@
-﻿<div id="cart-holder">
-    <span>5</span>
+﻿<div id="cart-holder" style="width:100%;position:static;top:0">
+    <div id="cart-content">
+        <span>5</span>
+    </div>
 </div>
 
 <script>
     var scrollElement = document.getElementById('cart-holder');
-    var stop = 0;
+    var contentElement = scrollElement.firstElementChild;
+    var stop = 0; //scrollElement.offsetTop;
     //var fixedWidth = scrollElement.offsetWidth;
     var currentTop = 0;
     var lastTop = 0;
@@ -12,31 +15,59 @@
     function posTop() {
         return (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
     }
-
+    
     function isScrolling() {
         currentTop = posTop();
 
         if (currentTop > lastTop && lastTop > 0) { //scrolling down
-            scrollElement.style.display = 'none';
+            contentElement.style.display = 'none';
         } else { //scrolling up
             var top = (scrollElement.offsetTop - currentTop);
 
             if (top <= 0) {
-                scrollElement.style.width = '100%';
-                scrollElement.style.position = 'fixed';
-                scrollElement.style.top = 0;
+                contentElement.style.display = 'block';
             }
 
-            if (currentTop === stop) {
-                scrollElement.style.position = 'static';
-                scrollElement.style.top = stop + 'px';
-            }
-
-            if (scrollElement.style.display === 'none') {
-                scrollElement.style.display = 'block';
-            }
+            //if (scrollElement.style.display === 'none') {
+            //    scrollElement.style.display = 'block';
+            //}
+        }
+        
+        if (currentTop === stop) {
+            scrollElement.style.position = 'static';
+            scrollElement.style.top = stop + 'px';
+        } else {
+            scrollElement.style.position = 'fixed';
+            scrollElement.style.top = 0;
         }
 
         lastTop = currentTop;
     }
+
+    //function isScrolling() {
+    //    currentTop = posTop();
+
+    //    if (currentTop > lastTop && lastTop > 0) { //scrolling down
+    //        scrollElement.style.display = 'none';
+    //    } else { //scrolling up
+    //        var top = (scrollElement.offsetTop - currentTop);
+
+    //        if (top <= 0) {
+    //            scrollElement.style.width = '100%';
+    //            scrollElement.style.position = 'fixed';
+    //            scrollElement.style.top = 0;
+    //        }
+
+    //        if (currentTop === stop) {
+    //            scrollElement.style.position = 'static';
+    //            scrollElement.style.top = stop + 'px';
+    //        }
+
+    //        if (scrollElement.style.display === 'none') {
+    //            scrollElement.style.display = 'block';
+    //        }
+    //    }
+
+    //    lastTop = currentTop;
+    //}
 </script>
