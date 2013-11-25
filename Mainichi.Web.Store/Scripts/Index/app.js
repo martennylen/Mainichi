@@ -16,8 +16,12 @@ Mainichi.ViewModels.Index = function () {
             });
         });
         
-        this.get('#/thing/:slug/:id', function (context) {
-            context.log(context.params['id']);
+        //this.get('#/browse/:category', function (context) {
+        //    context.log(context.params['category']);
+        //});
+
+        this.get(/\#\/browse\/(.*)/, function(context) {
+            context.log(_.last(context.params['splat'][0].split('/')));
         });
     })).run('#/');
 };

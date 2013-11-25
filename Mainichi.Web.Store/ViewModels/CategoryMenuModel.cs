@@ -9,5 +9,6 @@ namespace Mainichi.Web.Store.ViewModels
     {
         public IEnumerable<Category> Categories { get; set; }
         public string Identifier { get; set; }
+        public string CurrentPath { get; set; }
     }
 }

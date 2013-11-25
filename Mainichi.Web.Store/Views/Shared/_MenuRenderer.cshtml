@@ -1,18 +1,19 @@
 ﻿@using Mainichi.Web.Store.ViewModels
 @model CategoryMenuModel
     
-@ShowTree(Model.Categories, Model.Identifier)
+@ShowTree(Model.Categories, Model.Identifier, Model.CurrentPath)
 
-@helper ShowTree(IEnumerable<Category> categories, string identifier)
+@helper ShowTree(IEnumerable<Category> categories, string identifier, string currentPath)
 {
     <ul id="@identifier">
         @foreach (var category in categories)
         {
+            var currentSubpath = currentPath + String.Concat("/", category.Path);
             <li>
-                <a href="#">@category.Name</a>
+                <a href=@String.Format("/#/browse{0}", @currentSubpath)>@category.Name</a>
                 @if (category.SubCategories.Any())
                 {
-                    @ShowTree(category.SubCategories, string.Empty)
+                    @ShowTree(category.SubCategories, string.Empty, currentSubpath)
                 }
             </li>
         }

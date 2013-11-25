@@ -11,10 +11,10 @@ namespace Mainichi.Web.Store
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
-                        "~/Scripts/Lib/jquery-{version}.js", 
-                        "~/Scripts/Lib/knockout-{version}.js", 
-                        "~/Scripts/Lib/underscore-{version}.js", 
-                        "~/Scripts/Lib/sammy-{version}.js"));
+                    "~/Scripts/Lib/jquery-{version}.js",
+                    "~/Scripts/Lib/knockout-{version}.js",
+                    "~/Scripts/Lib/underscore-{version}.js",
+                    "~/Scripts/Lib/sammy-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/mainichi").Include(
                         "~/Scripts/Index/app.js"));

@@ -10,6 +10,7 @@ namespace Mainichi.Web.Store.ViewModels
     {
         public string Id { get; set; }
         public string Name { get; set; }
+        public string Path { get; set; }
         public int SortIndex { get; set; }
         public List<Category> SubCategories { get; set; } 
     }
