@@ -1,7 +1,7 @@
 ﻿@using Mainichi.Web.Store.ViewModels
 @model CategoryMenuModel
     
-@ShowTree(Model.Categories, Model.Identifier, Model.CurrentPath)
+@ShowTree(Model.Categories.AllCategories, Model.Identifier, Model.CurrentPath)
 
 @helper ShowTree(IEnumerable<Category> categories, string identifier, string currentPath)
 {

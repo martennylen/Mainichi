@@ -27,7 +27,7 @@ namespace Mainichi.Web.Store.App_Start
         public static IDocumentStore Initialize()
         {
             _instance = new DocumentStore { ConnectionStringName = "RavenDB" };
-            _instance.Conventions.RegisterIdConvention<CategoryList>((dbname, commands, categoryList) => "config/categories");
+            _instance.Conventions.RegisterIdConvention<Categories>((dbname, commands, categoryList) => "config/categories");
             _instance.Conventions.RegisterIdConvention<Category>((dbname, commands, category) => "category/" + category.Name);
             //_instance.Conventions.DefaultQueryingConsistency = ConsistencyOptions.QueryYourWrites;
             _instance.Initialize();

@@ -43,7 +43,7 @@ namespace Mainichi.Web.Store.Controllers
             //};
 
             //RavenSession.Store(apa);
-            var categories = RavenSession.Load<CategoryList>("config/categories");
+            var categories = RavenSession.Load<Categories>("config/categories");
 
             return View(categories);
             //return View(new CategoryList{ Categories = new List<Category>()});

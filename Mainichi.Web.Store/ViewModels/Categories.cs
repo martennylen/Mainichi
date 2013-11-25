@@ -5,8 +5,8 @@ using System.Web;
 
 namespace Mainichi.Web.Store.ViewModels
 {
-    public class CategoryList
+    public class Categories
     {
-        public List<Category> Categories { get; set; } 
+        public IEnumerable<Category> AllCategories { get; set; } 
     }
 }

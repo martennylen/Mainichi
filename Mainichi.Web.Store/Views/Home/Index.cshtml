@@ -1,5 +1,5 @@
 ﻿@using Mainichi.Web.Store.ViewModels
-@model CategoryList
+@model Categories
 
 @section breadcrumbs {
     <section class="breadcrumbs" style="display:none">
@@ -19,7 +19,7 @@
     </span>
 </div>
 <div id="needs-moar-cats">
-    @Html.Partial("_MenuRenderer", new CategoryMenuModel{ Categories = Model.Categories.AsEnumerable(), Identifier = "top-most", CurrentPath = String.Empty })
+    @Html.Partial("_MenuRenderer", new CategoryMenuModel { Categories = Model, Identifier = "top-most", CurrentPath = String.Empty })
 </div>
 <div id="the-magic-happens-here" data-bind="with: productlist">
     <ul id="product-list" class="clearfix" style="margin-top: 0" data-bind="foreach: Products">
