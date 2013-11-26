@@ -5,6 +5,7 @@
 </div>
 
 <script>
+    var wrapper = document.getElementsByClassName('content-wrapper')[0];
     var scrollElement = document.getElementById('cart-holder');
     var contentElement = scrollElement.firstElementChild;
     var stop = 0; //scrollElement.offsetTop;
@@ -36,7 +37,9 @@
         if (currentTop === stop) {
             scrollElement.style.position = 'static';
             scrollElement.style.top = stop + 'px';
+            wrapper.style.marginTop = 0;
         } else {
+            wrapper.style.marginTop = '50px';
             scrollElement.style.position = 'fixed';
             scrollElement.style.top = 0;
         }
@@ -44,7 +47,7 @@
         lastTop = currentTop;
     }
 
-    //function isScrolling() {
+//function isScrolling() {
     //    currentTop = posTop();
 
     //    if (currentTop > lastTop && lastTop > 0) { //scrolling down
