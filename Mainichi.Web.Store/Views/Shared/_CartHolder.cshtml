@@ -19,26 +19,25 @@
     
     function isScrolling() {
         currentTop = posTop();
-
-        if (currentTop > lastTop && lastTop > 0) { //scrolling down
-            contentElement.style.display = 'none';
-        } else { //scrolling up
-            var top = (scrollElement.offsetTop - currentTop);
-
-            if (top <= 0) {
-                contentElement.style.display = 'block';
-            }
-
-            //if (scrollElement.style.display === 'none') {
-            //    scrollElement.style.display = 'block';
-            //}
-        }
         
         if (currentTop === stop) {
+            contentElement.style.display = 'block';
             scrollElement.style.position = 'static';
             scrollElement.style.top = stop + 'px';
             wrapper.style.marginTop = 0;
-        } else {
+        }
+        else {
+            if (currentTop > lastTop) { //scrolling down
+                contentElement.style.display = 'none';
+            } 
+            else { //scrolling up
+                var top = (scrollElement.offsetTop - currentTop);
+
+                if (top <= 0) {
+                    contentElement.style.display = 'block';
+                }
+            }
+            
             wrapper.style.marginTop = '50px';
             scrollElement.style.position = 'fixed';
             scrollElement.style.top = 0;
