@@ -1,4 +1,4 @@
-﻿<div id="cart-holder" style="width:100%;position:fixed;top:0">
+﻿<div id="cart-holder" style="width:100%;position:absolute;top:0">
     <div id="cart-content" style="height: 72px;padding: 8px 20px">
         <span>5</span>
     </div>
@@ -8,7 +8,7 @@
     var wrapper = document.getElementsByClassName('content-wrapper')[0];
     var scrollElement = document.getElementById('cart-holder');
     var contentElement = scrollElement.firstElementChild;
-    var stop = 0; //scrollElement.offsetTop;
+    var stop = 72; //scrollElement.offsetTop;
     //var fixedWidth = scrollElement.offsetWidth;
     var currentTop = 0;
     var lastTop = 0;
@@ -19,32 +19,28 @@
     
     function isScrolling() {
         currentTop = posTop();
-        
-        if (currentTop === stop) {
-            scrollElement.style.position = 'fixed';
-            scrollElement.style.top = stop + 'px';
-            contentElement.style.display = 'block';
-            contentElement.style.height = '72px';
-            contentElement.style.paddingTop = '8px';
-            //wrapper.style.marginTop = 0;
-        }
-        else {
-            if (currentTop > lastTop) { //scrolling down
-                contentElement.style.display = 'none';
-            } 
-            else { //scrolling up
-                var top = (scrollElement.offsetTop - currentTop);
 
-                if (top <= 0) {
-                    contentElement.style.display = 'block';
-                    contentElement.style.height = '50px';
-                    contentElement.style.paddingTop = 0;
-                }
+        if (currentTop > lastTop) { //scrolling down
+            if(currentTop > stop){
+                contentElement.style.display = 'none';
+                scrollElement.style.position = 'fixed';
+            }
+        } 
+        else { //scrolling up
+            var top = (scrollElement.offsetTop - currentTop);
+
+            if (top < -25) {
+                contentElement.style.height = '50px';
+                contentElement.style.paddingTop = 0;
+                scrollElement.style.position = 'fixed';
+            }
+            else {
+                contentElement.style.height = '72px';
+                contentElement.style.paddingTop = '8px';
+                scrollElement.style.position = 'absolute';
             }
             
-            //wrapper.style.marginTop = '50px';
-            scrollElement.style.position = 'fixed';
-            scrollElement.style.top = 0;
+            contentElement.style.display = 'block';
         }
 
         lastTop = currentTop;
