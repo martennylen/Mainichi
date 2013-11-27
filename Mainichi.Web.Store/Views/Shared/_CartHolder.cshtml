@@ -1,5 +1,5 @@
-﻿<div id="cart-holder" style="width:100%;position:absolute;top:0">
-    <div id="cart-content" style="height: 72px">
+﻿<div id="cart-holder" style="width:100%;position:fixed;top:0">
+    <div id="cart-content" style="height: 72px;padding: 8px 20px">
         <span>5</span>
     </div>
 </div>
@@ -21,12 +21,12 @@
         currentTop = posTop();
         
         if (currentTop === stop) {
-            contentElement.style.display = 'block';
-            scrollElement.style.position = 'absolute';
+            scrollElement.style.position = 'fixed';
             scrollElement.style.top = stop + 'px';
+            contentElement.style.display = 'block';
             contentElement.style.height = '72px';
             contentElement.style.paddingTop = '8px';
-            wrapper.style.marginTop = 0;
+            //wrapper.style.marginTop = 0;
         }
         else {
             if (currentTop > lastTop) { //scrolling down
