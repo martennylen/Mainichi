@@ -33,11 +33,13 @@
                 contentElement.style.height = '50px';
                 contentElement.style.paddingTop = 0;
                 scrollElement.style.position = 'fixed';
+                scrollElement.style.zIndex = 43;
             }
             else {
                 contentElement.style.height = '72px';
                 contentElement.style.paddingTop = '8px';
                 scrollElement.style.position = 'absolute';
+                scrollElement.style.zIndex = 0;
             }
             
             contentElement.style.display = 'block';
