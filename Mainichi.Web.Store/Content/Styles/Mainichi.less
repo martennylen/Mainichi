@@ -595,11 +595,14 @@ html {
     @media all and (max-width : 640px) {
 
         header {
+            margin-bottom: 20px;
+
             #cart-holder {
                 z-index: 12;
+
                 #cart-content {
                     display: block;
-                    height: 50px;
+                    //height: 72px;
                     background-color: #cc3333;
                     color: #fafafa;
                     font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
@@ -611,30 +614,33 @@ html {
 
                     span {
                         display: block;
-                        padding: 2px 20px;
+                        padding: 0 20px;
                     }
                 }
             }
 
-            ul#rainbow {
-                li {
-                    //display: none;
-                    display: block;
-                    min-width: 24px;
-                    min-height: 24px;
-                    font-size: 0.8em;
-                    padding: 0;
-                    padding-top: 0.5em;
-                }
-
-                    li:nth-child(5) {
+            #logo-holder {
+                z-index: 28;
+                ul#rainbow {
+                    li {
+                        //display: none;
                         display: block;
                         min-width: 24px;
                         min-height: 24px;
+                        font-size: 0.8em;
                         padding: 0;
-                        background: url('/Content/Snapshots/M/orblet.png') no-repeat;
-                        //background: url('/Content/Snapshots/M/smaller_orb.png') no-repeat;
+                        padding-top: 0.5em;
                     }
+
+                        li:nth-child(5) {
+                            display: block;
+                            min-width: 24px;
+                            min-height: 24px;
+                            padding: 0;
+                            background: url('/Content/Snapshots/M/orblet.png') no-repeat;
+                            //background: url('/Content/Snapshots/M/smaller_orb.png') no-repeat;
+                        }
+                }
             }
         }
 

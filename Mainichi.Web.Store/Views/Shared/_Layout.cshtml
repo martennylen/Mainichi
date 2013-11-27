@@ -11,8 +11,7 @@
     <body>
         <div class="content-wrapper">
             <header>
-                @Html.Partial("_CartHolder")
-                <div id="logo-holder" class="clearfix">
+                <div id="logo-holder" class="clearfix" style="position: relative">
                     <div class="float-left">
                         <ul id="rainbow">
                             <li>M</li>
@@ -30,6 +29,7 @@
                         @Html.Partial("_MenuBar")
                     </div>
                 </div>
+                @Html.Partial("_CartHolder")
             </header>
             <div id="body">
                 @RenderSection("breadcrumbs", required: false)

@@ -1,5 +1,5 @@
-﻿<div id="cart-holder" style="width:100%;position:static;top:0">
-    <div id="cart-content">
+﻿<div id="cart-holder" style="width:100%;position:absolute;top:0">
+    <div id="cart-content" style="height: 72px">
         <span>5</span>
     </div>
 </div>
@@ -22,8 +22,10 @@
         
         if (currentTop === stop) {
             contentElement.style.display = 'block';
-            scrollElement.style.position = 'static';
+            scrollElement.style.position = 'absolute';
             scrollElement.style.top = stop + 'px';
+            contentElement.style.height = '72px';
+            contentElement.style.paddingTop = '8px';
             wrapper.style.marginTop = 0;
         }
         else {
@@ -35,10 +37,12 @@
 
                 if (top <= 0) {
                     contentElement.style.display = 'block';
+                    contentElement.style.height = '50px';
+                    contentElement.style.paddingTop = 0;
                 }
             }
             
-            wrapper.style.marginTop = '50px';
+            //wrapper.style.marginTop = '50px';
             scrollElement.style.position = 'fixed';
             scrollElement.style.top = 0;
         }
