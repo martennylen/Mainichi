@@ -1,6 +1,11 @@
 ﻿<div id="cart-holder" style="width:100%;position:absolute;top:0">
-    <div id="cart-content" style="height: 72px;padding: 8px 20px">
-        <span>5</span>
+    <div id="cart-content" style="height: 72px">
+        <div id="cart-burger" style="float: right; padding: 21px 14px">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <span id="cart-separator" style="width: 0; height: 68px; float: right; display: block; border-left: 1px solid #851111; border-right: 1px solid #f86d6d;"></span>
     </div>
 </div>
 
@@ -8,6 +13,8 @@
     var wrapper = document.getElementsByClassName('content-wrapper')[0];
     var scrollElement = document.getElementById('cart-holder');
     var contentElement = scrollElement.firstElementChild;
+    var burgerElement = contentElement.firstElementChild;
+    var separatorElement = contentElement.children[1];
     var stop = 72; //scrollElement.offsetTop;
     //var fixedWidth = scrollElement.offsetWidth;
     var currentTop = 0;
@@ -31,15 +38,19 @@
 
             if (top < -25) {
                 contentElement.style.height = '50px';
-                contentElement.style.paddingTop = 0;
+                //contentElement.style.paddingTop = '10px';
                 scrollElement.style.position = 'fixed';
                 scrollElement.style.zIndex = 43;
+                burgerElement.style.padding = '10px 0';
+                separatorElement.style.height = '46px';
             }
             else {
                 contentElement.style.height = '72px';
-                contentElement.style.paddingTop = '8px';
+                //contentElement.style.paddingTop = '20px';
                 scrollElement.style.position = 'absolute';
                 scrollElement.style.zIndex = 0;
+                burgerElement.style.padding = '21px 14px';
+                separatorElement.style.height = '68px';
             }
             
             contentElement.style.display = 'block';
