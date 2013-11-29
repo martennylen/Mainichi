@@ -10,26 +10,6 @@ namespace Mainichi.Web.Store.Controllers
 {
     public class BaseController : Controller
     {
-        public IDocumentSession RavenSession { get; protected set; }
-
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            RavenSession = DataDocumentStore.Initialize().OpenSession();
-        }
-
-        protected override void OnActionExecuted(ActionExecutedContext filterContext)
-        {
-            if (filterContext.IsChildAction)
-                return;
-
-            using (RavenSession)
-            {
-                if (filterContext.Exception != null)
-                    return;
-
-                if (RavenSession != null)
-                    RavenSession.SaveChanges();
-            }
-        }
+        public IDocumentSession RavenSession { get; set; }
     }
 }

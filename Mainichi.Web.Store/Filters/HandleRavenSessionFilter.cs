@@ -4,31 +4,42 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Mainichi.Web.Store.App_Start;
+using Mainichi.Web.Store.Controllers;
 using Raven.Client;
 
 namespace Mainichi.Web.Store.Filters
 {
     public class HandleRavenSessionFilter : ActionFilterAttribute
     {
-        public IDocumentSession RavenSession { get; protected set; }
-
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            RavenSession = DataDocumentStore.Initialize().OpenSession();
+            var controller = filterContext.Controller as BaseController;
+            if (controller == null)
+                return;
+
+            // Can be set explicitly in unit testing
+            if (controller.RavenSession != null)
+                return;
+
+            controller.RavenSession = DataDocumentStore.Initialize().OpenSession();
+            controller.RavenSession.Advanced.UseOptimisticConcurrency = true;
         }
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            if (filterContext.IsChildAction)
+            var controller = filterContext.Controller as BaseController;
+            if (controller == null)
                 return;
 
-            using (RavenSession)
+            using (var session = controller.RavenSession)
             {
-                if (filterContext.Exception != null)
+                if (session == null)
                     return;
 
-                if (RavenSession != null)
-                    RavenSession.SaveChanges();
+                if (filterContext.Exception != null)
+                {
+                    session.SaveChanges();
+                }
             }
         }
     }

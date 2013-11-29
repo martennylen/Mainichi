@@ -22,7 +22,7 @@
     @Html.Partial("_MenuRenderer", new CategoryMenuModel { Categories = Model, Identifier = "top-most", CurrentPath = String.Empty })
 </div>
 <div id="the-magic-happens-here" data-bind="with: productlist">
-    <ul id="product-list" class="clearfix" style="margin-top: 0" data-bind="foreach: Products">
+    <ul id="product-list" class="clearfix" style="margin-top: 0" data-bind="foreach: Things">
         <li>
             <a href="@Url.Content("~/Thing/Details/Bento/1281")">
                 <div class="product-container clearfix">

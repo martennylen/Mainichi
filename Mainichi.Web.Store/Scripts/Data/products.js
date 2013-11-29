@@ -1,5 +1,5 @@
 ﻿{
-	"Products":
+	"Things":
 	[
 		{
 			"Name": "Tempuraräka",

@@ -42,15 +42,5 @@ namespace Mainichi.Web.Store.Controllers
             return View(categories);
             //return View(new CategoryList{ Categories = new List<Category>()});
         }
-
-        public ActionResult About()
-        {
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            return View();
-        }
     }
 }
