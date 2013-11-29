@@ -7,15 +7,15 @@ using Mainichi.Web.Store.ViewModels;
 
 namespace Mainichi.Web.Store.Controllers
 {
-    public class ThingController : Controller
+    public class ThingController : BaseController
     {
         //
         // GET: /Thing/
 
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            var m = new Thing(id);
-            return View(m);
+            var thing = RavenSession.Load<Thing>("things/" + id.Split(new char[] {'-'}).First());
+            return View(thing);
         }
     }
 }

@@ -7,7 +7,8 @@ using Raven.Client.Indexes;
 
 namespace Mainichi.Web.Store.Models.Indexes
 {
-    public abstract class Things_Selected : AbstractIndexCreationTask<Thing>
+    public abstract class Things_FrontPageFeatured : AbstractIndexCreationTask<Thing>
     {
+
     }
 }

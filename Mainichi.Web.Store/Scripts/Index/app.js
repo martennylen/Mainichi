@@ -6,11 +6,11 @@ Mainichi.ViewModels.Index = function () {
 
     //var finder = new Booking.Services.OptionsFinder(options);
     //var model = new Booking.Models.PageState(options, finder, partySize);
-    self.productlist = ko.observable();
+    self.productlist = ko.observableArray();
     
     (Sammy('#the-magic-happens-here', function () {
         this.get('#/', function (context) {
-            this.load('/Scripts/Data/products.js', {json:true})
+            this.load('/api/Things', { json: true })
             .then(function (items) {
                 self.productlist(items);
             });

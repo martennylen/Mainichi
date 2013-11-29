@@ -11,9 +11,9 @@ namespace Mainichi.Web.Store.Api
     public class ThingsController : AbstractApiController
     {
         // GET api/things
-        public IEnumerable<string> Get()
+        public IEnumerable<Thing> Get()
         {
-            return new string[] { "value1", "value2" };
+            return RavenSession.Query<Thing>().ToList();
         }
 
         // GET api/things/5

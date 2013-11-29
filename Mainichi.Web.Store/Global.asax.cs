@@ -32,7 +32,7 @@ namespace Mainichi.Web.Store
 
             DataDocumentStore.Initialize();
 
-            var catalog = new CompositionContainer(new AssemblyCatalog(typeof(Things_Selected).Assembly));
+            var catalog = new CompositionContainer(new AssemblyCatalog(typeof(Things_FrontPageFeatured).Assembly));
             IndexCreation.CreateIndexes(catalog, DataDocumentStore.Instance.DatabaseCommands.ForDatabase("Mainichi"), DataDocumentStore.Instance.Conventions);
         }
     }

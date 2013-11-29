@@ -21,10 +21,10 @@
 <div id="needs-moar-cats">
     @Html.Partial("_MenuRenderer", new CategoryMenuModel { Categories = Model, Identifier = "top-most", CurrentPath = String.Empty })
 </div>
-<div id="the-magic-happens-here" data-bind="with: productlist">
-    <ul id="product-list" class="clearfix" style="margin-top: 0" data-bind="foreach: Things">
+<div id="the-magic-happens-here">
+    <ul id="product-list" class="clearfix" style="margin-top: 0" data-bind="foreach: productlist">
         <li>
-            <a href="@Url.Content("~/Thing/Details/Bento/1281")">
+            <a data-bind="attr: { href: '@Url.Content("~/Thing/")' + $data.Id.split('/')[1] + '-' + $data.Slug + '/'}">
                 <div class="product-container clearfix">
                     <img data-bind="attr: {src: '/Content/Snapshots/Products/' + $data.Image }" />
                     <div class="product-description">
