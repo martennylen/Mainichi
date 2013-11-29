@@ -10,6 +10,7 @@ namespace Mainichi.Web.Store.Controllers
         //[HandleRavenSessionFilter]
         public ActionResult Index()
         {
+            //var apa = RavenSession.Load<>()
             var categories = RavenSession.Load<Categories>("config/categories");
             return View(categories);
         }

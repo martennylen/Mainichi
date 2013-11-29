@@ -203,6 +203,7 @@
     <Compile Include="ViewModels\Category.cs" />
     <Compile Include="ViewModels\Categories.cs" />
     <Compile Include="ViewModels\CategoryMenuModel.cs" />
+    <Compile Include="ViewModels\FeaturedProducts.cs" />
     <Compile Include="ViewModels\Thing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
