@@ -185,9 +185,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\RavenController.cs" />
     <Compile Include="Controllers\ThingController.cs" />
     <Compile Include="Filters\HandleRavenSessionFilter.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -226,6 +226,7 @@
     <Content Include="Content\Styles\Mainichi.less" />
     <Content Include="Content\Styles\Grid.less" />
     <Content Include="Scripts\Data\things.js" />
+    <Content Include="Content\Styles\Elements\Forms.less" />
     <None Include="Scripts\Lib\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\Lib\jquery-2.0.3.js" />
     <Content Include="Scripts\Lib\jquery-2.0.3.min.js" />
@@ -285,6 +286,8 @@
     <Content Include="Scripts\Lib\sammy-0.7.4.min.js.map">
       <DependentUpon>sammy-0.7.4.js</DependentUpon>
     </Content>
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Thing.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
