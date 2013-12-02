@@ -1,0 +1,103 @@
+        //var apa = new CategoryList
+            //{
+            //    Categories = new List<Category>
+            //    {
+            //        new Category
+            //        {
+            //            Name = "Modellbyggsatser", SortIndex = 0, SubCategories = new List<Category>
+            //            {
+            //                new Category
+            //                {
+            //                    Name = "Gundam", SortIndex = 0, SubCategories = new List<Category>()
+            //                },
+            //                new Category
+            //                {
+            //                    Name = "Keroro", SortIndex = 1, SubCategories = new List<Category>()
+            //                },
+            //                new Category
+            //                {
+            //                    Name = "Zoids", SortIndex = 2, SubCategories = new List<Category>()
+            //                }
+            //            }
+            //        },
+            //        new Category {Name = "Bentolådor", SortIndex = 1, SubCategories = new List<Category>()},
+            //        new Category {Name = "Snacks", SortIndex = 2, SubCategories = new List<Category>()}
+            //    }
+            //};
+
+            //var apa = new List<Thing>
+            //{
+            //    new Thing
+            //    {
+            //        Name = "Tempuraräka",
+            //        Slug = "Tempuraraka",
+            //        Price = 128,
+            //        Image = "ebi_240.png",
+            //        Article = "A3-19-4"
+            //    },
+            //    new Thing
+            //    {
+            //        Name = "En skål mat",
+            //        Slug = "En-skal-mat",
+            //        Price = 239,
+            //        Image = "bento_240.png",
+            //        Article = "A3-19-5"
+            //    },
+            //    new Thing
+            //    {
+            //        Name = "Gundam RX-82",
+            //        Slug = "Gundam-rx-82",
+            //        Price = 2459,
+            //        Image = "gundam_240.png",
+            //        Article = "A3-19-6"
+            //    },
+            //    new Thing
+            //    {
+            //        Name = "Totoro Plysch 62cm",
+            //        Slug = "Totoro-plysch-62cm",
+            //        Price = 99,
+            //        Image = "totoro_240.png",
+            //        Article = "A3-19-7"
+            //    },
+            //    new Thing
+            //    {
+            //        Name = "En grön kitkat",
+            //        Slug = "En-gron-kitkat",
+            //        Price = 28,
+            //        Image = "kitkat_240.png",
+            //        Article = "A3-19-8"
+            //    },
+            //    new Thing
+            //    {
+            //        Name = "Lickitung nyckelring",
+            //        Slug = "Lickitung-nyckelring",
+            //        Price = 59,
+            //        Image = "lickitung_240.png", 
+            //        Article = "A3-19-9"
+            //    },
+            //    new Thing
+            //    {
+            //        Name = "Risskål",
+            //        Slug = "Risskal",
+            //        Price = 89,
+            //        Image = "bowl_240.png",
+            //        Article = "A3-19-10"
+            //    },
+            //    new Thing
+            //    {
+            //        Name = "Tofu mjukis",
+            //        Slug = "Tofu-mjukis",
+            //        Price = 119,
+            //        Image = "tofu_240.png",
+            //        Article = "A3-19-11"
+            //    },
+            //};
+
+            //foreach (var thing in apa)
+            //{
+            //    RavenSession.Store(thing);
+            //}
+            //RavenSession.SaveChanges();
+
+            //var apa = RavenSession.Load<Thing>("things/34");
+            //return View(new CategoryList{ Categories = new List<Category>()});

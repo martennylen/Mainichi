@@ -36,7 +36,7 @@ namespace Mainichi.Web.Store.Filters
                 if (session == null)
                     return;
 
-                if (filterContext.Exception != null)
+                if (filterContext.Exception == null)
                 {
                     session.SaveChanges();
                 }

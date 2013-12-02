@@ -17,7 +17,8 @@ namespace Mainichi.Web.Store
                     "~/Scripts/Lib/sammy-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/mainichi").Include(
-                        "~/Scripts/Index/app.js"));
+                        "~/Scripts/Index/app.js").IncludeDirectory(
+                        "~/Scripts/BindingHandlers", "*.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/validation").Include(
                         "~/Scripts/Lib/jquery.validate.js",

@@ -7,6 +7,6 @@ namespace Mainichi.Web.Store.ViewModels
 {
     public class FeaturedProducts
     {
-        public List<string> FeaturedThingIds { get; set; } 
+        public IEnumerable<string> FeaturedThingIds { get; set; } 
     }
 }

@@ -189,6 +189,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ThingController.cs" />
+    <Compile Include="Extensions\ThingExtensions.cs" />
     <Compile Include="Filters\HandleRavenSessionFilter.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -204,6 +205,7 @@
     <Compile Include="ViewModels\Categories.cs" />
     <Compile Include="ViewModels\CategoryMenuModel.cs" />
     <Compile Include="ViewModels\FeaturedProducts.cs" />
+    <Compile Include="ViewModels\Input\ThingInputViewModel.cs" />
     <Compile Include="ViewModels\Thing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -225,6 +227,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Styles\Mainichi.less" />
     <Content Include="Content\Styles\Grid.less" />
+    <Content Include="Scripts\Admin\page.js" />
+    <Content Include="Scripts\BindingHandlers\currency.js" />
     <Content Include="Scripts\Data\things.js" />
     <Content Include="Content\Styles\Elements\Forms.less" />
     <None Include="Scripts\Lib\jquery-2.0.3.intellisense.js" />
@@ -250,7 +254,6 @@
     <Content Include="Scripts\Lib\sammy-0.7.4.min.js" />
     <Content Include="Scripts\Lib\underscore-1.4.1.js" />
     <Content Include="Scripts\Lib\underscore-1.4.1.min.js" />
-    <Content Include="Scripts\Things\page.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -289,7 +292,9 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Thing.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Scripts\Things\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

@@ -1,4 +1,7 @@
 ﻿@model Mainichi.Web.Store.ViewModels.Thing
 
 <h2>EHLO THIS IS THING @Model.Id</h2>
-<img src="~/@String.Format("Content/Snapshots/Products/{0}", Model.Image)"/>
+<div class="clearfix">
+    <img src="~/@String.Format("Content/Snapshots/Products/{0}", Model.Image)" style="float: left" />
+    <span style="float:left">@Model.Description</span>
+</div>
