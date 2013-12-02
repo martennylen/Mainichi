@@ -59,13 +59,13 @@ namespace Mainichi.Web.Store.Controllers
 
             if (existingThing != null)
             {
-                if (t.Image != existingThing.Image)
+                if (t.ImageFile.FileName != existingThing.Image)
                 {
                     t.ImageFile.SaveAs(Server.MapPath(string.Concat(nameAndLocation, t.ImageFile.FileName)));
                     var existingFilePath = string.Concat(nameAndLocation, existingThing.Image);
-                    if (System.IO.File.Exists(existingFilePath))
+                    if (System.IO.File.Exists(Server.MapPath(existingFilePath)))
                     {
-                        System.IO.File.Delete(existingFilePath);
+                        System.IO.File.Delete(Server.MapPath(existingFilePath));
                     }
                     existingThing.Image = t.ImageFile.FileName;
                 }
@@ -82,7 +82,7 @@ namespace Mainichi.Web.Store.Controllers
         private void SaveThing(ThingInputViewModel t)
         {
             var result = new Thing();
-            if (t.Image != null)
+            if (t.ImageFile != null)
             {
                 string nameAndLocation = "~/Content/Snapshots/Products/" + t.ImageFile.FileName;
                 t.ImageFile.SaveAs(Server.MapPath(nameAndLocation));
