@@ -21,7 +21,8 @@ namespace Mainichi.Web.Store
                         "~/Scripts/BindingHandlers", "*.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/validation").Include(
-                        "~/Scripts/Lib/jquery.validate.js",
+                        //"~/Scripts/Lib/jquery.validate.js",
+                        "~/Scripts/Lib/jquery.validate-1.11.1.js",
                         "~/Scripts/Lib/jquery.validate.unobtrusive.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
@@ -31,7 +32,8 @@ namespace Mainichi.Web.Store
 
             bundles.Add(new LessBundle("~/Content/css").Include("~/Content/Styles/Mainichi.less", 
                 "~/Content/Styles/Grid.less",
-                "~/Content/Styles/Elements/Forms.less"));
+                "~/Content/Styles/Elements/Forms.less",
+                "~/Content/Styles/Elements/Buttons.less"));
         }
     }
 }

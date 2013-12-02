@@ -2,44 +2,48 @@
 @model Mainichi.Web.Store.ViewModels.Input.ThingInputViewModel
 @Scripts.Render("~/bundles/validation")
 
-<h2>Ta hand om saker</h2>
-
 @using (Html.BeginForm("EditThing", "Admin",
-    FormMethod.Post, new {@class = "formalizer", enctype = "multipart/form-data"}))
+    FormMethod.Post, new { @class = "formalizer", enctype = "multipart/form-data" }))
 {
-    @Html.ValidationSummary(true, "CRAP")
-    <div>
-        @Html.LabelFor(m => m.Name)
-        @Html.TextBoxFor(m => m.Name, new {@class = "long"})
-        @Html.ValidationMessageFor(m => m.Name)
-    </div>
-    <div>
-        @Html.LabelFor(m => m.Description)
-        @Html.TextAreaFor(m => m.Description, new {rows = "15"})
-        @Html.ValidationMessageFor(m => m.Description)
-    </div>
-    <div>
-        @Html.LabelFor(m => m.Price)
-        @Html.TextBoxFor(m => m.Price)
-        @Html.ValidationMessageFor(m => m.Price)
-    </div>
-    
-    if (Model.IsEditing)
-    {
+    <fieldset>
+        <legend>Ta hand om saker</legend>
+        <div>
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new { @class = "long" })
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Description)
+            @Html.TextAreaFor(m => m.Description, new { rows = "15" })
+            @Html.ValidationMessageFor(m => m.Description)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Price)
+            @Html.TextBoxFor(m => m.Price)
+            @Html.ValidationMessageFor(m => m.Price)
+        </div>
+
+        @if (Model.IsEditing)
+        {
         <div data-bind="visible: !isImageEditing()">
             <img data-bind="attr: { src: '/Content/Snapshots/Products/' + thingImage() }" />
             <button type="button" data-bind="click: removeImage">Redigera bild</button>
             @Html.HiddenFor(m => m.Id)
             @Html.HiddenFor(m => m.Image)
         </div>
-    }
+        }
 
-    <div data-bind="visible: !isEditing || isImageEditing" style="margin-top: 20px">
-        @Html.LabelFor(m => m.ImageFile)
-        @Html.TextBoxFor(m => m.ImageFile, new { type = "file", accept = " image/*" })
-        <button type="button" data-bind="visible: isImageEditing, click: removeImage">Avbryt</button>
-    </div>
-    <input id="submit-button" type="submit" data-bind="value: addButtonText" />
+        <div data-bind="visible: !isEditing || isImageEditing" style="margin-top: 20px">
+            @Html.LabelFor(m => m.ImageFile)
+            <div class="file-upload btn btn-danger">
+                <input id="selected-file" type="text" placeholder="Tiddelipom" />
+                <span>Välj bildfil</span>
+                @Html.TextBoxFor(m => m.ImageFile, new { type = "file", accept = "image/*", @class = "upload" })
+            </div>
+            <button type="button" data-bind="visible: isImageEditing, click: removeImage">Avbryt</button>
+        </div>
+        <input id="submit-button" class="btn btn-success" type="submit" data-bind="value: addButtonText" />
+    </fieldset>
 }
 
 <script>
@@ -51,6 +55,10 @@
     
     Mainichi.ViewModels.Admin.Models.Thing.Id = @Html.RenderAsJson(Model.Id);
     Mainichi.ViewModels.Admin.Models.Thing.Image = @Html.RenderAsJson(Model.Image);
+    
+    document.getElementById("ImageFile").onchange = function () {
+        document.getElementById("selected-file").value = this.value.split('\\')[2];
+    };
 </script>
 
 @section scripts {

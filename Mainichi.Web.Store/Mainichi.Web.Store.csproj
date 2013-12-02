@@ -231,11 +231,14 @@
     <Content Include="Scripts\BindingHandlers\currency.js" />
     <Content Include="Scripts\Data\things.js" />
     <Content Include="Content\Styles\Elements\Forms.less" />
+    <Content Include="Content\Styles\Elements\Buttons.less" />
     <None Include="Scripts\Lib\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\Lib\jquery-2.0.3.js" />
     <Content Include="Scripts\Lib\jquery-2.0.3.min.js" />
     <Content Include="Scripts\Lib\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\Lib\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\Lib\jquery.validate-1.11.1.js" />
+    <Content Include="Scripts\Lib\jquery.validate-1.11.1.min.js" />
     <Content Include="Views\Shared\_MenuRenderer.cshtml" />
     <Content Include="Scripts\Lib\jquery-2.0.3.min.map" />
     <None Include="Scripts\Lib\jquery.validate-vsdoc.js" />
@@ -291,6 +294,9 @@
     </Content>
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Thing.cshtml" />
+    <Content Include="Scripts\Lib\jquery.validate.unobtrusive.min.js.map">
+      <DependentUpon>jquery.validate.unobtrusive.js</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\Things\" />

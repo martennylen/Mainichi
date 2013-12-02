@@ -23,7 +23,6 @@ namespace Mainichi.Web.Store.ViewModels.Input
         [DisplayName("Produktbild:")]
         public HttpPostedFileBase ImageFile { get; set; }
 
-        [DisplayName("Välj bild:")]
         public string Image { get; set; }
 
         [Required(ErrorMessage = "Fyll i produktbeskrivning!")]
