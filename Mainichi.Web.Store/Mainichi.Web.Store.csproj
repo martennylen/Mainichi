@@ -221,6 +221,7 @@
     <Content Include="Content\Snapshots\Products\gundam_240.png" />
     <Content Include="Content\Snapshots\Products\kitkat_240.png" />
     <Content Include="Content\Snapshots\Products\lickitung_240.png" />
+    <Content Include="Content\Snapshots\Products\placeholder.png" />
     <Content Include="Content\Snapshots\Products\tofu_240.png" />
     <Content Include="Content\Snapshots\Products\totoro_240.png" />
     <Content Include="Content\tokidoki.css" />
