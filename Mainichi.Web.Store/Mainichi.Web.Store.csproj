@@ -299,9 +299,7 @@
     </Content>
     <Content Include="Views\Admin\SelectedProducts.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\Things\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
