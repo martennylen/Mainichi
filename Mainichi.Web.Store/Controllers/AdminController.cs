@@ -29,7 +29,7 @@ namespace Mainichi.Web.Store.Controllers
 
         public ActionResult UpdateSelectedProducts(FeaturedProducts featuredProducts)
         {
-            var model = selectedProducts;
+            var model = featuredProducts;
             return RedirectToAction("SelectedProducts");
         }
 
