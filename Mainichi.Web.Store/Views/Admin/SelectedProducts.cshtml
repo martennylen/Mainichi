@@ -17,7 +17,8 @@
         </div>
     </li>
 </ul>
-    <button data-bind="click: saveSelectedProducts">Spara</button>
+<span class="btn btn-success" data-bind="click: saveSelectedProducts">Spara</span>
+<span data-bind="visible: actionText().length, text: actionText"></span>
 
 <script>
     var Mainichi = Mainichi || {};
@@ -26,26 +27,43 @@
 
     Mainichi.ViewModels.Admin.FeaturedProducts = function() {
         var self = this;
+        self.actionText = ko.observable('');
+        
         self.featuredProducts = ko.computed(function() {
             return _.map(@Html.RenderAsJson(Model), function(p) {
-                return new Mainichi.ViewModels.Admin.FeaturedProduct(p);
+                return new Mainichi.ViewModels.Admin.FeaturedProduct(p, self);
             });
         });
         
-        var mapIdentificators = function() {
+        var mapIdentificators = function () {
             return _.map(self.featuredProducts(), function(p) {
                 return p.data().Id;
             });
         };
         
+        var selectedIdentificators = mapIdentificators();
         self.saveSelectedProducts = function() {
-            self.selectedIdentificators = mapIdentificators();
-            //document.getElementById('update-selected-products-form').submit();
-            $.post("/Admin/UpdateSelectedProducts", $.param({featuredProducts: self.selectedIdentificators},true));
+            var possiblyNewIdentificators = mapIdentificators();
+            if (!arrayEq(selectedIdentificators, possiblyNewIdentificators)) {
+                selectedIdentificators = possiblyNewIdentificators;
+                $.post("/Admin/UpdateSelectedProducts", $.param({ FeaturedThingIds: selectedIdentificators }, true)).done(function(reply) {
+                    if (reply) {
+                        self.actionText(reply.status);
+                    }
+                });
+            } else {
+                self.actionText('Listan har inte ändrats.');
+            }
         };
     };
 
-    Mainichi.ViewModels.Admin.FeaturedProduct = function(p) {
+    arrayEq = function(a, b) {
+        return _.every(_.zip(a, b), function(x) {
+            return x[0] === x[1];
+        });
+    };
+
+    Mainichi.ViewModels.Admin.FeaturedProduct = function(p, pp) {
         var self = this;
 
         self.data = ko.observable(p);
@@ -57,7 +75,12 @@
 
         self.updateSelectedProduct = function() {
             $.getJSON('/api/Things/' + self.data().Id.split('/')[1], function(d) {
-                self.data(d);
+                if (d !== null) {
+                    self.data(d);
+                    pp.actionText('');
+                } else {
+                    pp.actionText('Produkten existerar inte');
+                }
             });
             
             self.isEditing(false);

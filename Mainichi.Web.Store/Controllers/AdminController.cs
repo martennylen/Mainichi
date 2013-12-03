@@ -27,10 +27,21 @@ namespace Mainichi.Web.Store.Controllers
             return View(model);
         }
 
+        [HttpPost]
         public ActionResult UpdateSelectedProducts(FeaturedProducts featuredProducts)
         {
-            var model = featuredProducts;
-            return RedirectToAction("SelectedProducts");
+            string status = "Produktlistan uppdaterad";
+            try
+            {
+                var model = RavenSession.Load<FeaturedProducts>("config/featuredproducts");
+                model.FeaturedThingIds = featuredProducts.FeaturedThingIds;
+            }
+            catch (Exception e)
+            {
+                status = e.Message;
+            }
+
+            return Json(new { status = status }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Thing(string id)

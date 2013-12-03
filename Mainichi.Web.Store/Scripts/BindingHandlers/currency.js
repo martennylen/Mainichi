@@ -25,5 +25,5 @@ String.prototype.format = function () {
 Number.prototype.splitThousands = function () {
     var s = this.toString();
     var thousands = Math.floor(this / 1000).toString();
-    return this > 1000 ? ("{0} {1}").format(thousands, s.slice(thousands.length, s.length)) : s;
+    return this > 999 ? ("{0} {1}").format(thousands, s.slice(thousands.length, s.length)) : s;
 };
