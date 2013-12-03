@@ -1,14 +1,15 @@
 ﻿@using Mainichi.Web.Store.Extensions
-@model IEnumerable<Mainichi.Web.Store.ViewModels.Thing>
+@model Mainichi.Web.Store.ViewModels.FeaturedProductsViewModel
 
 <h2>SelectedProducts</h2>
     <ul data-bind="foreach: featuredProducts">
-    <li style="display: inline-block; margin-right: 50px; vertical-align: top;">
+    <li style="display: inline-block;min-width:180px;width:180px;vertical-align:top;margin-bottom: 50px">
         <div>
             <img style="max-width: 100px" data-bind="attr: { src: '/Content/Snapshots/Products/' + data().Image }" />
-            <p style="text-align: center">
+            <p>
                 <a href="#" data-bind="click: editSelectedProduct, visible: !isEditing(), text: data().Name"></a>
-                <input style="width: 100px" type="text" data-bind="visible: isEditing, value: data().Id" />
+                @*<input style="width: 100px" type="text" data-bind="visible: isEditing, value: data().Id" />*@
+                <select data-bind="visible: isEditing, options: $parent.allThings, value: data().Id, optionsText: 'Name', optionsValue: 'Id'"></select>
                 <div>
                     <button data-bind="visible: isEditing, click: updateSelectedProduct">Ja</button>
                     <button data-bind="visible: isEditing, click: editSelectedProduct">Nej</button>
@@ -28,9 +29,10 @@
     Mainichi.ViewModels.Admin.FeaturedProducts = function() {
         var self = this;
         self.actionText = ko.observable('');
+        self.allThings = @Html.RenderAsJson(Model.AllThings);
         
         self.featuredProducts = ko.computed(function() {
-            return _.map(@Html.RenderAsJson(Model), function(p) {
+            return _.map(@Html.RenderAsJson(Model.FeaturedThings), function(p) {
                 return new Mainichi.ViewModels.Admin.FeaturedProduct(p, self);
             });
         });
@@ -41,7 +43,6 @@
             });
         };
         
-        var selectedIdentificators = mapIdentificators();
         self.saveSelectedProducts = function() {
             var possiblyNewIdentificators = mapIdentificators();
             if (!arrayEq(selectedIdentificators, possiblyNewIdentificators)) {
@@ -55,6 +56,8 @@
                 self.actionText('Listan har inte ändrats.');
             }
         };
+        
+        var selectedIdentificators = mapIdentificators();
     };
 
     arrayEq = function(a, b) {
@@ -74,6 +77,9 @@
         };
 
         self.updateSelectedProduct = function() {
+            if (self.data().Id.length === 0) {
+                self.data().Id = "things/0";
+            }
             $.getJSON('/api/Things/' + self.data().Id.split('/')[1], function(d) {
                 if (d !== null) {
                     self.data(d);

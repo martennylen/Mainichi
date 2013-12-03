@@ -200,11 +200,12 @@
     <Compile Include="Infrastructure\Bundling\LessBundleTransform.cs" />
     <Compile Include="Infrastructure\Bundling\LessEngineFactory.cs" />
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\Indexes\Things\Things_FrontPageFeatured.cs" />
+    <Compile Include="Models\Indexes\Things\Things_AllForEdit.cs" />
     <Compile Include="ViewModels\Category.cs" />
     <Compile Include="ViewModels\Categories.cs" />
     <Compile Include="ViewModels\CategoryMenuModel.cs" />
     <Compile Include="ViewModels\FeaturedProducts.cs" />
+    <Compile Include="ViewModels\FeaturedProductsViewModel.cs" />
     <Compile Include="ViewModels\Input\ThingInputViewModel.cs" />
     <Compile Include="ViewModels\Thing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

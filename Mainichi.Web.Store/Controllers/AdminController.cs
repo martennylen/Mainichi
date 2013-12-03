@@ -6,6 +6,7 @@ using System.Web.Routing;
 using Mainichi.Web.Store.Extensions;
 using Mainichi.Web.Store.ViewModels;
 using Mainichi.Web.Store.ViewModels.Input;
+using WebGrease.Css.Extensions;
 
 namespace Mainichi.Web.Store.Controllers
 {
@@ -13,7 +14,8 @@ namespace Mainichi.Web.Store.Controllers
     {
         //
         // GET: /Admin/
-        private const string nameAndLocation = "~/Content/Snapshots/Products/";
+        private const string _nameAndLocation = "~/Content/Snapshots/Products/";
+        private const int _featuredProductsSlots = 6;
 
         public ActionResult Index()
         {
@@ -23,8 +25,31 @@ namespace Mainichi.Web.Store.Controllers
         public ActionResult SelectedProducts()
         {
             var model = RavenSession.Include<FeaturedProducts>(x => x.FeaturedThingIds.Select(id => id)).Load("config/featuredproducts")
-                .FeaturedThingIds.Select(id => RavenSession.Load<Thing>(id));
-            return View(model);
+                .FeaturedThingIds.Select(id => RavenSession.Load<Thing>(id)).ToList();
+
+           var allThings = RavenSession.Query<Thing>("Things/AllForEdit");
+
+            var missingProducts = _featuredProductsSlots - model.Count();
+            if (missingProducts > 0)
+            {
+                for (int i = 0; i < missingProducts; i++)
+                {
+                    model.Add(new Thing
+                    {
+                        Id = string.Empty,
+                        Name = "Tom slot",
+                        Image = "placeholder.png"
+                    });
+                }
+            }
+
+            var m = new FeaturedProductsViewModel
+            {
+                AllThings =  allThings,
+                FeaturedThings = model
+            };
+
+            return View(m);
         }
 
         [HttpPost]
@@ -34,14 +59,14 @@ namespace Mainichi.Web.Store.Controllers
             try
             {
                 var model = RavenSession.Load<FeaturedProducts>("config/featuredproducts");
-                model.FeaturedThingIds = featuredProducts.FeaturedThingIds;
+                model.FeaturedThingIds = featuredProducts.FeaturedThingIds.Where(d => !string.IsNullOrWhiteSpace(d));
             }
             catch (Exception e)
             {
                 status = e.Message;
             }
 
-            return Json(new { status = status }, JsonRequestBehavior.AllowGet);
+            return Json(new { status }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Thing(string id)
@@ -84,15 +109,18 @@ namespace Mainichi.Web.Store.Controllers
 
             if (existingThing != null)
             {
-                if (t.ImageFile.FileName != existingThing.Image)
+                if (t.ImageFile != null) //Image was updated
                 {
-                    t.ImageFile.SaveAs(Server.MapPath(string.Concat(nameAndLocation, t.ImageFile.FileName)));
-                    var existingFilePath = string.Concat(nameAndLocation, existingThing.Image);
-                    if (System.IO.File.Exists(Server.MapPath(existingFilePath)))
+                    if (t.ImageFile.FileName != existingThing.Image)
                     {
-                        System.IO.File.Delete(Server.MapPath(existingFilePath));
+                        t.ImageFile.SaveAs(Server.MapPath(string.Concat(_nameAndLocation, t.ImageFile.FileName)));
+                        var existingFilePath = string.Concat(_nameAndLocation, existingThing.Image);
+                        if (System.IO.File.Exists(Server.MapPath(existingFilePath)))
+                        {
+                            System.IO.File.Delete(Server.MapPath(existingFilePath));
+                        }
+                        existingThing.Image = t.ImageFile.FileName;
                     }
-                    existingThing.Image = t.ImageFile.FileName;
                 }
                 existingThing.Name = t.Name;
                 existingThing.Slug = t.Name.ToSlug();

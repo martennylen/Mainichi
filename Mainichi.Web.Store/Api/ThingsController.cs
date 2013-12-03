@@ -23,6 +23,15 @@ namespace Mainichi.Web.Store.Api
         // GET api/things/5
         public Thing Get(int id)
         {
+            if (id == 0)
+            {
+                return new Thing
+                {
+                    Id = string.Empty,
+                    Name = "Tom slot",
+                    Image = "placeholder.png"
+                };
+            }
             return RavenSession.Load<Thing>("things/" + id);
         }
     }
