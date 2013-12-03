@@ -16,9 +16,17 @@ namespace Mainichi.Web.Store.ViewModels
         public string Slug { get; set; }
         public string Article { get; set; }
 
+        public List<Attribute> Attributes { get; set; } 
+
         public decimal? Price { get; set; }
 
         public DateTime Created { get; set; }
         public DateTime LastChange { get; set; }
+    }
+
+    public class Attribute
+    {
+        public string Name { get; set; }
+        public string Value { get; set; }
     }
 }

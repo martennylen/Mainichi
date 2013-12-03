@@ -23,7 +23,7 @@ namespace Mainichi.Web.Store.Api
         // GET api/things/5
         public Thing Get(int id)
         {
-            return RavenSession.Load<Thing>(id);
+            return RavenSession.Load<Thing>("things/" + id);
         }
     }
 }

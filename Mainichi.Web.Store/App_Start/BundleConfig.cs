@@ -20,8 +20,10 @@ namespace Mainichi.Web.Store
                         "~/Scripts/Index/app.js").IncludeDirectory(
                         "~/Scripts/BindingHandlers", "*.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/admin").Include(
+                        "~/Scripts/Admin/page.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/validation").Include(
-                        //"~/Scripts/Lib/jquery.validate.js",
                         "~/Scripts/Lib/jquery.validate-1.11.1.js",
                         "~/Scripts/Lib/jquery.validate.unobtrusive.js"));
 

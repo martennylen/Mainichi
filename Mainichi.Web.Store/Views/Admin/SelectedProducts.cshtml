@@ -1,0 +1,68 @@
+﻿@using Mainichi.Web.Store.Extensions
+@model IEnumerable<Mainichi.Web.Store.ViewModels.Thing>
+
+<h2>SelectedProducts</h2>
+    <ul data-bind="foreach: featuredProducts">
+    <li style="display: inline-block; margin-right: 50px; vertical-align: top;">
+        <div>
+            <img style="max-width: 100px" data-bind="attr: { src: '/Content/Snapshots/Products/' + data().Image }" />
+            <p style="text-align: center">
+                <a href="#" data-bind="click: editSelectedProduct, visible: !isEditing(), text: data().Name"></a>
+                <input style="width: 100px" type="text" data-bind="visible: isEditing, value: data().Id" />
+                <div>
+                    <button data-bind="visible: isEditing, click: updateSelectedProduct">Ja</button>
+                    <button data-bind="visible: isEditing, click: editSelectedProduct">Nej</button>
+                </div>
+            </p>
+        </div>
+    </li>
+</ul>
+    <button data-bind="click: saveSelectedProducts">Spara</button>
+
+<script>
+    var Mainichi = Mainichi || {};
+    Mainichi.ViewModels = Mainichi.ViewModels || {};
+    Mainichi.ViewModels.Admin = Mainichi.ViewModels.Admin || {};
+
+    Mainichi.ViewModels.Admin.FeaturedProducts = function() {
+        var self = this;
+        self.featuredProducts = ko.computed(function() {
+            return _.map(@Html.RenderAsJson(Model), function(p) {
+                return new Mainichi.ViewModels.Admin.FeaturedProduct(p);
+            });
+        });
+        
+        var mapIdentificators = function() {
+            return _.map(self.featuredProducts(), function(p) {
+                return p.data().Id;
+            });
+        };
+        
+        self.saveSelectedProducts = function() {
+            self.selectedIdentificators = mapIdentificators();
+            //document.getElementById('update-selected-products-form').submit();
+            $.post("/Admin/UpdateSelectedProducts", $.param({featuredProducts: self.selectedIdentificators},true));
+        };
+    };
+
+    Mainichi.ViewModels.Admin.FeaturedProduct = function(p) {
+        var self = this;
+
+        self.data = ko.observable(p);
+        
+        self.isEditing = ko.observable(false);
+        self.editSelectedProduct = function () {
+            self.isEditing(!self.isEditing());
+        };
+
+        self.updateSelectedProduct = function() {
+            $.getJSON('/api/Things/' + self.data().Id.split('/')[1], function(d) {
+                self.data(d);
+            });
+            
+            self.isEditing(false);
+        };
+    };
+
+    ko.applyBindings(new Mainichi.ViewModels.Admin.FeaturedProducts());
+</script>

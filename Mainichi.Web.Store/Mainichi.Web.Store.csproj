@@ -286,7 +286,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\_MenuBar.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Thing.cshtml" />
     <Content Include="Views\Thing\Details.cshtml" />
     <Content Include="Views\Shared\_CartHolder.cshtml" />
     <Content Include="Scripts\Lib\sammy-0.7.4.min.js.map">
@@ -297,6 +296,7 @@
     <Content Include="Scripts\Lib\jquery.validate.unobtrusive.min.js.map">
       <DependentUpon>jquery.validate.unobtrusive.js</DependentUpon>
     </Content>
+    <Content Include="Views\Admin\SelectedProducts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\Things\" />

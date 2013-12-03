@@ -8,7 +8,7 @@ Mainichi.ViewModels.Index = function () {
     //var model = new Booking.Models.PageState(options, finder, partySize);
     self.productlist = ko.observableArray();
     
-    (Sammy('#the-magic-happens-here', function () {
+    (Sammy('#selected-products', function () {
         this.get('#/', function (context) {
             this.load('/api/Things', { json: true })
             .then(function (items) {

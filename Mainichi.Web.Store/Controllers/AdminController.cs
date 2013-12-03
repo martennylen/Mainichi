@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Mainichi.Web.Store.Extensions;
@@ -17,6 +18,19 @@ namespace Mainichi.Web.Store.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult SelectedProducts()
+        {
+            var model = RavenSession.Include<FeaturedProducts>(x => x.FeaturedThingIds.Select(id => id)).Load("config/featuredproducts")
+                .FeaturedThingIds.Select(id => RavenSession.Load<Thing>(id));
+            return View(model);
+        }
+
+        public ActionResult UpdateSelectedProducts(FeaturedProducts featuredProducts)
+        {
+            var model = selectedProducts;
+            return RedirectToAction("SelectedProducts");
         }
 
         public ActionResult Thing(string id)

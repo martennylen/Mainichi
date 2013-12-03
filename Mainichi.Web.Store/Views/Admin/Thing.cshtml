@@ -1,6 +1,5 @@
 ﻿@using Mainichi.Web.Store.Extensions
 @model Mainichi.Web.Store.ViewModels.Input.ThingInputViewModel
-@Scripts.Render("~/bundles/validation")
 
 @using (Html.BeginForm("EditThing", "Admin",
     FormMethod.Post, new { @class = "formalizer", enctype = "multipart/form-data" }))
@@ -62,5 +61,6 @@
 </script>
 
 @section scripts {
-    <script src="~/Scripts/Admin/page.js"></script>
+    @Scripts.Render("~/bundles/validation")
+    @Scripts.Render("~/bundles/admin")
 }
