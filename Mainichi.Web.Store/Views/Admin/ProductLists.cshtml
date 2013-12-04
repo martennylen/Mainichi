@@ -1,9 +1,10 @@
 ﻿@using Mainichi.Web.Store.Extensions
 @model Mainichi.Web.Store.ViewModels.FeaturedProductsViewModel
 
-<h2>SelectedProducts</h2>
-    <ul data-bind="foreach: featuredProducts">
-    <li style="display: inline-block;min-width:180px;width:180px;vertical-align:top;margin-bottom: 50px">
+<h2>Redigera produktlistor</h2>
+<select data-bind="options: listTypes, optionsText: 'Name', optionsValue: 'Id', value: selectedListType"></select>
+    <ul class="formalizer" data-bind="foreach: featuredProducts" style="padding-left:200px">
+    <li style="display: inline-block;min-width:250px;width:250px;min-height:250px;vertical-align:top;padding-bottom: 50px">
         <div>
             <img style="max-width: 100px" data-bind="attr: { src: '/Content/Snapshots/Products/' + data().Image }" />
             <p>
@@ -26,14 +27,20 @@
     Mainichi.ViewModels = Mainichi.ViewModels || {};
     Mainichi.ViewModels.Admin = Mainichi.ViewModels.Admin || {};
 
-    Mainichi.ViewModels.Admin.FeaturedProducts = function() {
+    Mainichi.ViewModels.Admin.EditProductLists = function() {
         var self = this;
+        self.listTypes = [{'Id': 'thinglist/featured', 'Name': 'Utvalda'}, {'Id': 'thinglist/new', 'Name': 'Nya'}, {'Id': 'thinglist/dicounted', 'Name': 'Nedsatta'}];
+        self.selectedListType = ko.observable(self.listTypes[0].Id);
         self.actionText = ko.observable('');
         self.allThings = @Html.RenderAsJson(Model.AllThings);
+
+        self.selectedListType.subscribe(function(newValue) {
+            console.log('uppdatera till ' + newValue);
+        });
         
         self.featuredProducts = ko.computed(function() {
             return _.map(@Html.RenderAsJson(Model.FeaturedThings), function(p) {
-                return new Mainichi.ViewModels.Admin.FeaturedProduct(p, self);
+                return new Mainichi.ViewModels.Admin.EditableProduct(p, self);
             });
         });
         
@@ -47,7 +54,7 @@
             var possiblyNewIdentificators = mapIdentificators();
             if (!arrayEq(selectedIdentificators, possiblyNewIdentificators)) {
                 selectedIdentificators = possiblyNewIdentificators;
-                $.post("/Admin/UpdateSelectedProducts", $.param({ FeaturedThingIds: selectedIdentificators }, true)).done(function(reply) {
+                $.post("/Admin/UpdateSelectedProducts", $.param({ ThingIds: selectedIdentificators }, true)).done(function(reply) {
                     if (reply) {
                         self.actionText(reply.status);
                     }
@@ -66,7 +73,7 @@
         });
     };
 
-    Mainichi.ViewModels.Admin.FeaturedProduct = function(p, pp) {
+    Mainichi.ViewModels.Admin.EditableProduct = function(p, pp) {
         var self = this;
 
         self.data = ko.observable(p);
@@ -93,5 +100,5 @@
         };
     };
 
-    ko.applyBindings(new Mainichi.ViewModels.Admin.FeaturedProducts());
+    ko.applyBindings(new Mainichi.ViewModels.Admin.EditProductLists());
 </script>

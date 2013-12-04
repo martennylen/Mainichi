@@ -22,9 +22,10 @@
     @Html.Partial("_MenuRenderer", new CategoryMenuModel { Categories = Model, Identifier = "top-most", CurrentPath = String.Empty })
 </div>
 <section id="product-listings">
+    <!-- ko foreach: thingsLists -->
     <div id="selected-products">
-        <h3 style="color: #cc3333;border-bottom: 1px solid #cccccc">UTVALDA PRODUKTER</h3>
-        <ul id="product-list" class="clearfix" style="margin-top: 0" data-bind="foreach: productlist">
+        <h3 style="color: #cc3333;border-bottom: 1px solid #cccccc" data-bind="text: Descriptor.toUpperCase()"></h3>
+        <ul id="product-list" class="clearfix" style="margin-top: 0" data-bind="foreach: Things">
             <li>
                 <a data-bind="attr: { href: '@Url.Content("~/Thing/")' + $data.Id.split('/')[1] + '-' + $data.Slug + '/'}">
                     <div class="product-container clearfix">
@@ -40,4 +41,5 @@
             </li>
         </ul>
     </div>
+    <!-- /ko -->
 </section>

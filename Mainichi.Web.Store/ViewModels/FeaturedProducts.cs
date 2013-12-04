@@ -5,8 +5,22 @@ using System.Web;
 
 namespace Mainichi.Web.Store.ViewModels
 {
-    public class FeaturedProducts
+    public class ThingListsViewModel
     {
-        public IEnumerable<string> FeaturedThingIds { get; set; } 
+        public string Descriptor { get; set; }
+        public IEnumerable<Thing> Things { get; set; }
+    }
+
+    public class ThingLists
+    {
+        public FeaturedThings FeaturedThings { get; set; }
+        public FeaturedThings NewArrivalThings { get; set; }
+        public FeaturedThings DiscountedThings { get; set; }
+    }
+
+    public class FeaturedThings
+    {
+        public string Descriptor { get; set; }
+        public IEnumerable<string> ThingIds { get; set; }
     }
 }

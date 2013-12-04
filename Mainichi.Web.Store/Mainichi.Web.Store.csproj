@@ -178,6 +178,7 @@
     <Compile Include="Api\AbstractApiController.cs" />
     <Compile Include="Api\Filter\RavenSessionManagementAttribute.cs" />
     <Compile Include="Api\ThingsController.cs" />
+    <Compile Include="Api\ThingsListsController.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DataDocumentStore.cs" />

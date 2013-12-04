@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Mainichi.Web.Store.Api;
 using Mainichi.Web.Store.Extensions;
 using Mainichi.Web.Store.ViewModels;
 using Mainichi.Web.Store.ViewModels.Input;
@@ -22,12 +23,23 @@ namespace Mainichi.Web.Store.Controllers
             return View();
         }
 
-        public ActionResult SelectedProducts()
+        public ActionResult ProductLists()
         {
-            var model = RavenSession.Include<FeaturedProducts>(x => x.FeaturedThingIds.Select(id => id)).Load("config/featuredproducts")
-                .FeaturedThingIds.Select(id => RavenSession.Load<Thing>(id)).ToList();
+            //var model = RavenSession.Include<FeaturedThings>(x => x.FeaturedThingIds.Select(id => id)).Load("config/featuredproducts")
+            //.FeaturedThingIds.Select(id => RavenSession.Load<Thing>(id)).ToList();
 
-           var allThings = RavenSession.Query<Thing>("Things/AllForEdit");
+            //var model = RavenSession.Load<ThingLists>("config/thingslists").FeaturedThings;
+            //var model = RavenSession.Include<FeaturedThings>(x => x.ThingIds.Select(id => id))
+            //    .Load("config/thingslists")
+            //    .ThingIds.Select(id => RavenSession.Load<Thing>(id))
+            //    .ToList();
+
+            //var modell = RavenSession.Load<ThingLists>("config/thingslists").FeaturedThings;
+            //var model = modell.
+
+            var model = RavenSession.Include<FeaturedThings>(x => x.ThingIds)
+                .Load("thinglist/featured").ThingIds.Select(d => RavenSession.Load<Thing>(d)).ToList();
+            var allThings = RavenSession.Query<Thing>("Things/AllForEdit");
 
             var missingProducts = _featuredProductsSlots - model.Count();
             if (missingProducts > 0)
@@ -45,21 +57,23 @@ namespace Mainichi.Web.Store.Controllers
 
             var m = new FeaturedProductsViewModel
             {
-                AllThings =  allThings,
+                AllThings = allThings,
                 FeaturedThings = model
             };
 
             return View(m);
+
+            return null;
         }
 
         [HttpPost]
-        public ActionResult UpdateSelectedProducts(FeaturedProducts featuredProducts)
+        public ActionResult UpdateSelectedProducts(FeaturedThings featuredProducts)
         {
             string status = "Produktlistan uppdaterad";
             try
             {
-                var model = RavenSession.Load<FeaturedProducts>("config/featuredproducts");
-                model.FeaturedThingIds = featuredProducts.FeaturedThingIds.Where(d => !string.IsNullOrWhiteSpace(d));
+                var model = RavenSession.Load<FeaturedThings>("thinglist/featured");
+                model.ThingIds = featuredProducts.ThingIds.Where(d => !string.IsNullOrWhiteSpace(d));
             }
             catch (Exception e)
             {
@@ -138,6 +152,7 @@ namespace Mainichi.Web.Store.Controllers
             if (t.ImageFile != null)
             {
                 string nameAndLocation = "~/Content/Snapshots/Products/" + t.ImageFile.FileName;
+                //Path.GetTempPath();
                 t.ImageFile.SaveAs(Server.MapPath(nameAndLocation));
                 result.Image = t.ImageFile.FileName;
             }

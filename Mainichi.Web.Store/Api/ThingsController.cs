@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Mainichi.Web.Store.ViewModels;
+using WebGrease.Css.Extensions;
 
 namespace Mainichi.Web.Store.Api
 {
@@ -12,12 +15,39 @@ namespace Mainichi.Web.Store.Api
     {
         // GET api/things
         //public IEnumerable<Thing> Get()
-        public IEnumerable<Thing> Get()
+        public IEnumerable<ThingListsViewModel> Get()
         {
-            var featuredProducts = RavenSession.Include<FeaturedProducts>(x => x.FeaturedThingIds.Select(id => id)).Load("config/featuredproducts");
-            return featuredProducts.FeaturedThingIds.Select(id => RavenSession.Load<Thing>(id));
-            //return RavenSession.Load<FeaturedProducts>("config/featuredproducts");
-            //return RavenSession.Query<Thing>().ToList();
+            //var thingsLists =
+            //    RavenSession.Query<ThingLists>()
+            //        .Include(x => x.FeaturedThings.ThingIds)
+            //        .Include(d => d.NewArrivalThings.ThingIds).Select(d => d).Single();
+
+            var thingLists = RavenSession.Include<FeaturedThings>(x => x.ThingIds)
+                .Load("thinglist/featured", "thinglist/new", "thinglist/discounted");
+
+            var thingListsViewModel = thingLists.Select(listsViewModel => new ThingListsViewModel
+            {
+                Things = listsViewModel.ThingIds.Select(id => RavenSession.Load<Thing>(id)), 
+                Descriptor = listsViewModel.Descriptor
+            });
+
+            //var thingsLists = RavenSession.Load<ThingLists>("config/thingslists").Include<FeaturedThings>(x => x.FeaturedThingIds.Select(id => id)).
+            //    Include<NewArrivalThings>(x => x.NewArrivalThingIds.Select(id => id))
+
+            //return new List<ThingListsViewModel>
+            //{
+            //    new ThingListsViewModel
+            //    {
+            //        Things = thingsLists.FeaturedThings.ThingIds.Select(id => RavenSession.Load<Thing>(id)),
+            //        Descriptor = thingsLists.FeaturedThings.Descriptor
+            //    },
+            //    new ThingListsViewModel
+            //    {
+            //        Things = thingsLists.NewArrivalThings.ThingIds.Select(id => RavenSession.Load<Thing>(id)),
+            //        Descriptor = thingsLists.NewArrivalThings.Descriptor
+            //    },
+            //};
+            return thingListsViewModel;
         }
 
         // GET api/things/5
