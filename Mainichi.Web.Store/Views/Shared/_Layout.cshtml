@@ -35,27 +35,32 @@
             <div id="body">
                 @RenderSection("breadcrumbs", required: false)
                 @RenderBody()
-                <section id="up-we-go">
-                    <a href="#">Gå till toppen av sidan</a>
-                </section>
             </div>
-            <footer class="clearfix">
-                <div>
-                    <p>Lorem ipsum dolor sit amet, ne eum reque semper aperiam, ei tempor graecis est. Nam no docendi philosophia. Mei cu vivendo molestie, ex qui veri dolor instructior. At nam eruditi epicuri.
-                        Nobis delicatissimi ei ius. Qui malis diceret constituto ei, ne pro agam mandamus, clita everti has in. Vocibus dissentiunt mea et, in per quando expetenda eloquentiam, sed bonorum definiebas id. Denique commune verterem ex qui.
-                        At pri nibh vivendo splendide, natum nemore periculis mel et, nec latine minimum at. Rebum praesent in duo. Quod duis corpora cum in. Ea bonorum gloriatur pri.
-                    </p>
-                </div>
-                <div>
-                    <p>His mollis probatus constituto at, causae perfecto sensibus eu qui. Nibh aliquam ex vix. Eam cu nonumes intellegat, simul intellegat mel ut. Duo albucius invidunt id, propriae scaevola vis id, nec delenit partiendo cu. Ius ei probo justo, no modo homero persequeris vis. At insolens sapientem inciderint quo, ius ut modo erat sanctus, no feugait invenire qui.
-                        Eu soleat tincidunt ullamcorper per, inani accusata electram cu sed, vidit vocent at has. Molestie delectus invidunt ad mei. Te magna appareat usu, qualisque mediocritatem pri ea. Cum ad case eruditi necessitatibus. Usu cu virtute probatus referrentur.
-                    </p>
-                </div>
-                <div>
-                    <p>Lorem ipsum dolor sit amet, ne eum reque semper aperiam, ei tempor graecis est. Nam no docendi philosophia. Mei cu vivendo molestie, ex qui veri dolor instructior. At nam eruditi epicuri.
-                        Nobis delicatissimi ei ius. Qui malis diceret constituto ei, ne pro agam mandamus, clita everti has in. Vocibus dissentiunt mea et, in per quando expetenda eloquentiam, sed bonorum definiebas id. Denique commune verterem ex qui.
-                    </p>
-                </div>
+            <footer>
+                <section id="up-we-go">
+                    <span>Gå till toppen av sidan</span>
+                </section>
+                <section class="clearfix">
+                    <div>
+                        <p>
+                            Lorem ipsum dolor sit amet, ne eum reque semper aperiam, ei tempor graecis est. Nam no docendi philosophia. Mei cu vivendo molestie, ex qui veri dolor instructior. At nam eruditi epicuri.
+                            Nobis delicatissimi ei ius. Qui malis diceret constituto ei, ne pro agam mandamus, clita everti has in. Vocibus dissentiunt mea et, in per quando expetenda eloquentiam, sed bonorum definiebas id. Denique commune verterem ex qui.
+                            At pri nibh vivendo splendide, natum nemore periculis mel et, nec latine minimum at. Rebum praesent in duo. Quod duis corpora cum in. Ea bonorum gloriatur pri.
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            His mollis probatus constituto at, causae perfecto sensibus eu qui. Nibh aliquam ex vix. Eam cu nonumes intellegat, simul intellegat mel ut. Duo albucius invidunt id, propriae scaevola vis id, nec delenit partiendo cu. Ius ei probo justo, no modo homero persequeris vis. At insolens sapientem inciderint quo, ius ut modo erat sanctus, no feugait invenire qui.
+                            Eu soleat tincidunt ullamcorper per, inani accusata electram cu sed, vidit vocent at has. Molestie delectus invidunt ad mei. Te magna appareat usu, qualisque mediocritatem pri ea. Cum ad case eruditi necessitatibus. Usu cu virtute probatus referrentur.
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            Lorem ipsum dolor sit amet, ne eum reque semper aperiam, ei tempor graecis est. Nam no docendi philosophia. Mei cu vivendo molestie, ex qui veri dolor instructior. At nam eruditi epicuri.
+                            Nobis delicatissimi ei ius. Qui malis diceret constituto ei, ne pro agam mandamus, clita everti has in. Vocibus dissentiunt mea et, in per quando expetenda eloquentiam, sed bonorum definiebas id. Denique commune verterem ex qui.
+                        </p>
+                    </div>
+                </section>
             </footer>
 
             @RenderSection("scripts", required: false)
@@ -77,6 +82,10 @@
                     var newIndex = Math.floor((Math.random() * 8));
                     return newIndex === oldIndex ? getRand(oldIndex) : newIndex === 4 ? getRand(oldIndex) : newIndex;
                 }
+
+                document.getElementById('up-we-go').onclick = function() {
+                    window.scrollTo(0);
+                };
                 
                 if (Modernizr.mq('only all and (max-width: 640px)')) {
                     window.onscroll = isScrolling;

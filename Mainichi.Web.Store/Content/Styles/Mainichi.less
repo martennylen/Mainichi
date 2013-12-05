@@ -26,7 +26,6 @@ html {
     body {
         /*background-color: #FC8F00;*/
         background-color: #FAFAFA;
-
         color: #999;
         font-size: .85em;
         font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
@@ -96,11 +95,11 @@ html {
                         background-color: #cc3333;
                         border-bottom: 2px solid #ffcc00;
                         //border-bottom: 2px solid #cc3333;
-
                         div.product-description {
                             span.product-body-text {
                                 color: #fafafa;
                             }
+
                             span.price-fighter {
                                 background-color: #fafafa;
                                 color: #cc3333;
@@ -155,11 +154,11 @@ html {
                         padding-right: 0;
                     }
 
-                    a.cartholder:hover {
-                        background-color: #fafafa;
-                        color: #cc3333;
-                        border-bottom: 2px solid #cc3333;
-                    }
+                        a.cartholder:hover {
+                            background-color: #fafafa;
+                            color: #cc3333;
+                            border-bottom: 2px solid #cc3333;
+                        }
 
                     a.hoverable:hover {
                         //background-color: #cc3333;
@@ -361,13 +360,33 @@ html {
     }
 
     footer {
-        background-color: #cc3333;
-        color: #fafafa;
-        font-size: .8em;
-        padding: 1em 2em 1em 2em;
+        #up-we-go {
+            margin-bottom: 10px;
+            text-align: center;
 
-        div:last-of-type {
-            .last-col();
+            span {
+                background-color: #cc3333;
+                color: #fafafa;
+                padding: 10px;
+                border-radius: 8px 8px 0 0;
+                text-decoration: underline;
+            }
+
+            span:hover {
+                cursor: pointer;
+                text-decoration: none;
+            }
+        }
+
+        section:nth-child(2) {
+            background-color: #cc3333;
+            color: #fafafa;
+            font-size: .8em;
+            padding: 1em 2em 1em 2em;
+
+            div:last-of-type {
+                .last-col();
+            }
         }
     }
 
@@ -474,10 +493,6 @@ html {
         #body {
             padding: 20px;
 
-            #up-we-go {
-                display: none;
-            }
-
             #needs-moar-cats {
                 display: none;
                 margin-bottom: 20px;
@@ -571,6 +586,7 @@ html {
             #cart-holder {
                 display: none;
             }
+
             ul#rainbow {
                 li {
                     display: block;
@@ -588,7 +604,7 @@ html {
         }
 
         footer {
-            div {
+            section:nth-child(2) > div {
                 .column(4);
             }
         }
@@ -652,16 +668,18 @@ html {
         }
 
         footer {
-            div:first-of-type {
-                .column(12);
-            }
+            section:nth-child(2) {
+                div:first-of-type {
+                    .column(12);
+                }
 
-            div:not(:first-of-type) {
-                display: none;
-            }
+                div:not(:first-of-type) {
+                    display: none;
+                }
 
-            div:last-of-type {
-                .last-col();
+                div:last-of-type {
+                    .last-col();
+                }
             }
         }
 
