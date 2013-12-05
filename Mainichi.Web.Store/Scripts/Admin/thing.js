@@ -2,7 +2,7 @@
 Mainichi.ViewModels = Mainichi.ViewModels || {};
 Mainichi.ViewModels.Admin = Mainichi.ViewModels.Admin || {};
 
-Mainichi.ViewModels.Admin.Index = function () {
+Mainichi.ViewModels.Admin.Thing = function () {
     var self = this;
 
     self.thingId = ko.observable(Mainichi.ViewModels.Admin.Models.Thing.Id || {});
@@ -19,4 +19,4 @@ Mainichi.ViewModels.Admin.Index = function () {
     };
 };
 
-ko.applyBindings(new Mainichi.ViewModels.Admin.Index());
+ko.applyBindings(new Mainichi.ViewModels.Admin.Thing());

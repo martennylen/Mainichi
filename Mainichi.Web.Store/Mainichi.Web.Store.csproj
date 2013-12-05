@@ -230,7 +230,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Styles\Mainichi.less" />
     <Content Include="Content\Styles\Grid.less" />
-    <Content Include="Scripts\Admin\page.js" />
+    <Content Include="Scripts\Admin\thing.js" />
+    <Content Include="Scripts\Admin\productLists.js" />
     <Content Include="Scripts\BindingHandlers\currency.js" />
     <Content Include="Scripts\Data\things.js" />
     <Content Include="Content\Styles\Elements\Forms.less" />
