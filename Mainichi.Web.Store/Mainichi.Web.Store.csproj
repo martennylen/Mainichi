@@ -299,7 +299,7 @@
     <Content Include="Scripts\Lib\jquery.validate.unobtrusive.min.js.map">
       <DependentUpon>jquery.validate.unobtrusive.js</DependentUpon>
     </Content>
-    <Content Include="Views\Admin\SelectedProducts.cshtml" />
+    <Content Include="Views\Admin\ProductLists.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

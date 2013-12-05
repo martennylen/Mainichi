@@ -23,7 +23,7 @@ namespace Mainichi.Web.Store.Api
             //        .Include(d => d.NewArrivalThings.ThingIds).Select(d => d).Single();
 
             var thingLists = RavenSession.Include<FeaturedThings>(x => x.ThingIds)
-                .Load("thinglist/featured", "thinglist/new", "thinglist/discounted");
+                .Load("thinglist/new", "thinglist/featured", "thinglist/discounted");
 
             var thingListsViewModel = thingLists.Select(listsViewModel => new ThingListsViewModel
             {
@@ -31,22 +31,6 @@ namespace Mainichi.Web.Store.Api
                 Descriptor = listsViewModel.Descriptor
             });
 
-            //var thingsLists = RavenSession.Load<ThingLists>("config/thingslists").Include<FeaturedThings>(x => x.FeaturedThingIds.Select(id => id)).
-            //    Include<NewArrivalThings>(x => x.NewArrivalThingIds.Select(id => id))
-
-            //return new List<ThingListsViewModel>
-            //{
-            //    new ThingListsViewModel
-            //    {
-            //        Things = thingsLists.FeaturedThings.ThingIds.Select(id => RavenSession.Load<Thing>(id)),
-            //        Descriptor = thingsLists.FeaturedThings.Descriptor
-            //    },
-            //    new ThingListsViewModel
-            //    {
-            //        Things = thingsLists.NewArrivalThings.ThingIds.Select(id => RavenSession.Load<Thing>(id)),
-            //        Descriptor = thingsLists.NewArrivalThings.Descriptor
-            //    },
-            //};
             return thingListsViewModel;
         }
 
