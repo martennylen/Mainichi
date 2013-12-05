@@ -20,6 +20,7 @@ namespace Mainichi.Web.Store.ViewModels
 
     public class FeaturedThings
     {
+        public string Id { get; set; }
         public string Descriptor { get; set; }
         public IEnumerable<string> ThingIds { get; set; }
     }

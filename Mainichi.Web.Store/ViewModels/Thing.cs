@@ -9,6 +9,13 @@ namespace Mainichi.Web.Store.ViewModels
 {
     public class Thing
     {
+        public Thing()
+        {
+            Id = string.Empty;
+            Name = "Välj en produkt";
+            Image = "placeholder.png";
+        }
+
         public string Name { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }

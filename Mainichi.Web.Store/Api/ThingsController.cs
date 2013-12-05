@@ -39,12 +39,7 @@ namespace Mainichi.Web.Store.Api
         {
             if (id == 0)
             {
-                return new Thing
-                {
-                    Id = string.Empty,
-                    Name = "Tom slot",
-                    Image = "placeholder.png"
-                };
+                return new Thing();
             }
             return RavenSession.Load<Thing>("things/" + id);
         }

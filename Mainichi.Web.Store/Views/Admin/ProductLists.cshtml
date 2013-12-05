@@ -1,16 +1,16 @@
 ﻿@using Mainichi.Web.Store.Extensions
-@model Mainichi.Web.Store.ViewModels.FeaturedProductsViewModel
+@model Mainichi.Web.Store.ViewModels.ProductsListsViewModel
 
 <h2>Redigera produktlistor</h2>
 <select data-bind="options: listTypes, optionsText: 'Name', optionsValue: 'Id', value: selectedListType"></select>
-    <ul class="formalizer" data-bind="foreach: featuredProducts" style="padding-left:200px">
+    <ul class="formalizer" data-bind="foreach: productList" style="padding-left:200px">
     <li style="display: inline-block;min-width:250px;width:250px;min-height:250px;vertical-align:top;padding-bottom: 50px">
         <div>
             <img style="max-width: 100px" data-bind="attr: { src: '/Content/Snapshots/Products/' + data().Image }" />
             <p>
                 <a href="#" data-bind="click: editSelectedProduct, visible: !isEditing(), text: data().Name"></a>
                 @*<input style="width: 100px" type="text" data-bind="visible: isEditing, value: data().Id" />*@
-                <select data-bind="visible: isEditing, options: $parent.allThings, value: data().Id, optionsText: 'Name', optionsValue: 'Id'"></select>
+                <select data-bind="visible: isEditing, optionsCaption: 'Välj en produkt', options: $parent.allThings, value: data().Id, optionsText: 'Name', optionsValue: 'Id'"></select>
                 <div>
                     <button data-bind="visible: isEditing, click: updateSelectedProduct">Ja</button>
                     <button data-bind="visible: isEditing, click: editSelectedProduct">Nej</button>
@@ -29,23 +29,26 @@
 
     Mainichi.ViewModels.Admin.EditProductLists = function() {
         var self = this;
-        self.listTypes = [{'Id': 'thinglist/featured', 'Name': 'Utvalda'}, {'Id': 'thinglist/new', 'Name': 'Nya'}, {'Id': 'thinglist/dicounted', 'Name': 'Nedsatta'}];
+        self.listTypes = [{'Id': 'featured', 'Name': 'Utvalda'}, {'Id': 'new', 'Name': 'Nya'}, {'Id': 'discounted', 'Name': 'Nedsatta'}];
         self.selectedListType = ko.observable(self.listTypes[0].Id);
+        self.productListRaw = ko.observableArray(@Html.RenderAsJson(Model.ListThings));
         self.actionText = ko.observable('');
         self.allThings = @Html.RenderAsJson(Model.AllThings);
 
         self.selectedListType.subscribe(function(newValue) {
-            console.log('uppdatera till ' + newValue);
+            $.getJSON('/api/ThingsLists/' + newValue, function(d) {
+                self.productListRaw(d);
+            });
         });
         
-        self.featuredProducts = ko.computed(function() {
-            return _.map(@Html.RenderAsJson(Model.FeaturedThings), function(p) {
+        self.productList = ko.computed(function() {
+            return _.map(self.productListRaw(), function(p) {
                 return new Mainichi.ViewModels.Admin.EditableProduct(p, self);
             });
         });
         
         var mapIdentificators = function () {
-            return _.map(self.featuredProducts(), function(p) {
+            return _.map(self.productList(), function(p) {
                 return p.data().Id;
             });
         };
@@ -54,7 +57,7 @@
             var possiblyNewIdentificators = mapIdentificators();
             if (!arrayEq(selectedIdentificators, possiblyNewIdentificators)) {
                 selectedIdentificators = possiblyNewIdentificators;
-                $.post("/Admin/UpdateSelectedProducts", $.param({ ThingIds: selectedIdentificators }, true)).done(function(reply) {
+                $.post("/Admin/UpdateSelectedProducts", $.param({ Id: self.selectedListType(), ThingIds: selectedIdentificators }, true)).done(function(reply) {
                     if (reply) {
                         self.actionText(reply.status);
                     }
@@ -84,7 +87,7 @@
         };
 
         self.updateSelectedProduct = function() {
-            if (self.data().Id.length === 0) {
+            if (typeof (self.data().Id) === "undefined") { //Välj en produkt
                 self.data().Id = "things/0";
             }
             $.getJSON('/api/Things/' + self.data().Id.split('/')[1], function(d) {

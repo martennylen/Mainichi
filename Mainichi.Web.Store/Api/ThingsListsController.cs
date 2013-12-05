@@ -9,11 +9,20 @@ namespace Mainichi.Web.Store.Api
         //
         // GET: /ThingsLists/
 
-        public IEnumerable<IEnumerable<Thing>> Get()
+        public IEnumerable<Thing> Get(string id)
         {
-            //var featuredProducts = RavenSession.Include<FeaturedProducts>(x => x.FeaturedThingIds.Select(id => id)).Load("config/featuredproducts");
-            //return featuredProducts.FeaturedThingIds.Select(id => RavenSession.Load<Thing>(id));
-            return null;
+            var model = RavenSession.Include<FeaturedThings>(x => x.ThingIds)
+                .Load("thinglist/" + id).ThingIds.Select(d => RavenSession.Load<Thing>(d)).ToList();
+
+            var missingProducts = 6 - model.Count();
+            if (missingProducts > 0)
+            {
+                for (int i = 0; i < missingProducts; i++)
+                {
+                    model.Add(new Thing());
+                }
+            }
+            return model;
         }
     }
 }

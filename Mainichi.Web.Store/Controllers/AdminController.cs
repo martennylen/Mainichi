@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
@@ -16,7 +17,7 @@ namespace Mainichi.Web.Store.Controllers
         //
         // GET: /Admin/
         private const string _nameAndLocation = "~/Content/Snapshots/Products/";
-        private const int _featuredProductsSlots = 6;
+        private const int _productsSlots = 6;
 
         public ActionResult Index()
         {
@@ -39,31 +40,30 @@ namespace Mainichi.Web.Store.Controllers
 
             var model = RavenSession.Include<FeaturedThings>(x => x.ThingIds)
                 .Load("thinglist/featured").ThingIds.Select(d => RavenSession.Load<Thing>(d)).ToList();
+            //var allThings = new List<Thing>
+            //{
+            //    new Thing()
+            //};
+
             var allThings = RavenSession.Query<Thing>("Things/AllForEdit");
 
-            var missingProducts = _featuredProductsSlots - model.Count();
+
+            var missingProducts = _productsSlots - model.Count();
             if (missingProducts > 0)
             {
                 for (int i = 0; i < missingProducts; i++)
                 {
-                    model.Add(new Thing
-                    {
-                        Id = string.Empty,
-                        Name = "Tom slot",
-                        Image = "placeholder.png"
-                    });
+                    model.Add(new Thing());
                 }
             }
 
-            var m = new FeaturedProductsViewModel
+            var m = new ProductsListsViewModel
             {
                 AllThings = allThings,
-                FeaturedThings = model
+                ListThings = model
             };
 
             return View(m);
-
-            return null;
         }
 
         [HttpPost]
@@ -72,8 +72,8 @@ namespace Mainichi.Web.Store.Controllers
             string status = "Produktlistan uppdaterad";
             try
             {
-                var model = RavenSession.Load<FeaturedThings>("thinglist/featured");
-                model.ThingIds = featuredProducts.ThingIds.Where(d => !string.IsNullOrWhiteSpace(d));
+                var model = RavenSession.Load<FeaturedThings>("thinglist/" + featuredProducts.Id);
+                model.ThingIds = featuredProducts.ThingIds.Where(d => !string.IsNullOrWhiteSpace(d) && d != "things/0");
             }
             catch (Exception e)
             {
