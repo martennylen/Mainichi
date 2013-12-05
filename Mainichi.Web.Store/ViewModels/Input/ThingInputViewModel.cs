@@ -25,6 +25,8 @@ namespace Mainichi.Web.Store.ViewModels.Input
 
         public string Image { get; set; }
 
+        public List<ImageItem> Slides { get; set; }
+
         [Required(ErrorMessage = "Fyll i produktbeskrivning!")]
         [DisplayName("Produktbeskrivning:")]
         public string Description { get; set; }

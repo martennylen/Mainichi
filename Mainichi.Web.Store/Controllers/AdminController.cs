@@ -24,7 +24,7 @@ namespace Mainichi.Web.Store.Controllers
             return View();
         }
 
-        public ActionResult ProductLists()
+        public ActionResult EditProductLists()
         {
             //var model = RavenSession.Include<FeaturedThings>(x => x.FeaturedThingIds.Select(id => id)).Load("config/featuredproducts")
             //.FeaturedThingIds.Select(id => RavenSession.Load<Thing>(id)).ToList();
@@ -39,7 +39,7 @@ namespace Mainichi.Web.Store.Controllers
             //var model = modell.
 
             var model = RavenSession.Include<FeaturedThings>(x => x.ThingIds)
-                .Load("thinglist/featured").ThingIds.Select(d => RavenSession.Load<Thing>(d)).ToList();
+                .Load("thinglist/new").ThingIds.Select(d => RavenSession.Load<Thing>(d)).ToList();
             //var allThings = new List<Thing>
             //{
             //    new Thing()
@@ -83,7 +83,7 @@ namespace Mainichi.Web.Store.Controllers
             return Json(new { status }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Thing(string id)
+        public ActionResult EditThing(string id)
         {
             var model = new ThingInputViewModel();
 
@@ -94,7 +94,7 @@ namespace Mainichi.Web.Store.Controllers
                 model.Price = existingThing.Price;
                 model.Name = existingThing.Name;
                 model.Description = existingThing.Description;
-                model.Image = existingThing.Image;
+                model.Slides = existingThing.Slides;
 
                 model.IsEditing = true;
             }
@@ -103,7 +103,7 @@ namespace Mainichi.Web.Store.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditThing(ThingInputViewModel t)
+        public ActionResult AddOrUpdateThing(ThingInputViewModel t)
         {
             if (t.Id == null)
             {
@@ -114,7 +114,7 @@ namespace Mainichi.Web.Store.Controllers
                 UpdateThing(t);
             }
 
-            return RedirectToAction("Thing");
+            return RedirectToAction("EditThing");
         }
 
         private void UpdateThing(ThingInputViewModel t)
@@ -149,10 +149,10 @@ namespace Mainichi.Web.Store.Controllers
         private void SaveThing(ThingInputViewModel t)
         {
             var result = new Thing();
+
             if (t.ImageFile != null)
             {
                 string nameAndLocation = "~/Content/Snapshots/Products/" + t.ImageFile.FileName;
-                //Path.GetTempPath();
                 t.ImageFile.SaveAs(Server.MapPath(nameAndLocation));
                 result.Image = t.ImageFile.FileName;
             }

@@ -4,7 +4,7 @@ Mainichi.ViewModels.Admin = Mainichi.ViewModels.Admin || {};
 
 Mainichi.ViewModels.Admin.ProductLists = function() {
     var self = this;
-    self.listTypes = [{'Id': 'featured', 'Name': 'Utvalda'}, {'Id': 'new', 'Name': 'Nya'}, {'Id': 'discounted', 'Name': 'Nedsatta'}];
+    self.listTypes = [{'Id': 'new', 'Name': 'Nya'}, {'Id': 'featured', 'Name': 'Utvalda'}, {'Id': 'discounted', 'Name': 'Nedsatta'}];
     self.selectedListType = ko.observable(self.listTypes[0].Id);
     self.productListRaw = ko.observableArray(Mainichi.ViewModels.Admin.Models.ProductLists.InitialListItems);
     self.actionText = ko.observable('');

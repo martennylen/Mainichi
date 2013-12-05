@@ -296,11 +296,11 @@
       <DependentUpon>sammy-0.7.4.js</DependentUpon>
     </Content>
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\Thing.cshtml" />
+    <Content Include="Views\Admin\EditThing.cshtml" />
     <Content Include="Scripts\Lib\jquery.validate.unobtrusive.min.js.map">
       <DependentUpon>jquery.validate.unobtrusive.js</DependentUpon>
     </Content>
-    <Content Include="Views\Admin\ProductLists.cshtml" />
+    <Content Include="Views\Admin\EditProductLists.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

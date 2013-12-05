@@ -11,7 +11,6 @@ namespace Mainichi.Web.Store.ViewModels
     {
         public Thing()
         {
-            Id = string.Empty;
             Name = "Välj en produkt";
             Image = "placeholder.png";
         }
@@ -23,12 +22,20 @@ namespace Mainichi.Web.Store.ViewModels
         public string Slug { get; set; }
         public string Article { get; set; }
 
+        public List<ImageItem> Slides { get; set; } 
         public List<Attribute> Attributes { get; set; } 
 
         public decimal? Price { get; set; }
 
         public DateTime Created { get; set; }
         public DateTime LastChange { get; set; }
+    }
+
+    public class ImageItem
+    {
+        public string FileName { get; set; }
+        public string Text { get; set; }
+        public int Index { get; set; }
     }
 
     public class Attribute

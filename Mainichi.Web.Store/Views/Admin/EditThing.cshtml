@@ -1,7 +1,7 @@
 ﻿@using Mainichi.Web.Store.Extensions
 @model Mainichi.Web.Store.ViewModels.Input.ThingInputViewModel
 
-@using (Html.BeginForm("EditThing", "Admin",
+@using (Html.BeginForm("AddOrUpdateThing", "Admin",
     FormMethod.Post, new { @class = "formalizer", enctype = "multipart/form-data" }))
 {
     <fieldset>
@@ -24,12 +24,25 @@
 
         @if (Model.IsEditing)
         {
-        <div data-bind="visible: !isImageEditing()">
-            <img data-bind="attr: { src: '/Content/Snapshots/Products/' + thingImage() }" />
-            <button type="button" data-bind="click: removeImage">Redigera bild</button>
-            @Html.HiddenFor(m => m.Id)
-            @Html.HiddenFor(m => m.Image)
-        </div>
+            <div data-bind="visible: !isImageEditing()">
+                <ul style="list-style-type: none">
+                    <!-- ko foreach: slides -->
+                    <li style="display: inline-block">
+                        <img data-bind="attr: { src: '/Content/Snapshots/Products/' + data().FileName }" />
+                        <textarea style="width: auto;display: block" data-bind="html: data().Text"></textarea>
+                        <div>
+                            <button type="button" data-bind="click: $parent.editImage">Redigera bild</button>
+                            <button type="button" data-bind="click: $parent.removeImage">Ta bort bild</button>
+                        </div>
+                    </li>
+                    <!-- /ko -->
+                    <li style="display: inline-block">
+                        <button type="button" data-bind="click: addImage" style="display: block">Lägg till bild</button>
+                    </li>
+                </ul>
+                @Html.HiddenFor(m => m.Id)
+                @Html.HiddenFor(m => m.Image)
+            </div>
         }
 
         <div data-bind="visible: !isEditing || isImageEditing" style="margin-top: 20px">
@@ -53,7 +66,7 @@
     Mainichi.ViewModels.Admin.Models.Thing = Mainichi.ViewModels.Admin.Models.Thing || {};
     
     Mainichi.ViewModels.Admin.Models.Thing.Id = @Html.RenderAsJson(Model.Id);
-    Mainichi.ViewModels.Admin.Models.Thing.Image = @Html.RenderAsJson(Model.Image);
+    Mainichi.ViewModels.Admin.Models.Thing.Slides = @Html.RenderAsJson(Model.Slides) || [];
     
     document.getElementById("ImageFile").onchange = function () {
         document.getElementById("selected-file").value = this.value.split('\\')[2];
