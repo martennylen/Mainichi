@@ -47,9 +47,11 @@
                         </div>
                     </li>
                     <!-- /ko -->
+                    <!-- ko if: slides().length < 5 -->
                     <li style="display: inline-block">
                         <button type="button" data-bind="click: addImage" style="display: block">Lägg till bild</button>
                     </li>
+                    <!-- /ko -->
                 </ul>
                 @Html.HiddenFor(m => m.Id)
                 @Html.HiddenFor(m => m.Image)
