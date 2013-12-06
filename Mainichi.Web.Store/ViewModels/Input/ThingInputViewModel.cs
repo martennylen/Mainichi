@@ -20,15 +20,22 @@ namespace Mainichi.Web.Store.ViewModels.Input
         [DisplayName("Pris:")]
         public decimal? Price { get; set; }
 
-        [DisplayName("Produktbild:")]
-        public HttpPostedFileBase ImageFile { get; set; }
+        //[DisplayName("Produktbild:")]
+        //public HttpPostedFileBase ImageFile { get; set; }
 
         public string Image { get; set; }
-
-        public List<ImageItem> Slides { get; set; }
+        public List<ImageItemViewModel> Slides { get; set; }
 
         [Required(ErrorMessage = "Fyll i produktbeskrivning!")]
         [DisplayName("Produktbeskrivning:")]
         public string Description { get; set; }
+    }
+
+    public class ImageItemViewModel
+    {
+        public HttpPostedFileBase File { get; set; }
+        public string FileName { get; set; }
+        public string Text { get; set; }
+        public int Index { get; set; }
     }
 }

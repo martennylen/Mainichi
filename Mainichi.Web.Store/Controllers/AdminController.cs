@@ -8,6 +8,7 @@ using Mainichi.Web.Store.Api;
 using Mainichi.Web.Store.Extensions;
 using Mainichi.Web.Store.ViewModels;
 using Mainichi.Web.Store.ViewModels.Input;
+using Raven.Client.Linq;
 using WebGrease.Css.Extensions;
 
 namespace Mainichi.Web.Store.Controllers
@@ -94,7 +95,17 @@ namespace Mainichi.Web.Store.Controllers
                 model.Price = existingThing.Price;
                 model.Name = existingThing.Name;
                 model.Description = existingThing.Description;
-                model.Slides = existingThing.Slides;
+
+                foreach (var item in existingThing.Slides.OrderBy(d => d.Index).ToList())
+                {
+                    model.Slides.Add(new ImageItemViewModel()
+                    {
+                        FileName = item.FileName,
+                        Text = item.Text,
+                        Index = item.Index
+                    });
+                }
+                model.Slides = new List<ImageItemViewModel>();
 
                 model.IsEditing = true;
             }
@@ -123,19 +134,25 @@ namespace Mainichi.Web.Store.Controllers
 
             if (existingThing != null)
             {
-                if (t.ImageFile != null) //Image was updated
+                if (t.Slides.Any())
                 {
-                    if (t.ImageFile.FileName != existingThing.Image)
+                    for(int i=0;i<=t.Slides.Count;i++)
                     {
-                        t.ImageFile.SaveAs(Server.MapPath(string.Concat(_nameAndLocation, t.ImageFile.FileName)));
-                        var existingFilePath = string.Concat(_nameAndLocation, existingThing.Image);
-                        if (System.IO.File.Exists(Server.MapPath(existingFilePath)))
+                        var current = t.Slides[i];
+                        if (current.File.FileName != existingThing.Slides[i].FileName)
                         {
-                            System.IO.File.Delete(Server.MapPath(existingFilePath));
+                            current.File.SaveAs(Server.MapPath(string.Concat(_nameAndLocation, current.FileName)));
+                            var existingFilePath = string.Concat(_nameAndLocation, existingThing.Image);
+                            if (System.IO.File.Exists(Server.MapPath(existingFilePath)))
+                            {
+                                System.IO.File.Delete(Server.MapPath(existingFilePath));
+                            }
                         }
-                        existingThing.Image = t.ImageFile.FileName;
                     }
+
+                    existingThing.Image = t.Slides.First().FileName;
                 }
+
                 existingThing.Name = t.Name;
                 existingThing.Slug = t.Name.ToSlug();
                 existingThing.Description = t.Description;
@@ -150,11 +167,21 @@ namespace Mainichi.Web.Store.Controllers
         {
             var result = new Thing();
 
-            if (t.ImageFile != null)
+            if (t.Slides.Any())
             {
-                string nameAndLocation = "~/Content/Snapshots/Products/" + t.ImageFile.FileName;
-                t.ImageFile.SaveAs(Server.MapPath(nameAndLocation));
-                result.Image = t.ImageFile.FileName;
+                foreach (var image in t.Slides)
+                {
+                    string nameAndLocation = "~/Content/Snapshots/Products/" + image.FileName;
+                    image.File.SaveAs(Server.MapPath(nameAndLocation));
+                    result.Slides.Add(new ImageItem
+                    {
+                        FileName = image.FileName,
+                        Text = image.Text,
+                        Index = image.Index
+                    });
+                }
+
+                result.Image = result.Slides.First().FileName;
             }
 
             result.Name = t.Name;
@@ -165,7 +192,7 @@ namespace Mainichi.Web.Store.Controllers
             result.Created = DateTime.UtcNow;
             result.LastChange = result.Created;
 
-            RavenSession.Store(result);
+            //RavenSession.Store(result);
         }
     }
 }

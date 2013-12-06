@@ -21,18 +21,29 @@
             @Html.TextBoxFor(m => m.Price)
             @Html.ValidationMessageFor(m => m.Price)
         </div>
-
-        @if (Model.IsEditing)
-        {
-            <div data-bind="visible: !isImageEditing()">
-                <ul style="list-style-type: none">
+            <div>
+                <ul style="list-style-type: none;padding-left:0">
                     <!-- ko foreach: slides -->
                     <li style="display: inline-block">
-                        <img data-bind="attr: { src: '/Content/Snapshots/Products/' + data().FileName }" />
-                        <textarea style="width: auto;display: block" data-bind="html: data().Text"></textarea>
-                        <div>
-                            <button type="button" data-bind="click: $parent.editImage">Redigera bild</button>
-                            <button type="button" data-bind="click: $parent.removeImage">Ta bort bild</button>
+                        <div data-bind="visible: !isImageEditing()">
+                            <img style="max-width:180px" data-bind="click: editImage, attr: { src: '/Content/Snapshots/Products/' + OriginalFileName }" />
+                            <span data-bind="visible: imageHasChanged" style="color: red">*</span>
+                            <textarea style="width: auto;display: block" data-bind="html: Text, attr: {name: 'Slides[' + $index() + '].Text' }"></textarea>
+                            <span>Index:</span>
+                            <select data-bind="options: $parent.indexList, value: Index, attr: {name: 'Slides[' + $index() + '].Index' }"></select>
+                            <div>
+                                <button type="button" data-bind="click: editImage">Redigera bild</button>
+                                <button type="button" data-bind="click: $parent.removeImage">Ta bort bild</button>
+                            </div>
+                        </div>
+                        <div data-bind="visible: isImageEditing" class="file-upload btn btn-danger">
+                            <input data-bind="value: FileName, attr: {name: 'Slides[' + $index() + '].FileName' }" type="text" placeholder="Tiddelipom" />
+                            <span>Välj bildfil</span>
+                            <input type="file" data-bind="event: { change: function(){ populateFileName($element.value); }}, attr: {name: 'Slides[' + $index() + '].File'}" accept="image/*" class="upload" />
+                            <button data-bind="click: editImage">Avbryt</button>
+
+                            @*@Html.TextBox("Slides", null, new { type = "file", accept = "image/*", @class = "upload" })*@
+                            @*@Html.TextBoxFor(m => m.Slides[1], new { type = "file", accept = "image/*", @class = "upload" })*@
                         </div>
                     </li>
                     <!-- /ko -->
@@ -43,17 +54,16 @@
                 @Html.HiddenFor(m => m.Id)
                 @Html.HiddenFor(m => m.Image)
             </div>
-        }
 
-        <div data-bind="visible: !isEditing || isImageEditing" style="margin-top: 20px">
+        @*<div data-bind="visible: !isEditing" style="margin-top: 20px">
             @Html.LabelFor(m => m.ImageFile)
             <div class="file-upload btn btn-danger">
                 <input id="selected-file" type="text" placeholder="Tiddelipom" />
                 <span>Välj bildfil</span>
                 @Html.TextBoxFor(m => m.ImageFile, new { type = "file", accept = "image/*", @class = "upload" })
             </div>
-            <button type="button" data-bind="visible: isImageEditing, click: removeImage">Avbryt</button>
-        </div>
+            <button type="button" data-bind="click: removeImage">Avbryt</button>
+        </div>*@
         <input id="submit-button" class="btn btn-success" type="submit" data-bind="value: addButtonText" />
     </fieldset>
 }
@@ -66,11 +76,12 @@
     Mainichi.ViewModels.Admin.Models.Thing = Mainichi.ViewModels.Admin.Models.Thing || {};
     
     Mainichi.ViewModels.Admin.Models.Thing.Id = @Html.RenderAsJson(Model.Id);
-    Mainichi.ViewModels.Admin.Models.Thing.Slides = @Html.RenderAsJson(Model.Slides) || [];
+    Mainichi.ViewModels.Admin.Models.Thing.Slides = @Html.RenderAsJson(Model.Slides) || [{}];
+
     
-    document.getElementById("ImageFile").onchange = function () {
-        document.getElementById("selected-file").value = this.value.split('\\')[2];
-    };
+    //document.getElementById("ImageFile").onchange = function () {
+    //    document.getElementById("selected-file").value = this.value.split('\\')[2];
+    //};
 </script>
 
 @section scripts {
