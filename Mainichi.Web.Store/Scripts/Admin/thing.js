@@ -32,8 +32,12 @@ Mainichi.ViewModels.Admin.Thing = function () {
     
     self.removeImage = function (p) {
         console.log(p);
-        self.slides.splice(p.Index(), 1);
-        resetIndexes();
+        if (p.IsNew) {
+            self.slides.splice(p.Index(), 1);
+            resetIndexes();
+        } else { //Mark as deleted
+            p.DeleteMe(true);
+        }
         console.log(self.slides());
     };
 
@@ -49,12 +53,16 @@ Mainichi.ViewModels.Admin.EditableSlide = function (model, index) {
         model.FileName = 'placeholder.png';
         model.Text = 'Bildtext';
         model.Index = index;
+        model.IsNew = true;
     };
     
     self.OriginalFileName = model.FileName;
     self.FileName = ko.observable(model.FileName);
     self.Text = ko.observable(model.Text);
     self.Index = ko.observable(model.Index);
+    self.DeleteMe = ko.observable(model.DeleteMe);
+    
+    self.IsNew = model.IsNew;
 
     self.imageHasChanged = ko.computed(function() {
         return self.OriginalFileName !== self.FileName();
@@ -65,14 +73,16 @@ Mainichi.ViewModels.Admin.EditableSlide = function (model, index) {
         self.isEditing(!self.isEditing());
     };
     
-    self.isImageEditing = ko.observable(false);
+    //self.isImageEditing = ko.observable(false);
     self.editImage = function () {
-        self.isImageEditing(!self.isImageEditing());
+        //self.isImageEditing(!self.isImageEditing());
+        document.getElementsByName('Slides[' + self.Index() + '].File')[0].click();
+        //document.getElementById('apa').click();
     };
 
     self.populateFileName = function (f) {
         self.FileName(f.split('\\')[2]);
-        self.editImage();
+        //self.editImage();
     };
 };
 

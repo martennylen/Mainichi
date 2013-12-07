@@ -95,6 +95,7 @@ namespace Mainichi.Web.Store.Controllers
                 model.Price = existingThing.Price;
                 model.Name = existingThing.Name;
                 model.Description = existingThing.Description;
+                model.Slides = new List<ImageItemViewModel>();
 
                 foreach (var item in existingThing.Slides.OrderBy(d => d.Index).ToList())
                 {
@@ -105,7 +106,6 @@ namespace Mainichi.Web.Store.Controllers
                         Index = item.Index
                     });
                 }
-                model.Slides = new List<ImageItemViewModel>();
 
                 model.IsEditing = true;
             }
@@ -136,20 +136,48 @@ namespace Mainichi.Web.Store.Controllers
             {
                 if (t.Slides.Any())
                 {
-                    for(int i=0;i<=t.Slides.Count;i++)
+                    var itemsToDelete = new List<ImageItem>();
+
+                    for(int i=0;i<=t.Slides.Count-1;i++)
                     {
                         var current = t.Slides[i];
-                        if (current.File.FileName != existingThing.Slides[i].FileName)
+                        if (!current.IsNew)
+                        {
+                            if (current.DeleteMe)
+                            {
+                                itemsToDelete.Add(existingThing.Slides[i]);
+                            }
+                            else
+                            {
+                                var existingFilePath = string.Concat(_nameAndLocation, existingThing.Image);
+                                if (current.File != null && (current.File.FileName != existingThing.Slides[i].FileName))
+                                    //No new image file on current slide
+                                {
+                                    if (System.IO.File.Exists(Server.MapPath(existingFilePath)))
+                                    {
+                                        System.IO.File.Delete(Server.MapPath(existingFilePath));
+                                    }
+                                    current.File.SaveAs(Server.MapPath(string.Concat(_nameAndLocation, current.FileName)));
+                                }
+
+                                existingThing.Slides[i].FileName = current.FileName;
+                                existingThing.Slides[i].Index = current.Index;
+                                existingThing.Slides[i].Text = current.Text;
+                            }
+                        }
+                        else
                         {
                             current.File.SaveAs(Server.MapPath(string.Concat(_nameAndLocation, current.FileName)));
-                            var existingFilePath = string.Concat(_nameAndLocation, existingThing.Image);
-                            if (System.IO.File.Exists(Server.MapPath(existingFilePath)))
+                            existingThing.Slides.Add(new ImageItem
                             {
-                                System.IO.File.Delete(Server.MapPath(existingFilePath));
-                            }
+                                FileName = current.FileName,
+                                Index = current.Index,
+                                Text = current.Text
+                            });
                         }
                     }
 
+                    existingThing.Slides.RemoveAll(itemsToDelete.Contains);
                     existingThing.Image = t.Slides.First().FileName;
                 }
 
@@ -165,7 +193,10 @@ namespace Mainichi.Web.Store.Controllers
 
         private void SaveThing(ThingInputViewModel t)
         {
-            var result = new Thing();
+            var result = new Thing
+            {
+                Slides = new List<ImageItem>()
+            };
 
             if (t.Slides.Any())
             {
@@ -192,7 +223,7 @@ namespace Mainichi.Web.Store.Controllers
             result.Created = DateTime.UtcNow;
             result.LastChange = result.Created;
 
-            //RavenSession.Store(result);
+            RavenSession.Store(result);
         }
     }
 }

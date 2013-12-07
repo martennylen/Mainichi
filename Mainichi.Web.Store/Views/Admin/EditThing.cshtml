@@ -24,9 +24,10 @@
             <div>
                 <ul style="list-style-type: none;padding-left:0">
                     <!-- ko foreach: slides -->
-                    <li style="display: inline-block">
-                        <div data-bind="visible: !isImageEditing()">
-                            <img style="max-width:180px" data-bind="click: editImage, attr: { src: '/Content/Snapshots/Products/' + OriginalFileName }" />
+                    <li style="display: inline-block" data-bind="visible: !DeleteMe()">
+                        <div>
+                            <img style="max-width:180px;display:block;" data-bind="click: editImage, attr: { src: '/Content/Snapshots/Products/' + OriginalFileName }" />
+                            <input style="padding:0;font-size:0.7em" data-bind="value: FileName, attr: {name: 'Slides[' + $index() + '].FileName' }" type="text" />
                             <span data-bind="visible: imageHasChanged" style="color: red">*</span>
                             <textarea style="width: auto;display: block" data-bind="html: Text, attr: {name: 'Slides[' + $index() + '].Text' }"></textarea>
                             <span>Index:</span>
@@ -36,11 +37,13 @@
                                 <button type="button" data-bind="click: $parent.removeImage">Ta bort bild</button>
                             </div>
                         </div>
-                        <div data-bind="visible: isImageEditing" class="file-upload btn btn-danger">
-                            <input data-bind="value: FileName, attr: {name: 'Slides[' + $index() + '].FileName' }" type="text" placeholder="Tiddelipom" />
-                            <span>Välj bildfil</span>
+                        @*<div data-bind="visible: isImageEditing" class="file-upload btn btn-danger">*@
+                        <div style="display: none">
+                            @*<span>Välj bildfil</span>*@
                             <input type="file" data-bind="event: { change: function(){ populateFileName($element.value); }}, attr: {name: 'Slides[' + $index() + '].File'}" accept="image/*" class="upload" />
-                            <button data-bind="click: editImage">Avbryt</button>
+                            <input type="hidden" data-bind="value: IsNew, attr: {name: 'Slides[' + $index() + '].IsNew' }" />
+                            <input type="hidden" data-bind="value: DeleteMe, attr: {name: 'Slides[' + $index() + '].DeleteMe' }" />
+                            @*<button data-bind="click: editImage">Avbryt</button>*@
 
                             @*@Html.TextBox("Slides", null, new { type = "file", accept = "image/*", @class = "upload" })*@
                             @*@Html.TextBoxFor(m => m.Slides[1], new { type = "file", accept = "image/*", @class = "upload" })*@
