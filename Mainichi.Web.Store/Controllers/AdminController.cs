@@ -96,6 +96,7 @@ namespace Mainichi.Web.Store.Controllers
                 model.Name = existingThing.Name;
                 model.Description = existingThing.Description;
                 model.Slides = new List<ImageItemViewModel>();
+                model.Attributes = existingThing.Attributes;
 
                 foreach (var item in existingThing.Slides.OrderBy(d => d.Index).ToList())
                 {
@@ -185,7 +186,7 @@ namespace Mainichi.Web.Store.Controllers
                 existingThing.Slug = t.Name.ToSlug();
                 existingThing.Description = t.Description;
                 existingThing.Price = t.Price;
-                //existingThing.Id = t.Id;
+                existingThing.Attributes = t.Attributes;
                 
                 existingThing.LastChange = DateTime.UtcNow;
             }
@@ -219,6 +220,7 @@ namespace Mainichi.Web.Store.Controllers
             result.Slug = t.Name.ToSlug();
             result.Description = t.Description;
             result.Price = t.Price;
+            result.Attributes = t.Attributes;
 
             result.Created = DateTime.UtcNow;
             result.LastChange = result.Created;

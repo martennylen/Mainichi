@@ -1,7 +1,35 @@
-﻿@model Mainichi.Web.Store.ViewModels.Thing
+﻿@using Mainichi.Web.Store.Extensions
+@model Mainichi.Web.Store.ViewModels.Thing
 
-<h2 style="text-transform: uppercase">@Model.Name</h2>
-<div class="clearfix">
-    <img src="~/@String.Format("Content/Snapshots/Products/{0}", Model.Image)" style="max-width:240px;float: left" />
+<section id="all-the-pretty-things" class="clearfix">
+    <h1 style="text-transform: uppercase;padding-left:20px">@Model.Name</h1>
+    <div>
+        <div style="padding-left:20px;height:480px;overflow:hidden" class="clearfix">
+            <span class="glyphicon glyphicon-chevron-left" data-bind="click: previousSlide"></span>
+            <img id="head-honcho" data-bind="attr: {src: '/Content/Snapshots/Products/' + currentImage().FileName}" style="float:left;max-width: 480px" />
+            <span class="glyphicon glyphicon-chevron-right" data-bind="click: nextSlide"></span>
+        </div>
+        <p style="font-style: italic; text-align: center" data-bind="text: currentImage().Text"></p>
+        <ul data-bind="foreach: slides" style="list-style-type: none;display:inline-block;margin-top: 20px">
+            <li style="display:inline-block;margin-right: 10px" class="thing-thumb" data-bind="click: $parent.setSlide">
+                <img style="max-width:80px;min-height:68px;vertical-align: bottom" data-bind="attr: { src: '/Content/Snapshots/Products/' + $data.FileName }" />
+            </li>
+        </ul>
+    </div>
     <span style="float:left">@Model.Description</span>
-</div>
+</section>
+
+<script>
+    var Mainichi = Mainichi || {};
+    Mainichi.ViewModels = Mainichi.ViewModels || {};
+    Mainichi.ViewModels.Details = Mainichi.ViewModels.Details || {};
+    Mainichi.ViewModels.Details.Models = Mainichi.ViewModels.Details.Models || {};
+    
+    Mainichi.ViewModels.Details.Models.Slides = @Html.RenderAsJson(Model.Slides) || [];
+</script>
+
+@section scripts {
+    @Styles.Render("~/Content/Styles/Elements/DetailsView.less")
+    @Scripts.Render("~/Scripts/Shop/details.js")
+    @*@Scripts.Render("~/Scripts/BindingHandlers/arrows.js")*@
+}

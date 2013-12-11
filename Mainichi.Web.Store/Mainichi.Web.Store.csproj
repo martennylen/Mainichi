@@ -232,10 +232,13 @@
     <Content Include="Content\Styles\Grid.less" />
     <Content Include="Scripts\Admin\thing.js" />
     <Content Include="Scripts\Admin\productLists.js" />
+    <Content Include="Scripts\BindingHandlers\arrows.js" />
     <Content Include="Scripts\BindingHandlers\currency.js" />
     <Content Include="Scripts\Data\things.js" />
     <Content Include="Content\Styles\Elements\Forms.less" />
     <Content Include="Content\Styles\Elements\Buttons.less" />
+    <Content Include="Content\Fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Styles\Elements\DetailsView.less" />
     <None Include="Scripts\Lib\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\Lib\jquery-2.0.3.js" />
     <Content Include="Scripts\Lib\jquery-2.0.3.min.js" />
@@ -243,6 +246,7 @@
     <Content Include="Scripts\Lib\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\Lib\jquery.validate-1.11.1.js" />
     <Content Include="Scripts\Lib\jquery.validate-1.11.1.min.js" />
+    <Content Include="Scripts\Shop\details.js" />
     <Content Include="Views\Shared\_MenuRenderer.cshtml" />
     <Content Include="Scripts\Lib\jquery-2.0.3.min.map" />
     <None Include="Scripts\Lib\jquery.validate-vsdoc.js" />
@@ -256,7 +260,7 @@
     <Content Include="Scripts\Lib\knockout-2.3.0.js" />
     <Content Include="Scripts\Lib\knockout-2.3.0.min.js" />
     <Content Include="Scripts\Lib\modernizr-2.5.3.js" />
-    <Content Include="Scripts\Index\app.js" />
+    <Content Include="Scripts\Shop\index.js" />
     <Content Include="Scripts\Lib\sammy-0.7.4.js" />
     <Content Include="Scripts\Lib\sammy-0.7.4.min.js" />
     <Content Include="Scripts\Lib\underscore-1.4.1.js" />

@@ -12,14 +12,14 @@
                 @*<input style="width: 100px" type="text" data-bind="visible: isEditing, value: data().Id" />*@
                 <select data-bind="visible: isEditing, optionsCaption: 'Välj en produkt', options: $parent.allThings, value: data().Id, optionsText: 'Name', optionsValue: 'Id'"></select>
                 <div>
-                    <button data-bind="visible: isEditing, click: updateSelectedProduct">Ja</button>
-                    <button data-bind="visible: isEditing, click: editSelectedProduct">Nej</button>
+                    <button class="yeah" data-bind="visible: isEditing, click: updateSelectedProduct">Ja</button>
+                    <button class="danger" data-bind="visible: isEditing, click: editSelectedProduct">Nej</button>
                 </div>
             </p>
         </div>
     </li>
 </ul>
-<span class="btn btn-success" data-bind="click: saveSelectedProducts">Spara</span>
+<button type="button" class="yeah" data-bind="click: saveSelectedProducts">Spara</button>
 <span data-bind="visible: actionText().length, text: actionText"></span>
 
 <script>

@@ -1,0 +1,60 @@
+﻿@import "../Grid.less";
+
+#all-the-pretty-things {
+    background-color: #f1f1f1;
+
+    h1 {
+        background-color: #cc3333;
+        color: #fafafa;
+        padding: 10px;
+    }
+
+    > div {
+        .column(6);
+        /*.thing-thumb {
+            background:rgba(0,0,0,.75);
+            //background-color: #333;
+            opacity: 1;
+            //z-index: 12;
+            transition: opacity 0s ease;
+            -moz-transition: opacity 0s ease;
+            -webkit-transition: opacity 0s ease;
+        }*/
+        /*.thing-thumb:hover {
+            background:rgba(0,0,0,.75);
+            cursor: pointer;
+            opacity: 1;
+            //border: 1px solid #333;
+            transition: opacity .25s ease;
+            -moz-transition: opacity .25s ease;
+            -webkit-transition: opacity .25s ease;
+        }
+
+        .thing-thumb {
+            opacity: 0.7;
+            border: 1px solid #333;
+        }*/
+        .thing-thumb {
+            position: relative;
+            background-color: rgba(0,0,0,.5);
+            transition: background-color .25s;
+            border: 1px solid #333;
+            //padding: 1px;
+        }
+
+            .thing-thumb:hover {
+                background-color: rgba(0,0,0,0);
+                cursor: pointer;
+            }
+
+            .thing-thumb:before {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                background-color: inherit;
+                content: ' ';
+            }
+    }
+}

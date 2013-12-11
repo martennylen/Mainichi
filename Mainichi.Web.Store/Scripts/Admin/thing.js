@@ -7,12 +7,17 @@ Mainichi.ViewModels.Admin.Thing = function () {
 
     self.thingId = ko.observable(Mainichi.ViewModels.Admin.Models.Thing.Id || {});
     self.isEditing = !_.isEmpty(self.thingId());
-    self.slidesRaw = ko.observableArray(Mainichi.ViewModels.Admin.Models.Thing.Slides || {});
+    self.slidesRaw = ko.observableArray(Mainichi.ViewModels.Admin.Models.Thing.Slides || []);
     self.indexList = _.range(5);
+    self.attributes = ko.observableArray(Mainichi.ViewModels.Admin.Models.Thing.Attributes || []);
     
-    var resetIndexes = function () {
-        _.each(self.slides(), function (p, index) {
-            p.Index(index);
+    var resetIndexes = function (deletedIndex) {
+        _.each(self.slides(), function(p, index) {
+            if (deletedIndex && index > deletedIndex) {
+                p.Index(index - 1);
+            } else {
+                p.Index(index);
+            }
         });
     };
 
@@ -31,18 +36,25 @@ Mainichi.ViewModels.Admin.Thing = function () {
     });
     
     self.removeImage = function (p) {
-        console.log(p);
         if (p.IsNew) {
             self.slides.splice(p.Index(), 1);
             resetIndexes();
         } else { //Mark as deleted
             p.DeleteMe(true);
+            resetIndexes(p.Index());
         }
-        console.log(self.slides());
     };
 
     self.addImage = function() {
         self.slides.push(createSlide({}, self.slides().length));
+    };
+
+    self.addAttribute = function() {
+        self.attributes.push( { 'Name': '', 'Value': '' });
+    };
+    
+    self.removeAttribute = function (p) {
+        self.attributes.splice(self.attributes.indexOf(p), 1);
     };
 };
 
@@ -73,16 +85,12 @@ Mainichi.ViewModels.Admin.EditableSlide = function (model, index) {
         self.isEditing(!self.isEditing());
     };
     
-    //self.isImageEditing = ko.observable(false);
     self.editImage = function () {
-        //self.isImageEditing(!self.isImageEditing());
         document.getElementsByName('Slides[' + self.Index() + '].File')[0].click();
-        //document.getElementById('apa').click();
     };
 
     self.populateFileName = function (f) {
         self.FileName(f.split('\\')[2]);
-        //self.editImage();
     };
 };
 

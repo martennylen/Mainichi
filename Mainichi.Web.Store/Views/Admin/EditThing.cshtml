@@ -17,6 +17,19 @@
             @Html.ValidationMessageFor(m => m.Description)
         </div>
         <div>
+            <label>Produktattribut</label>
+            <!-- ko foreach: attributes -->
+            <div>
+                <label style="display:inline-block">Namn:</label>
+                <input type="text" style="" data-bind="value: Name, attr: {name: 'Attributes[' + $index() + '].Name' }" />
+                <label style="display: inline-block">Värde:</label>
+                <input type="text" style="font-size: 0.7em" data-bind="value: Value, attr: {name: 'Attributes[' + $index() + '].Value' }" />
+                <button type="button" class="danger" data-bind="click: $parent.removeAttribute">Ta bort</button>
+            </div>
+            <!-- /ko -->
+            <button type="button" class="yeah" data-bind="click: addAttribute">Lägg till</button>
+        </div>
+        <div>
             @Html.LabelFor(m => m.Price)
             @Html.TextBoxFor(m => m.Price)
             @Html.ValidationMessageFor(m => m.Price)
@@ -33,8 +46,7 @@
                             <span>Index:</span>
                             <select data-bind="options: $parent.indexList, value: Index, attr: {name: 'Slides[' + $index() + '].Index' }"></select>
                             <div>
-                                <button type="button" data-bind="click: editImage">Redigera bild</button>
-                                <button type="button" data-bind="click: $parent.removeImage">Ta bort bild</button>
+                                <button type="button" class="danger" data-bind="click: $parent.removeImage">Ta bort bild</button>
                             </div>
                         </div>
                         @*<div data-bind="visible: isImageEditing" class="file-upload btn btn-danger">*@
@@ -52,7 +64,7 @@
                     <!-- /ko -->
                     <!-- ko if: slides().length < 5 -->
                     <li style="display: inline-block">
-                        <button type="button" data-bind="click: addImage" style="display: block">Lägg till bild</button>
+                        <button type="button" class="yeah" data-bind="click: addImage" style="display: block">Lägg till bild</button>
                     </li>
                     <!-- /ko -->
                 </ul>
@@ -69,7 +81,7 @@
             </div>
             <button type="button" data-bind="click: removeImage">Avbryt</button>
         </div>*@
-        <input id="submit-button" class="btn btn-success" type="submit" data-bind="value: addButtonText" />
+        <button id="submit-button" class="yeah" type="submit" data-bind="text: addButtonText" />
     </fieldset>
 }
 
@@ -82,6 +94,7 @@
     
     Mainichi.ViewModels.Admin.Models.Thing.Id = @Html.RenderAsJson(Model.Id);
     Mainichi.ViewModels.Admin.Models.Thing.Slides = @Html.RenderAsJson(Model.Slides) || [{}];
+    Mainichi.ViewModels.Admin.Models.Thing.Attributes = @Html.RenderAsJson(Model.Attributes) || [];
 
     
     //document.getElementById("ImageFile").onchange = function () {

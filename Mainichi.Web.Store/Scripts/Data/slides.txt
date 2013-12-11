@@ -1,0 +1,19 @@
+{
+  "Name": "Gundam RX-82",
+  "Description": null,
+  "Image": "gundam.png",
+	"Slides": [
+		{ "FileName": "gundam.png",
+		"Text": "Första bilden",
+		"Index": 0 },
+		{ "FileName": "gundam_2.png",
+		"Text": "Andra bilden",
+		"Index": 1 }
+	],
+  "Slug": "Gundam-rx-82",
+  "Article": "A3-19-6",
+  "Attributes": null,
+  "Price": 2459.0,
+  "Created": "0001-01-01T00:00:00.0000000",
+  "LastChange": "0001-01-01T00:00:00.0000000"
+}
