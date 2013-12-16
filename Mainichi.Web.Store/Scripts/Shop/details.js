@@ -28,16 +28,16 @@ Mainichi.ViewModels.Shop.Details = function () {
         self.currentImage(p);
     };
 
-    ko.computed({
-        read: function () {
-            self.currentImage();
-            var h = self.imageContainer.offsetHeight;
-            if (h > 0) {
-                self.imageContainer.previousSibling.previousSibling.style.top = (h * 0.45) + 'px';
-                self.imageContainer.nextSibling.nextSibling.style.top = (h * 0.45) + 'px';
-            }
-        }, deferEvaluation: true
-    }).extend({ throttle: 50 });
+    //ko.computed({
+    //    read: function () {
+    //        self.currentImage();
+    //        var h = self.imageContainer.offsetHeight;
+    //        if (h > 0) {
+    //            self.imageContainer.previousSibling.previousSibling.style.top = (h * 0.45) + 'px';
+    //            self.imageContainer.nextSibling.nextSibling.style.top = (h * 0.45) + 'px';
+    //        }
+    //    }, deferEvaluation: true
+    //}).extend({ throttle: 50 });
 
     self.currentImage(_.first(self.slides()));
 };
