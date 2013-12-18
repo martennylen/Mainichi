@@ -4,25 +4,45 @@ using Mainichi.Web.Store.ViewModels;
 
 namespace Mainichi.Web.Store.Api
 {
-    public class ThingsListsController : AbstractApiController
+    public class ThingListsController : AbstractApiController
     {
-        //
-        // GET: /ThingsLists/
-
-        public IEnumerable<Thing> Get(string id)
+        public IEnumerable<ThingListViewModel> Get()
         {
-            var model = RavenSession.Include<FeaturedThings>(x => x.ThingIds)
-                .Load("thinglist/" + id).ThingIds.Select(d => RavenSession.Load<Thing>(d)).ToList();
+            var thingLists = RavenSession.Include<ThingListModel>(x => x.ThingIds)
+                .Load("thinglist/new", "thinglist/featured", "thinglist/discounted");
 
-            var missingProducts = 6 - model.Count();
+            var thingListsViewModel = thingLists.Where(d => d.Active).Select(listsViewModel => new ThingListViewModel
+            {
+                Things = listsViewModel.ThingIds.Select(id => RavenSession.Load<Thing>(id)),
+                Descriptor = listsViewModel.Descriptor,
+                Active = listsViewModel.Active
+            });
+
+            return thingListsViewModel;
+        }
+
+        public ThingListViewModel Get(string id)
+        {
+            var thingList = RavenSession.Include<ThingListModel>(x => x.ThingIds)
+                .Load("thinglist/" + id);
+
+            var things = thingList.ThingIds.Select(d => RavenSession.Load<Thing>(d)).ToList();
+
+            var missingProducts = 6 - things.Count();
             if (missingProducts > 0)
             {
                 for (int i = 0; i < missingProducts; i++)
                 {
-                    model.Add(new Thing());
+                    things.Add(new Thing());
                 }
             }
-            return model;
+
+            return new ThingListViewModel
+            {
+                Descriptor = thingList.Descriptor,
+                Active = thingList.Active,
+                Things = things
+            };
         }
     }
 }

@@ -3,24 +3,32 @@
 
 <h2>Redigera produktlistor</h2>
 <select data-bind="options: listTypes, optionsText: 'Name', optionsValue: 'Id', value: selectedListType"></select>
-    <ul class="formalizer" data-bind="foreach: productList" style="padding-left:200px">
-    <li style="display: inline-block;min-width:250px;width:250px;min-height:250px;vertical-align:top;padding-bottom: 50px">
-        <div>
-            <img style="max-width: 100px" data-bind="attr: { src: '/Content/Snapshots/Products/' + data().Image }" />
-            <p>
-                <a href="#" data-bind="click: editSelectedProduct, visible: !isEditing(), text: data().Name"></a>
-                @*<input style="width: 100px" type="text" data-bind="visible: isEditing, value: data().Id" />*@
-                <select data-bind="visible: isEditing, optionsCaption: 'Välj en produkt', options: $parent.allThings, value: data().Id, optionsText: 'Name', optionsValue: 'Id'"></select>
+<fieldset>
+    <legend>Aktuell produktlista</legend>
+    <div data-bind="with: currentList" style="margin-top: 20px">
+        <input type="text" data-bind="value: Descriptor" />
+        <label for="isActive">Aktiv:</label>
+        <input id="isActive" type="checkbox" data-bind="checked: Active">
+        <ul class="formalizer" data-bind="foreach: Things">
+            <li style="display: inline-block;min-width:250px;width:250px;min-height:250px;vertical-align:top;padding-bottom: 50px">
                 <div>
-                    <button class="yeah" data-bind="visible: isEditing, click: updateSelectedProduct">Ja</button>
-                    <button class="danger" data-bind="visible: isEditing, click: editSelectedProduct">Nej</button>
+                    <img style="max-width: 100px" data-bind="attr: { src: '/Content/Snapshots/Products/' + data().Image }" />
+                    <p>
+                        <a href="#" data-bind="click: editSelectedProduct, visible: !isEditing(), text: data().Name"></a>
+                        @*<input style="width: 100px" type="text" data-bind="visible: isEditing, value: data().Id" />*@
+                        <select data-bind="visible: isEditing, optionsCaption: 'Välj en produkt', options: $root.allThings, value: data().Id, optionsText: 'Name', optionsValue: 'Id'"></select>
+                        <div>
+                            <button class="yeah" data-bind="visible: isEditing, click: updateSelectedProduct">Ja</button>
+                            <button class="danger" data-bind="visible: isEditing, click: editSelectedProduct">Nej</button>
+                        </div>
+                    </p>
                 </div>
-            </p>
-        </div>
-    </li>
-</ul>
-<button type="button" class="yeah" data-bind="click: saveSelectedProducts">Spara</button>
-<span data-bind="visible: actionText().length, text: actionText"></span>
+            </li>
+        </ul>
+        <button type="button" class="yeah" data-bind="enable: $parent.isDirty, click: $parent.saveSelectedProducts">Spara</button>
+        <span data-bind="visible: $parent.actionText().length, text: $parent.actionText"></span>
+    </div>
+</fieldset>
 
 <script>
     var Mainichi = Mainichi || {};
@@ -29,8 +37,8 @@
     Mainichi.ViewModels.Admin.Models = Mainichi.ViewModels.Admin.Models || {};
     Mainichi.ViewModels.Admin.Models.ProductLists = Mainichi.ViewModels.Admin.Models.Thing || {};
 
-    Mainichi.ViewModels.Admin.Models.ProductLists.AllLists = @Html.RenderAsJson(Model.AllThings);
-    Mainichi.ViewModels.Admin.Models.ProductLists.InitialListItems = @Html.RenderAsJson(Model.ListThings);
+    Mainichi.ViewModels.Admin.Models.ProductLists.AllThings = @Html.RenderAsJson(Model.AllThings);
+    Mainichi.ViewModels.Admin.Models.ProductLists.InitialList = @Html.RenderAsJson(Model.ThingList);
 </script>
 
 @section scripts {

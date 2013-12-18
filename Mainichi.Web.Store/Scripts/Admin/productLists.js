@@ -5,44 +5,52 @@ Mainichi.ViewModels.Admin = Mainichi.ViewModels.Admin || {};
 Mainichi.ViewModels.Admin.ProductLists = function() {
     var self = this;
     self.listTypes = [{'Id': 'new', 'Name': 'Nya'}, {'Id': 'featured', 'Name': 'Utvalda'}, {'Id': 'discounted', 'Name': 'Nedsatta'}];
-    self.selectedListType = ko.observable(self.listTypes[0].Id);
-    self.productListRaw = ko.observableArray(Mainichi.ViewModels.Admin.Models.ProductLists.InitialListItems);
+    self.currentListModel = ko.observable(Mainichi.ViewModels.Admin.Models.ProductLists.InitialList);
     self.actionText = ko.observable('');
-    self.allThings = Mainichi.ViewModels.Admin.Models.ProductLists.AllLists;
+    self.allThings = Mainichi.ViewModels.Admin.Models.ProductLists.AllThings;
 
+    self.selectedListType = ko.observable(self.listTypes[0].Id);
     self.selectedListType.subscribe(function(newValue) {
-        $.getJSON('/api/ThingsLists/' + newValue, function(d) {
-            self.productListRaw(d);
+        $.getJSON('/api/ThingLists/' + newValue, function(d) {
+            self.currentListModel(d);
         });
     });
 
-    self.productList = ko.computed(function() {
-        return _.map(self.productListRaw(), function(p) {
-            return new Mainichi.ViewModels.Admin.EditableProduct(p, self);
-        });
+    self.currentList = ko.computed(function () {
+        return {
+            'Descriptor': ko.observable(self.currentListModel().Descriptor),
+            'Active': ko.observable(self.currentListModel().Active),
+            "Things": _.map(self.currentListModel().Things, function(p) {
+                return new Mainichi.ViewModels.Admin.EditableProduct(p, self);
+            })
+        };
     });
 
     var mapIdentificators = function () {
-        return _.map(self.productList(), function(p) {
+        return _.map(self.currentList().Things, function(p) {
             return p.data().Id;
         });
     };
+    
+    var selectedIdentificators = mapIdentificators();
+
+    self.isDirty = ko.computed(function() {
+        var possiblyNewIdentificators = mapIdentificators();
+        return (!arrayEq(selectedIdentificators, possiblyNewIdentificators) ||
+            self.currentList().Descriptor() !== self.currentListModel().Descriptor ||
+            self.currentList().Active() !== self.currentListModel().Active);
+    });
 
     self.saveSelectedProducts = function() {
-        var possiblyNewIdentificators = mapIdentificators();
-        if (!arrayEq(selectedIdentificators, possiblyNewIdentificators)) {
-            selectedIdentificators = possiblyNewIdentificators;
-            $.post("/Admin/UpdateSelectedProducts", $.param({ Id: self.selectedListType(), ThingIds: selectedIdentificators }, true)).done(function(reply) {
-                if (reply) {
-                    self.actionText(reply.status);
-                }
-            });
-        } else {
-            self.actionText('Listan har inte ändrats.');
-        }
+        $.post("/Admin/UpdateSelectedProducts", $.param({ Id: self.selectedListType(), Descriptor: self.currentList().Descriptor, Active: self.currentList().Active, ThingIds: mapIdentificators() }, true)).done(function (reply) {
+            if (reply) {
+                self.actionText(reply.status);
+                _.delay(function() {
+                    self.actionText('');
+                }, 1000);
+            }
+        });
     };
-
-    var selectedIdentificators = mapIdentificators();
 };
 
 arrayEq = function(a, b) {

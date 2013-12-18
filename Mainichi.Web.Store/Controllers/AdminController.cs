@@ -27,53 +27,45 @@ namespace Mainichi.Web.Store.Controllers
 
         public ActionResult EditProductLists()
         {
-            //var model = RavenSession.Include<FeaturedThings>(x => x.FeaturedThingIds.Select(id => id)).Load("config/featuredproducts")
-            //.FeaturedThingIds.Select(id => RavenSession.Load<Thing>(id)).ToList();
-
-            //var model = RavenSession.Load<ThingLists>("config/thingslists").FeaturedThings;
-            //var model = RavenSession.Include<FeaturedThings>(x => x.ThingIds.Select(id => id))
-            //    .Load("config/thingslists")
-            //    .ThingIds.Select(id => RavenSession.Load<Thing>(id))
-            //    .ToList();
-
-            //var modell = RavenSession.Load<ThingLists>("config/thingslists").FeaturedThings;
-            //var model = modell.
-
-            var model = RavenSession.Include<FeaturedThings>(x => x.ThingIds)
-                .Load("thinglist/new").ThingIds.Select(d => RavenSession.Load<Thing>(d)).ToList();
-            //var allThings = new List<Thing>
-            //{
-            //    new Thing()
-            //};
-
             var allThings = RavenSession.Query<Thing>("Things/AllForEdit");
 
+            var model = RavenSession.Include<ThingListModel>(x => x.ThingIds)
+                .Load("thinglist/new");
 
-            var missingProducts = _productsSlots - model.Count();
+            var things = model.ThingIds.Select(d => RavenSession.Load<Thing>(d)).ToList();
+
+            var missingProducts = _productsSlots - things.Count();
             if (missingProducts > 0)
             {
                 for (int i = 0; i < missingProducts; i++)
                 {
-                    model.Add(new Thing());
+                    things.Add(new Thing());
                 }
             }
 
             var m = new ProductsListsViewModel
             {
                 AllThings = allThings,
-                ListThings = model
+                ThingList = new ThingListViewModel
+                {
+                    Descriptor = model.Descriptor,
+                    Active = model.Active,
+                    Things = things
+                }
             };
 
             return View(m);
         }
 
         [HttpPost]
-        public ActionResult UpdateSelectedProducts(FeaturedThings featuredProducts)
+        public ActionResult UpdateSelectedProducts(ThingListModel featuredProducts)
         {
             string status = "Produktlistan uppdaterad";
             try
             {
-                var model = RavenSession.Load<FeaturedThings>("thinglist/" + featuredProducts.Id);
+                var model = RavenSession.Load<ThingListModel>("thinglist/" + featuredProducts.Id);
+                model.Descriptor = featuredProducts.Descriptor;
+                model.Active = featuredProducts.Active;
                 model.ThingIds = featuredProducts.ThingIds.Where(d => !string.IsNullOrWhiteSpace(d) && d != "things/0");
             }
             catch (Exception e)

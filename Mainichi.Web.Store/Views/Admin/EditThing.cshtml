@@ -34,43 +34,43 @@
             @Html.TextBoxFor(m => m.Price)
             @Html.ValidationMessageFor(m => m.Price)
         </div>
-            <div>
-                <ul style="list-style-type: none;padding-left:0">
-                    <!-- ko foreach: slides -->
-                    <li style="display: inline-block" data-bind="visible: !DeleteMe()">
+        <div>
+            <ul style="list-style-type: none;padding-left:0">
+                <!-- ko foreach: slides -->
+                <li style="display: inline-block" data-bind="visible: !DeleteMe()">
+                    <div>
+                        <img style="max-width:180px;display:block;" data-bind="click: editImage, attr: { src: '/Content/Snapshots/Products/' + OriginalFileName }" />
+                        <input style="padding:0;font-size:0.7em" data-bind="value: FileName, attr: {name: 'Slides[' + $index() + '].FileName' }" type="text" />
+                        <span data-bind="visible: imageHasChanged" style="color: red">*</span>
+                        <textarea style="width: auto;display: block" data-bind="html: Text, attr: {name: 'Slides[' + $index() + '].Text' }"></textarea>
+                        <span>Index:</span>
+                        <select data-bind="options: $parent.indexList, value: Index, attr: {name: 'Slides[' + $index() + '].Index' }"></select>
                         <div>
-                            <img style="max-width:180px;display:block;" data-bind="click: editImage, attr: { src: '/Content/Snapshots/Products/' + OriginalFileName }" />
-                            <input style="padding:0;font-size:0.7em" data-bind="value: FileName, attr: {name: 'Slides[' + $index() + '].FileName' }" type="text" />
-                            <span data-bind="visible: imageHasChanged" style="color: red">*</span>
-                            <textarea style="width: auto;display: block" data-bind="html: Text, attr: {name: 'Slides[' + $index() + '].Text' }"></textarea>
-                            <span>Index:</span>
-                            <select data-bind="options: $parent.indexList, value: Index, attr: {name: 'Slides[' + $index() + '].Index' }"></select>
-                            <div>
-                                <button type="button" class="danger" data-bind="click: $parent.removeImage">Ta bort bild</button>
-                            </div>
+                            <button type="button" class="danger" data-bind="click: $parent.removeImage">Ta bort bild</button>
                         </div>
-                        @*<div data-bind="visible: isImageEditing" class="file-upload btn btn-danger">*@
-                        <div style="display: none">
-                            @*<span>Välj bildfil</span>*@
-                            <input type="file" data-bind="event: { change: function(){ populateFileName($element.value); }}, attr: {name: 'Slides[' + $index() + '].File'}" accept="image/*" class="upload" />
-                            <input type="hidden" data-bind="value: IsNew, attr: {name: 'Slides[' + $index() + '].IsNew' }" />
-                            <input type="hidden" data-bind="value: DeleteMe, attr: {name: 'Slides[' + $index() + '].DeleteMe' }" />
-                            @*<button data-bind="click: editImage">Avbryt</button>*@
+                    </div>
+                    @*<div data-bind="visible: isImageEditing" class="file-upload btn btn-danger">*@
+                    <div style="display: none">
+                        @*<span>Välj bildfil</span>*@
+                        <input type="file" data-bind="event: { change: function(){ populateFileName($element.value); }}, attr: {name: 'Slides[' + $index() + '].File'}" accept="image/*" class="upload" />
+                        <input type="hidden" data-bind="value: IsNew, attr: {name: 'Slides[' + $index() + '].IsNew' }" />
+                        <input type="hidden" data-bind="value: DeleteMe, attr: {name: 'Slides[' + $index() + '].DeleteMe' }" />
+                        @*<button data-bind="click: editImage">Avbryt</button>*@
 
-                            @*@Html.TextBox("Slides", null, new { type = "file", accept = "image/*", @class = "upload" })*@
-                            @*@Html.TextBoxFor(m => m.Slides[1], new { type = "file", accept = "image/*", @class = "upload" })*@
-                        </div>
-                    </li>
-                    <!-- /ko -->
-                    <!-- ko if: slides().length < 5 -->
-                    <li style="display: inline-block">
-                        <button type="button" class="yeah" data-bind="click: addImage" style="display: block">Lägg till bild</button>
-                    </li>
-                    <!-- /ko -->
-                </ul>
-                @Html.HiddenFor(m => m.Id)
-                @Html.HiddenFor(m => m.Image)
-            </div>
+                        @*@Html.TextBox("Slides", null, new { type = "file", accept = "image/*", @class = "upload" })*@
+                        @*@Html.TextBoxFor(m => m.Slides[1], new { type = "file", accept = "image/*", @class = "upload" })*@
+                    </div>
+                </li>
+                <!-- /ko -->
+                <!-- ko if: slides().length < 5 -->
+                <li style="display: inline-block">
+                    <button type="button" class="yeah" data-bind="click: addImage" style="display: block">Lägg till bild</button>
+                </li>
+                <!-- /ko -->
+            </ul>
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(m => m.Image)
+        </div>
 
         @*<div data-bind="visible: !isEditing" style="margin-top: 20px">
             @Html.LabelFor(m => m.ImageFile)
@@ -81,8 +81,8 @@
             </div>
             <button type="button" data-bind="click: removeImage">Avbryt</button>
         </div>*@
-        <button id="submit-button" class="yeah" type="submit" data-bind="text: addButtonText" />
     </fieldset>
+    <button id="submit-button" class="yeah" type="submit" data-bind="text: addButtonText" />
 }
 
 <script>
