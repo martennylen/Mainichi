@@ -5,7 +5,7 @@
     FormMethod.Post, new { @class = "formalizer", enctype = "multipart/form-data" }))
 {
     <fieldset>
-        <legend>Ta hand om saker</legend>
+        <legend>Hantera produkt</legend>
         <div>
             @Html.LabelFor(m => m.Name)
             @Html.TextBoxFor(m => m.Name, new { @class = "long" })
@@ -20,9 +20,9 @@
             <label>Produktattribut</label>
             <!-- ko foreach: attributes -->
             <div>
-                <label style="display:inline-block">Namn:</label>
+                <label style="display:inline-block;font-size:0.7em">Namn:</label>
                 <input type="text" style="" data-bind="value: Name, attr: {name: 'Attributes[' + $index() + '].Name' }" />
-                <label style="display: inline-block">Värde:</label>
+                <label style="display: inline-block; font-size: 0.7em">Värde:</label>
                 <input type="text" style="font-size: 0.7em" data-bind="value: Value, attr: {name: 'Attributes[' + $index() + '].Value' }" />
                 <button type="button" class="danger" data-bind="click: $parent.removeAttribute">Ta bort</button>
             </div>
@@ -34,13 +34,13 @@
             @Html.TextBoxFor(m => m.Price)
             @Html.ValidationMessageFor(m => m.Price)
         </div>
-        <div>
+        <div class="edit-image-list">
             <ul style="list-style-type: none;padding-left:0">
                 <!-- ko foreach: slides -->
-                <li style="display: inline-block" data-bind="visible: !DeleteMe()">
+                <li class="image-container" data-bind="visible: !DeleteMe()">
                     <div>
                         <img class="image-for-editing" data-bind="click: editImage, attr: { src: '/Content/Snapshots/Products/' + OriginalFileName }" />
-                        <input style="padding:0;font-size:0.7em" data-bind="value: FileName, attr: {name: 'Slides[' + $index() + '].FileName' }" type="text" />
+                        <input class="long" style="padding: 0" data-bind="value: FileName, attr: {name: 'Slides[' + $index() + '].FileName' }" type="text" />
                         <span data-bind="visible: imageHasChanged" style="color: red">*</span>
                         <textarea data-bind="html: Text, attr: {name: 'Slides[' + $index() + '].Text' }"></textarea>
                         <span>Index:</span>
@@ -64,7 +64,7 @@
                 <!-- /ko -->
                 <!-- ko if: slides().length < 5 -->
                 <li style="display: inline-block">
-                    <button type="button" class="yeah" data-bind="click: addImage" style="display: block">Lägg till bild</button>
+                    <button type="button" class="yeah" data-bind="click: addImage" style="display: block">Ny bild</button>
                 </li>
                 <!-- /ko -->
             </ul>

@@ -24,7 +24,9 @@
         }
 
         textarea {
-            width: 50%;
+            //width: 100%;
+            display: block;
+            //width: 50%;
             resize: none;
         }
 
@@ -34,7 +36,8 @@
         }
 
             input[type=text].long {
-                width: 50%;
+                //width: 50%;
+                //width: 100%;
             }
 
         input[type=file] {
@@ -84,14 +87,21 @@
     @media all and (min-width: 641px) {
         .formalizer {
             ul {
+                li {
+                    display: inline-block;
+                }
+
                 img.image-for-editing {
                     max-width: 180px;
                     display: block;
                 }
 
+                input[type=text].long {
+                    width: auto;
+                }
+
                 textarea {
                     width: auto;
-                    display: block;
                 }
             }
         }
@@ -120,17 +130,21 @@
                 display: block;
             }
 
-            ul {
-                display: inline-block;
+            div.edit-image-list {
                 text-align: center;
 
-                img.image-for-editing {
-                    max-width: 100%;
-                    display: block;
-                }
+                ul {
+                    display: inline-block;
+                    text-align: center;
 
-                button.yeah {
-                    margin-top: 40px;
+                    img.image-for-editing {
+                        max-width: 100%;
+                        display: block;
+                    }
+
+                    li.image-container {
+                        margin-bottom: 40px;
+                    }
                 }
             }
 
