@@ -56,6 +56,10 @@ Mainichi.ViewModels.Admin.Thing = function () {
     self.removeAttribute = function (p) {
         self.attributes.splice(self.attributes.indexOf(p), 1);
     };
+
+    self.hasImages = ko.computed(function() {
+        return self.slides().length > 1;
+    });
 };
 
 Mainichi.ViewModels.Admin.EditableSlide = function (model, index) {

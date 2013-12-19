@@ -14,9 +14,10 @@
         a {
             text-decoration: underline;
         }
-        a:hover {
-            text-decoration: none;
-        }
+
+            a:hover {
+                text-decoration: none;
+            }
 
         label {
             display: block;
@@ -50,10 +51,10 @@
             text-align: left;
             position: relative;
             overflow: hidden;
-            
 
-            input[type=text]{
-                width:50%;
+
+            input[type=text] {
+                width: 50%;
             }
 
             span {
@@ -80,6 +81,22 @@
         }
     }
 
+    @media all and (min-width: 641px) {
+        .formalizer {
+            ul {
+                img.image-for-editing {
+                    max-width: 180px;
+                    display: block;
+                }
+
+                textarea {
+                    width: auto;
+                    display: block;
+                }
+            }
+        }
+    }
+
     @media all and (max-width : 640px) {
         .formalizer {
             width: 100%;
@@ -100,6 +117,21 @@
 
             textarea {
                 width: 100%;
+                display: block;
+            }
+
+            ul {
+                display: inline-block;
+                text-align: center;
+
+                img.image-for-editing {
+                    max-width: 100%;
+                    display: block;
+                }
+
+                button.yeah {
+                    margin-top: 40px;
+                }
             }
 
             .file-upload.btn.btn-danger {
@@ -111,7 +143,7 @@
                     font-size: 16px;
                 }
 
-                input[type=text]{
+                input[type=text] {
                     padding: 10px;
                 }
             }
