@@ -12,13 +12,16 @@ Mainichi.ViewModels.Admin.ProductLists = function() {
 
     self.selectedListType = ko.observable(self.listTypes[0].Id);
     self.selectedListType.subscribe(function (newValue) {
-        $.getJSON('/api/ThingLists/' + newValue, function(d) {
+        $.getJSON('/api/ThingLists/' + newValue, function (d) {
             self.currentListModel(d);
-            self.currentIdentificators(mapIdentificators());
+            //self.currentIdentificators(mapIdentificators());
         });
     });
 
     self.currentList = ko.computed(function () {
+        self.currentIdentificators(_.map(self.currentListModel().Things, function (p) {
+            return p.Id;
+        }));
         return {
             'Descriptor': ko.observable(self.currentListModel().Descriptor),
             'Active': ko.observable(self.currentListModel().Active),
@@ -28,17 +31,20 @@ Mainichi.ViewModels.Admin.ProductLists = function() {
         };
     });
 
-    var mapIdentificators = function () {
-        return _.map(self.currentList().Things, function(p) {
-            return p.data().Id;
-        });
-    };
+    //var mapIdentificators = function () {
+    //    return _.map(self.currentList().Things, function(p) {
+    //        return p.data().Id || 0;
+    //    });
+    //};
     
-    self.currentIdentificators(mapIdentificators());
+    //self.currentIdentificators(mapIdentificators());
 
-    self.isDirty = ko.computed(function() {
-        var possiblyNewIdentificators = mapIdentificators();
-        return (!arrayEq(self.currentIdentificators(), possiblyNewIdentificators) ||
+    self.isDirty = ko.computed(function () {
+        var mapa = _.map(self.currentList().Things, function(x) {
+            return x.data().Id;
+        });
+
+        return (!arrayEq(self.currentIdentificators(), mapa) ||
             self.currentList().Descriptor() !== self.currentListModel().Descriptor ||
             self.currentList().Active() !== self.currentListModel().Active);
     });
