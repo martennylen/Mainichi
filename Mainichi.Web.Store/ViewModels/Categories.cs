@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Mainichi.Web.Store.ViewModels
 {
-    public class Categories
+    public class Categories //REFAKTORISERA, BRYT UT KATEGORIER TILL EGNA DOKUMENT I RAVEN
     {
         public IEnumerable<Category> AllCategories { get; set; } 
     }

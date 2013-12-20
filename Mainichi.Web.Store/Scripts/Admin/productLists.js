@@ -4,15 +4,17 @@ Mainichi.ViewModels.Admin = Mainichi.ViewModels.Admin || {};
 
 Mainichi.ViewModels.Admin.ProductLists = function() {
     var self = this;
+    self.currentIdentificators = ko.observableArray([]);
     self.listTypes = [{'Id': 'new', 'Name': 'Nya'}, {'Id': 'featured', 'Name': 'Utvalda'}, {'Id': 'discounted', 'Name': 'Nedsatta'}];
     self.currentListModel = ko.observable(Mainichi.ViewModels.Admin.Models.ProductLists.InitialList);
     self.actionText = ko.observable('');
     self.allThings = Mainichi.ViewModels.Admin.Models.ProductLists.AllThings;
 
     self.selectedListType = ko.observable(self.listTypes[0].Id);
-    self.selectedListType.subscribe(function(newValue) {
+    self.selectedListType.subscribe(function (newValue) {
         $.getJSON('/api/ThingLists/' + newValue, function(d) {
             self.currentListModel(d);
+            self.currentIdentificators(mapIdentificators());
         });
     });
 
@@ -32,11 +34,11 @@ Mainichi.ViewModels.Admin.ProductLists = function() {
         });
     };
     
-    var selectedIdentificators = mapIdentificators();
+    self.currentIdentificators(mapIdentificators());
 
     self.isDirty = ko.computed(function() {
         var possiblyNewIdentificators = mapIdentificators();
-        return (!arrayEq(selectedIdentificators, possiblyNewIdentificators) ||
+        return (!arrayEq(self.currentIdentificators(), possiblyNewIdentificators) ||
             self.currentList().Descriptor() !== self.currentListModel().Descriptor ||
             self.currentList().Active() !== self.currentListModel().Active);
     });
